@@ -1,6 +1,7 @@
 services:
   wordpress:
     image: wordpress
+    user: "${UID}:${GID}"
     # restart: always
     ports:
       - 8080:80

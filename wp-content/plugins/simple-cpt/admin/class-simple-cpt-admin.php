@@ -633,6 +633,40 @@ class Simple_Cpt_Admin {
 
 		$simple_cpts = array();
 		$simple_taxs = array();
+        
+        $args = [
+            'labels' => [
+                'name'               => 'Albums',
+                'singular_name'      => 'Album',
+                'menu_name'          => 'Albums',
+                'name_admin_bar'     => 'Album',
+                'add_new'            => 'Add New',
+                'add_new_item'       => 'Add New Album',
+                'new_item'           => 'New Album',
+                'edit_item'          => 'Edit Album',
+                'view_item'          => 'View Album',
+                'all_items'          => 'All Albums',
+                'search_items'       => 'Search Albums',
+                'not_found'          => 'No albums found.',
+                'not_found_in_trash' => 'No albums found in Trash.',
+            ],
+            'public'             => true,
+            'publicly_queryable' => true,
+            'show_ui'            => true,
+            'show_in_menu'       => true,
+            'query_var'          => true,
+            'rewrite'            => ['slug' => 'albums'],
+            'capability_type'    => 'post',
+            'has_archive'        => true,
+            'hierarchical'       => false,
+            'menu_position'      => 5,
+            'menu_icon'          => 'dashicons-format-gallery',
+            'supports'           => ['title', 'editor', 'thumbnail', 'excerpt', 'comments'],
+            'show_in_rest'       => true,
+            'taxonomies'         => ['category', 'post_tag'],
+        ];
+
+        register_post_type( 'album', $args );
 
 		// query custom post types
 		$get_simple_cpt        = array(
@@ -642,6 +676,8 @@ class Simple_Cpt_Admin {
 			'suppress_filters' => false,
 		);
 		$simple_cpt_post_types = get_posts( $get_simple_cpt );
+        
+        
 
 		// create array of post meta
 		if ( $simple_cpt_post_types ) {
@@ -859,7 +895,7 @@ class Simple_Cpt_Admin {
 			}
 		}
 	}
-
+        
 
 	/**
 	 * A custom sanitization function for arrays.

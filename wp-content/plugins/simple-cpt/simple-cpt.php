@@ -82,4 +82,5 @@ function run_simple_cpt() {
 	$plugin->run();
 
 }
+
 run_simple_cpt();

@@ -211,7 +211,7 @@ class Akismet_Admin {
 	public static function admin_help() {
 		$current_screen = get_current_screen();
 
-		// Screen Content
+		// Screen Content 
 		if ( current_user_can( 'manage_options' ) ) {
 			if ( ! Akismet::get_api_key() || ( isset( $_GET['view'] ) && $_GET['view'] == 'start' ) ) {
 				// setup page

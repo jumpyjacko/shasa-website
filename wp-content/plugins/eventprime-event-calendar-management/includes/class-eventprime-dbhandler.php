@@ -904,12 +904,15 @@ class EP_DBhandler {
 			$ep_ticket_order_arr = sanitize_text_field( $post['ep_ticket_order_arr'] ); 
 			$ep_ticket_order_arr_explode = explode( ',', $ep_ticket_order_arr ); 
 
-			$get_existing_individual_ticket_lists = $ep_functions->get_existing_individual_ticket_lists($post_id); 
-			foreach ( $get_existing_individual_ticket_lists as $ticket ) { 
-				if ( ! in_array( $ticket->id, $ep_ticket_order_arr_explode ) ) {
-					array_push( $ep_ticket_order_arr_explode, $ticket->id ); 
-				}
-			}
+			$get_existing_individual_ticket_lists = $ep_functions->get_existing_individual_ticket_lists($post_id);
+                        if(isset($get_existing_individual_ticket_lists) && !empty($get_existing_individual_ticket_lists))
+                        {
+                            foreach ( $get_existing_individual_ticket_lists as $ticket ) { 
+                                    if ( ! in_array( $ticket->id, $ep_ticket_order_arr_explode ) ) {
+                                            array_push( $ep_ticket_order_arr_explode, $ticket->id ); 
+                                    }
+                            }
+                        }
 
 			update_post_meta( $post_id, 'ep_ticket_order_arr', $ep_ticket_order_arr_explode ); 
 		}
@@ -1209,7 +1212,7 @@ class EP_DBhandler {
         $ep_activator = new Eventprime_Event_Calendar_Management_Activator;
         
         $post_data = array();
-        $post_data['em_id'] = $post['post_ID'];
+        $post_data['em_id'] = isset($post['post_ID'])?$post['post_ID']:$post_id;
         $post_data['em_name'] = $post['post_title'] ?? 'no title';
         /* taxonomy update */
         //print_r($post['tax_input']);die;
@@ -1310,7 +1313,7 @@ class EP_DBhandler {
         $em_enable_booking = isset($post['em_enable_booking']) ? sanitize_text_field($post['em_enable_booking']) : '';
         if ($em_enable_booking == 'bookings_on') {
             // check for ticket. If no ticket created then bookings will be off
-            $ep_event_has_ticket = absint($post['ep_event_has_ticket']);
+            $ep_event_has_ticket = isset($post['ep_event_has_ticket'])?absint($post['ep_event_has_ticket']):0;
             if ($ep_event_has_ticket == 0) {
                 $em_enable_booking = 'bookings_off';
             }

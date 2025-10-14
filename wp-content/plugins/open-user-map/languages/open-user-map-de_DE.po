@@ -1,0 +1,1941 @@
+# Translation of Plugins - Open User Map - Stable (latest release) in German
+# This file is distributed under the same license as the Plugins - Open User Map - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2025-09-18 12:34:49+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/4.0.1\n"
+"Language: de\n"
+"Project-Id-Version: Plugins - Open User Map - Stable (latest release)\n"
+
+#: templates/page-backend-settings.php:2595
+msgid "Display the \"Add Location\" form inline instead of within a popup. The form will be displayed directly on the page without the map."
+msgstr "Zeige das Formular \"Marker hinzufügen\" inline statt in einem Popup an. Das Formular wird direkt auf der Seite (ohne Karte) eingebunden."
+
+#: templates/page-backend-settings.php:1676
+msgid "If enabled, category icons will be displayed inline with the location title in popups and location lists."
+msgstr "Wenn diese Option aktiviert ist, werden Kategorie-Icons direkt neben dem Namen des Markers in Popups und Listen  angezeigt."
+
+#: templates/page-backend-settings.php:1673
+msgid "Show category icons next to location name"
+msgstr "Zeige Kategorie-Icons direkt neben dem Namen des Markers"
+
+#: templates/page-backend-settings.php:1430
+msgid "Text for the close button after successful submission"
+msgstr "Text für den \"Schließen\"-Button nach erfolgreicher Übermittlung"
+
+#: templates/partial-map-render.php:325
+msgid "Select all"
+msgstr "Alle auswählen"
+
+#: templates/page-backend-settings.php:2749
+msgid "Customize the default location content:"
+msgstr "Ändere den Standardinhalt einer Location Detailseite:"
+
+#: templates/page-backend-settings.php:1656
+msgid "If enabled, a \"Select all\" checkbox will be shown at the top of the marker categories filter."
+msgstr "Wenn diese Option aktiviert ist, wird oben im Filter für die Marker Kategorien eine Checkbox \"Alle auswählen\" angezeigt."
+
+#: templates/page-backend-settings.php:1653
+msgid "Show \"Select all\" checkbox"
+msgstr "Checkbox \"Alle auswählen\" anzeigen"
+
+#: templates/page-backend-settings.php:1885
+msgid "Find ready-made text modules for your Privacy Declaration →"
+msgstr "Finde fertige Textbausteine für deine Datenschutzerklärung →"
+
+#: templates/page-backend-settings.php:1881
+msgid "Users can vote multiple times. Vote states are cleared on page refresh. No data is stored on user devices (maximum privacy)."
+msgstr "Nutzer können mehrmals abstimmen. Der Abstimmungsstatus wird beim Aktualisieren der Seite gelöscht. Es werden keine Daten auf den Geräten der Nutzer/innen gespeichert (maximaler Datenschutz)."
+
+#: templates/page-backend-settings.php:1879
+msgid "No Prevention:"
+msgstr "Keine Prävention:"
+
+#: templates/page-backend-settings.php:1875
+msgid "Users can vote once per location. Vote state expires when browser closes (privacy-friendly for German DSGVO compliance)."
+msgstr "Nutzer können einmal pro Marker abstimmen. Die Sicherung der einmaligen Stimmabgabe verfällt, wenn der Browser geschlossen wird (datenschutzfreundlich für die Einhaltung der deutschen DSGVO)."
+
+#: templates/page-backend-settings.php:1873
+msgid "Session Cookie:"
+msgstr "Session Cookie:"
+
+#: templates/page-backend-settings.php:1869
+msgid "Users can vote once per location. Vote state lasts 1 year."
+msgstr "Nutzer können einmal pro Marker abstimmen. Der Abstimmungsstatus gilt für 1 Jahr."
+
+#: templates/page-backend-settings.php:1867
+msgid "Persistent Cookie:"
+msgstr "Dauerhafter Cookie:"
+
+#: templates/page-backend-settings.php:1863
+msgid "Choose how to prevent multiple votes:"
+msgstr "Wähle aus, wie du Mehrfachabstimmungen verhindern willst:"
+
+#: templates/page-backend-settings.php:1857
+msgid "No Prevention (Users can vote multiple times)"
+msgstr "Keine Verhinderung (Nutzer können mehrfach abstimmen)"
+
+#: templates/page-backend-settings.php:1854
+msgid "Session Cookie (Privacy-friendly, expires when browser closes)"
+msgstr "Session Cookie (datenschutzfreundlich, läuft ab, wenn der Browser geschlossen wird)"
+
+#: templates/page-backend-settings.php:1851
+msgid "Persistent Cookie (Lasts 1 year)"
+msgstr "Dauerhafter Cookie (1 Jahr lang)"
+
+#: templates/page-backend-settings.php:1847
+msgid "Prevent Multiple Votes:"
+msgstr "Verhindere Mehrfachabstimmungen:"
+
+#: templates/page-backend-settings.php:1842
+msgid "Vote Button Label:"
+msgstr "Bezeichnung des Abstimmungs-Buttons"
+
+#: templates/page-backend-settings.php:1839
+msgid "Adds a customizable feedback button to each location popup. You can use it for likes, voting, or flagging. The counter is hidden when there are no votes."
+msgstr "Fügt eine anpassbare Feedback-Schaltfläche zu jedem Marker-Popup hinzu. Du kannst sie für Likes, Abstimmungen oder Falschmeldungen verwenden. Der Zähler wird ausgeblendet, wenn es keine Stimmen gibt."
+
+#: templates/page-backend-settings.php:1832
+msgid "Upgrade to PRO to enable public votes for Locations."
+msgstr "Upgrade auf PRO, um öffentliche Abstimmungen für Marker zu ermöglichen."
+
+#: templates/block-locations-list.php:304
+#: templates/block-locations-list.php:306
+msgid "👍"
+msgstr "👍"
+
+#: inc/Base/LocationController.php:492 templates/page-backend-settings.php:1826
+msgid "Votes"
+msgstr "Stimmen"
+
+#: inc/Base/BaseController.php:798
+msgid "Location voted!"
+msgstr "Marker gewählt!"
+
+#: inc/Base/BaseController.php:789
+msgid "Location unvoted."
+msgstr "Marker abgewählt"
+
+#: inc/Base/BaseController.php:761 inc/Base/BaseController.php:860
+msgid "Invalid location."
+msgstr "Ungültiger Marker."
+
+#: inc/Base/BaseController.php:753 inc/Base/BaseController.php:852
+msgid "Security check failed."
+msgstr "Die Sicherheitsüberprüfung ist fehlgeschlagen."
+
+#: inc/Base/BaseController.php:746 inc/Base/BaseController.php:845
+msgid "Vote feature is disabled."
+msgstr "Die Funktion Abstimmen ist deaktiviert."
+
+#: templates/page-backend-settings.php:2669
+msgid "All types must match (AND). By default or any type can match (OR)."
+msgstr "Alle Marker-Kategorien müssen übereinstimmen (UND). Standardmäßig reicht es aus, wenn eine Kategorie übereinstimmt (ODER)."
+
+#: templates/page-backend-settings.php:2370
+msgid "All types must match (AND). By default any type can match (OR)."
+msgstr "Alle Marker-Kategorien müssen übereinstimmen (UND). Standardmäßig reicht es aus, wenn eine Kategorie übereinstimmt (ODER)."
+
+#: templates/page-backend-settings.php:433
+msgid "This icon is used for locations with more than one marker category."
+msgstr "Dieses Icon wird für Marker verwendet, denen mehr als eine Marker-Kategorie zugewiesen ist."
+
+#: templates/page-backend-settings.php:413
+msgid "Upgrade to PRO to use Marker Categories and the Multi-Categories Icon."
+msgstr "Upgrade auf PRO, um Marker-Kategorien und das Multi-Kategorien-Icon zu verwenden."
+
+#: templates/page-backend-settings.php:407
+msgid "Multi-Categories Icon"
+msgstr "Multi-Kategorien-Icon"
+
+#: templates/page-backend-settings.php:3106
+msgid "↓ Show all PRO features"
+msgstr "↓ Alle PRO-Funktionen anzeigen"
+
+#: templates/page-backend-settings.php:3098
+msgid "Use the shortcode [open-user-map-list] to get a list view of all the locations. Alternatively you can use the native query loops block to build a custom list or grid."
+msgstr "Verwende den Shortcode [open-user-map-list], um eine Listenansicht aller Marker zu erhalten. Alternativ kannst du auch den nativen Query Loop Block verwenden, um eine eigene Liste oder ein Grid zu erstellen."
+
+#: templates/page-backend-settings.php:3095
+msgid "Show all locations as list or grid"
+msgstr "Alle Marker als Liste oder Grid anzeigen"
+
+#: templates/page-backend-settings.php:3089
+msgid "Use the shortcode [open-user-map-gallery] to get a nice gallery view of all the location images. Each image is linked to the location marker on the map."
+msgstr "Verwende den Shortcode [open-user-map-gallery], um eine schöne Galerieansicht aller Marker-Bilder zu erhalten. Jedes Bild ist mit dem zugehörigen Marker auf der Karte verknüpft"
+
+#: templates/page-backend-settings.php:3086
+msgid "Show all location images as gallery"
+msgstr "Alle Marker-Bilder als Galerie anzeigen"
+
+#: templates/page-backend-settings.php:3080
+msgid "Use the shortcode [open-user-map-location value=”YOUR VALUE” post_id=”POST ID (optional)”] to easily display a value from a location. You will need this when creating single pages for locations. See all the available values in the Help section of the plugin settings (Open User Map > Settings > Help)."
+msgstr "Verwende den Shortcode [open-user-map-location value=“DEIN WERT“ post_id=“POST ID (optional)“], um ganz einfach einen bestimmten Wert eines Markers anzuzeigen. Du benötigst das, wenn du einzelne Detailseiten für Marker erstellst. Alle verfügbaren Werte findest du im Hilfebereich der Plugin-Einstellungen (Open User Map > Einstellungen > Hilfe)."
+
+#: templates/page-backend-settings.php:3077
+msgid "Shortcodes for single location values"
+msgstr "Shortcodes für individuelle Marker Daten"
+
+#: templates/page-backend-settings.php:3071
+msgid "If Single pages are enabled locations will automatically have a post thumbnail, an excerpt as well as a default content template. And you can show locations within query loop blocks to setup your own list or grid view."
+msgstr "Wenn die Detailseiten aktiviert sind, haben die Marker automatisch ein Vorschaubild, eine Kurzbeschreibung und eine Standardvorlage für den Inhalt. Außerdem kannst du Standorte innerhalb von Query Loop Blöcken anzeigen, um deine eigene Listen- oder Gridansicht zu erstellen."
+
+#: templates/page-backend-settings.php:3068
+msgid "Default template for Single pages"
+msgstr "Standardvorlage für Detailseiten"
+
+#: templates/page-backend-settings.php:3062
+msgid "Per default locations will not have a single page. This should ensure that all the locations wont negatively affect your SEO. But if you’d like to add more content to locations you can easily enable it in the PRO version."
+msgstr "Standardmäßig haben die Marker keine eigene Seite. Das sollte sicherstellen, dass sich Locations nicht negativ auf deine SEO auswirken. Wenn du aber weitere Inhalte zu den Markern in Form von Detailseiten hinzufügen möchtest, kannst du dies in der PRO-Version ganz einfach aktivieren."
+
+#: templates/page-backend-settings.php:3059
+msgid "Single pages for locations"
+msgstr "Detailseiten für Marker"
+
+#: templates/page-backend-settings.php:3053
+msgid "You can limit the locations to be shown by marker categories and by post ids. So it is possible to show only locations of a specific type or to render only one single location. This can be done in the block settings or with shortcode attributes."
+msgstr "Du kannst die anzuzeigenden Marker nach Marker-Kategorien und nach Post IDs einschränken. So ist es möglich, nur Marker eines bestimmten Typs anzuzeigen oder nur einen einzigen Marker darzustellen. Das kannst du in den Blockeinstellungen oder mit Shortcode-Attributen tun."
+
+#: templates/page-backend-settings.php:3050
+msgid "Limit visible locations"
+msgstr "Sichtbare Marker einschränken"
+
+#: templates/page-backend-settings.php:3044
+msgid "Add a button that relocates the map to the users current location."
+msgstr "Füge eine Schaltfläche hinzu, die die Karte zum aktuellen Standort des Nutzers verschiebt."
+
+#: templates/page-backend-settings.php:3041
+msgid "Current location"
+msgstr "Aktueller Standort"
+
+#: templates/page-backend-settings.php:3035
+msgid "Pick a color for buttons and icons that fits your theme."
+msgstr "Wähle eine Farbe für Buttons und Icons, die zu deinem Theme passt."
+
+#: templates/page-backend-settings.php:3032
+msgid "Custom UI Elements color"
+msgstr "Benutzerdefinierte UI-Elemente Farbe"
+
+#: templates/page-backend-settings.php:3026
+msgid "Customize max. filesize for image/audio uploads (default: 10MB)."
+msgstr "Lege die maximale Dateigröße für Bild-/Audio-Uploads fest (Standard: 10 MB)."
+
+#: templates/page-backend-settings.php:3023
+msgid "Custom filesizes"
+msgstr "Benutzerdefinierte Dateigrößen"
+
+#: templates/page-backend-settings.php:3017
+msgid "Integrate the “Add location” feature to the WordPress user registration form."
+msgstr "Integriere die Funktion „Neuen Marker hinzufügen“ in das WordPress-Nutzerregistrierungsformular."
+
+#: templates/page-backend-settings.php:3014
+msgid "Extend user registration"
+msgstr "Benutzerregistrierung erweitern"
+
+#: templates/page-backend-settings.php:3008
+msgid "When activated registered users will publish directly without admin approval. This can also be enabled for unregistered users."
+msgstr "Wenn diese Funktion aktiviert ist, veröffentlichen registrierte Nutzer direkt und ohne Zustimmung des Administrators. Dies kann auch für unregistrierte Nutzer/innen aktiviert werden."
+
+#: templates/page-backend-settings.php:3005
+msgid "Auto-publish"
+msgstr "Auto-Publishing"
+
+#: templates/page-backend-settings.php:2999
+msgid "Restrict “Add location” feature to registered users only. Redirect your visitors to the registration form."
+msgstr "Schränke die Funktion „Neuen Marker hinzufügen“ nur auf registrierte Nutzer ein. Leite deine Besucher zum Anmeldeformular um."
+
+#: templates/page-backend-settings.php:2996
+msgid "User restriction"
+msgstr "Benutzereinschränkung"
+
+#: templates/page-backend-settings.php:2990
+msgid "Trigger an external webhook on new or updated locations."
+msgstr "Löse einen externen Webhook bei neuen oder aktualisierten Markern aus."
+
+#: templates/page-backend-settings.php:2987
+msgid "Zapier/Webhook Integration"
+msgstr "Zapier/Webhook Integration"
+
+#: templates/page-backend-settings.php:2981
+msgid "Send notifications to an Admin email account on incoming location proposals."
+msgstr "Sende Benachrichtigungen über eingehende Marker-Vorschläge an ein Admin-E-Mail-Konto."
+
+#: templates/page-backend-settings.php:2978
+msgid "Email Admin notification"
+msgstr "E-Mail Admin-Benachrichtigung"
+
+#: templates/page-backend-settings.php:2972
+msgid "Users get notified by email after their location has been approved."
+msgstr "Die Nutzer werden per E-Mail benachrichtigt, sobald ihr Marker-Vorschlag genehmigt wurde."
+
+#: templates/page-backend-settings.php:2969
+msgid "Email user notification"
+msgstr "E-Mail-Benachrichtigung"
+
+#: templates/page-backend-settings.php:2963
+msgid "Use videos instead of images to highlight each location."
+msgstr "Verwende Videos anstelle von Bildern, um jeden Ort hervorzuheben."
+
+#: templates/page-backend-settings.php:2960
+msgid "Videos from YouTube &amp; Vimeo"
+msgstr "Videos von YouTube &amp; Vimeo"
+
+#: templates/page-backend-settings.php:2954
+msgid "Additional geosearch providers (Geoapify, Here, MapBox)"
+msgstr "Zusätzliche Geosuchanbieter (Geoapify, Here, MapBox)"
+
+#: templates/page-backend-settings.php:2948
+msgid "Add custom fields like links, radio buttons, checkboxes, dropdowns and even HTML. Social media links will automatically be rendered as icons."
+msgstr "Füge benutzerdefinierte Felder wie Links, Optionsfelder, Kontrollkästchen, Dropdowns und sogar HTML hinzu. Links zu sozialen Medien werden automatisch als Icons dargestellt."
+
+#: templates/page-backend-settings.php:2945
+msgid "More custom field types"
+msgstr "Mehr benutzerdefinierte Feldtypen"
+
+#: templates/page-backend-settings.php:2937
+msgid "Shortcode Attribute to filter locations by current user, user_id or a role. Works for map, list and gallery."
+msgstr "Shortcode-Attribut zum Filtern von Markern nach aktuellem Benutzer, user_id oder einer Rolle. Funktioniert für Karte, Liste und Galerie."
+
+#: templates/page-backend-settings.php:2934
+msgid "Pre-Filter locations by user or role"
+msgstr "Vorfilterung von Markern nach Benutzer oder Rolle"
+
+#: templates/page-backend-settings.php:2928
+msgid "Use the search bar to filter markers as you type. Instantly see relevant locations on the map."
+msgstr "Nutze die Suchleiste, um Marker während der Eingabe zu filtern. So siehst du sofort die relevanten Orte auf der Karte."
+
+#: templates/page-backend-settings.php:2925
+msgid "Live Marker Filter"
+msgstr "Live Marker Filter"
+
+#: templates/page-backend-settings.php:2919
+msgid "Use your own custom marker icon."
+msgstr "Verwende dein eigenes benutzerdefiniertes Markersymbol."
+
+#: templates/page-backend-settings.php:2916
+msgid "Custom marker icons"
+msgstr "Benutzerdefinierte Icons"
+
+#: templates/page-backend-settings.php:2910
+msgid "The editing capability allows users to update their existing locations, ensuring the map always reflects the most current information."
+msgstr "Open User Map PRO erweitert die WordPress-Rollen, um Backend-Zugriff zu ermöglichen. Registrierte Benutzer können ihre eigenen Marker direkt in der Karte lesen, bearbeiten und löschen."
+
+#: templates/page-backend-settings.php:2907
+msgid "Allow registered users to edit their locations"
+msgstr "Erlaube registrierten Nutzern, ihre Marker zu bearbeiten"
+
+#: templates/page-backend-settings.php:2901
+msgid "Maybe you already have a list of places you need to show on the map. No problem – just make use of the CSV Export &amp; Import feature. This also comes in handy for bulk editing a lot of locations."
+msgstr "Vielleicht hast du bereits eine Liste von Locations, die du auf der Karte anzeigen möchtest. Kein Problem – nutze einfach die CSV-Export- und Importfunktion. Das ist auch sehr praktisch, wenn du viele Marker bearbeiten willst."
+
+#: templates/page-backend-settings.php:2898
+msgid "Export &amp; Import locations"
+msgstr "Locations exportieren &amp; importieren"
+
+#: templates/page-backend-settings.php:2892
+msgid "Organize locations in multiple filterable marker groups. Each group (category) can have an individual marker icon and will be accessible to visitors."
+msgstr "Organisiere Marker in mehreren filterbaren Markergruppen. Jede Gruppe (Kategorie) kann ein eigenes Symbol haben und ist für die Besucher zugänglich."
+
+#: templates/page-backend-settings.php:2880
+msgid "Learn More"
+msgstr "Weitere Informationen"
+
+#: templates/page-backend-settings.php:2878
+msgid "or"
+msgstr "oder"
+
+#: templates/page-backend-settings.php:2876
+msgid "Start Free Trial"
+msgstr "Kostenlose Testversion starten"
+
+#: templates/page-backend-settings.php:2869
+msgid "Unlock advanced features like custom markers, CSV import/export, and live filters. Enjoy full access, no credit card needed."
+msgstr "Schalte erweiterte Funktionen wie eigene Marker-Icons, CSV-Import/Export und Live-Filter frei. Nutze alle PRO Features, ohne Kreditkarte."
+
+#: templates/page-backend-settings.php:2866
+msgid "Try PRO Free for 7 Days"
+msgstr "Teste PRO kostenlos für 7 Tage"
+
+#: templates/page-backend-settings.php:211
+msgid "Try PRO 7 Days Free!"
+msgstr "Teste PRO 7 Tage kostenlos!"
+
+#: templates/page-backend-settings.php:1216
+msgid "Set the maximum number of images users can upload per location (1-5). Default: 5"
+msgstr "Lege die maximale Anzahl der Bilder fest, die Nutzer pro Marker hochladen können (1-5). Standard: 5"
+
+#: templates/page-backend-settings.php:1210
+msgid "Max number of images:"
+msgstr "Max. Anzahl an Bildern:"
+
+#: templates/page-backend-settings.php:2238
+msgid "🚀 Get started with Open User Map"
+msgstr "🚀 Los geht's mit Open User Map"
+
+#: templates/page-backend-settings.php:486
+msgid "Choose how images are displayed in the location popup."
+msgstr "Wähle aus, wie die Bilder im Marker-Popup angezeigt werden."
+
+#: templates/page-backend-settings.php:476
+msgid "Cover 1:1"
+msgstr "Cover 1:1"
+
+#: templates/page-backend-settings.php:475
+msgid "Cover 16:9"
+msgstr "Cover 16:9"
+
+#: templates/page-backend-settings.php:474
+msgid "Cover 4:3"
+msgstr "Cover 4:3"
+
+#: templates/page-backend-settings.php:473
+msgid "Original Size (default)"
+msgstr "Originalgröße (Standard)"
+
+#: templates/page-backend-settings.php:465
+msgid "Image Size in Popup"
+msgstr "Bildgröße im Pop-up"
+
+#: templates/page-backend-settings.php:134
+#: templates/page-backend-settings.php:150
+msgid "To customize styles, enable features, or get help, go to <i>Open User Map > Settings</i>"
+msgstr "Passe das Design an, aktiviere Funktionen und finde Hilfe unter <i>Open User Map > Einstellungen</i>"
+
+#: templates/page-backend-location.php:51
+msgid "Zoom Level"
+msgstr "Zoomstufe"
+
+#: templates/page-backend-settings.php:2672
+msgid "Filter by location IDs. Separate multiple IDs with a | symbol."
+msgstr "Nach Marker-IDs filtern. Mehrere IDs mit dem Symbol | trennen."
+
+#: templates/page-backend-settings.php:2666
+msgid "Filter by marker categories. Separate multiple types with a | symbol."
+msgstr "Nach Marker-Kategorien filtern. Mehrere Typen mit dem Symbol | trennen."
+
+#: templates/page-backend-settings.php:2663
+msgid "Filter locations by user. Accepts \"current\", a user ID, or \"role:rolename\"."
+msgstr "Filtere Marker nach Benutzer. Akzeptiert „current“, eine User-ID oder „role:rolename“."
+
+#: templates/page-backend-settings.php:2647
+msgid "Filter images by user. Accepts \"current\", a user ID, or \"role:rolename\"."
+msgstr "Filtere Bilder nach Benutzer. Akzeptiert „current“, eine Benutzer-ID oder „role:rolename“."
+
+#: templates/page-backend-settings.php:2644
+msgid "Limit the number of images displayed."
+msgstr "Begrenze die Anzahl angezeigter Bilder."
+
+#: templates/page-backend-settings.php:2641
+msgid "Link the images to another page."
+msgstr "Verlinke die Bilder mit einer anderen Seite."
+
+#: templates/page-backend-settings.php:2637
+#: templates/page-backend-settings.php:2659
+msgid "Available attributes:"
+msgstr "Verfügbare Attribute:"
+
+#: templates/page-backend-settings.php:2633
+msgid "Get a nice gallery view of all the location images. Each image is linked to the location marker on the map."
+msgstr "Zeige eine schöne Galerieansicht aller Marker-Bilder. Jedes Bild ist mit dem Marker auf der Karte verknüpft."
+
+#: templates/page-backend-settings.php:2579
+msgid "Example 3: Interactive map for a specific region with custom appearance"
+msgstr "Beispiel 3: Interaktive Karte für eine bestimmte Region mit individuellem Design"
+
+#: templates/page-backend-settings.php:2574
+msgid "Example 2: Simple map showing only locations from the current user"
+msgstr "Beispiel 2: Einfache Karte mit nur den Markern des aktuellen Benutzers"
+
+#: templates/page-backend-settings.php:2569
+msgid "Example 1: Map of London with food locations only"
+msgstr "Beispiel 1: Karte von London mit nur Food-Locations"
+
+#: templates/page-backend-settings.php:2565
+msgid "Complete Examples"
+msgstr "Vollständige Beispiele"
+
+#: templates/page-backend-settings.php:2473
+msgid "Features & Controls"
+msgstr "Funktionen & Steuerelemente"
+
+#: templates/page-backend-settings.php:2465
+msgid "Override the map style."
+msgstr "Überschreibe den Kartenstil."
+
+#: templates/page-backend-settings.php:2448
+msgid "Set a custom height for mobile view. Don't forget to add a unit like <b>px</b>."
+msgstr "Benutzerdefinierte Höhe für die mobile Ansicht festlegen. Vergiss nicht, eine Einheit wie <b>px</b> anzugeben."
+
+#: templates/page-backend-settings.php:2441
+msgid "Set a custom height for desktop view. Don't forget to add a unit like <b>px</b>."
+msgstr "Benutzerdefinierte Höhe für die Desktop-Ansicht festlegen. Vergiss nicht, eine Einheit wie <b>px</b> anzugeben."
+
+#: templates/page-backend-settings.php:2434
+msgid "Set a custom size for mobile view."
+msgstr "Benutzerdefinierte Größe für die mobile Ansicht festlegen."
+
+#: templates/page-backend-settings.php:2423
+msgid "Set a custom size for desktop view."
+msgstr "Benutzerdefinierte Größe für die Desktop-Ansicht festlegen."
+
+#: templates/page-backend-settings.php:2399
+msgid "Display & Appearance"
+msgstr "Darstellung & Erscheinungsbild"
+
+#: templates/page-backend-settings.php:2391
+msgid "Filter locations by user. Use \"current\" to show only locations from the currently logged-in user, a specific user ID, or \"role:rolename\" to show locations from users with a specific role."
+msgstr "Filtere Marker nach Benutzer. Verwende „current“, eine User-ID oder „role:rolename“."
+
+#: templates/page-backend-settings.php:2380
+msgid "Filter locations by Post ID. Separate multiple IDs with a | symbol."
+msgstr "Filtere Marker nach Post-IDs. Trenne mehrere IDs mit dem Symbol |."
+
+#: templates/page-backend-settings.php:2361
+msgid "Filter locations by types (Marker Categories). Separate multiple types with a | symbol."
+msgstr "Filtere Marker nach Typen (Marker-Kategorien). Trenne mehrere Typen mit dem Symbol |."
+
+#: templates/page-backend-settings.php:2337
+msgid "Content Filtering"
+msgstr "Inhaltsfilterung"
+
+#: templates/page-backend-settings.php:2320
+msgid "Set an individual map position with latitude, longitude and zoom level."
+msgstr "Individuelle Kartenposition mit Breitengrad, Längengrad und Zoomstufe festlegen."
+
+#: templates/page-backend-settings.php:2308
+#: templates/page-backend-settings.php:2346
+#: templates/page-backend-settings.php:2408
+#: templates/page-backend-settings.php:2482
+msgid "Values/Example"
+msgstr "Werte/Beispiel"
+
+#: templates/page-backend-settings.php:2305
+#: templates/page-backend-settings.php:2343
+#: templates/page-backend-settings.php:2405
+#: templates/page-backend-settings.php:2479
+msgid "Attribute"
+msgstr "Attribut"
+
+#: templates/page-backend-settings.php:2299
+msgid "Map Position & View"
+msgstr "Kartenposition & Ansicht"
+
+#: inc/Base/BaseController.php:138
+msgid "The following images exceed the maximum file size of %1$dMB:\\n%2$s"
+msgstr "Die folgenden Bilder überschreiten die maximale Dateigröße von %1$dMB:\\n%2$s"
+
+#: inc/Base/BaseController.php:137
+msgid "Maximum %1$d images allowed. Only the first %2$d new images will be used."
+msgstr "Maximal %1$d Bilder erlaubt. Nur die ersten %2$d neuen Bilder werden verwendet."
+
+#: inc/Base/BaseController.php:131
+msgid "An error occurred while deleting the location. Please try again."
+msgstr "Beim Löschen des Markers ist ein Fehler aufgetreten. Bitte versuche es erneut."
+
+#: inc/Base/BaseController.php:128
+msgid "Yes, delete location"
+msgstr "Ja, Marker löschen"
+
+#: inc/Base/BaseController.php:127
+msgid "This action cannot be undone. The location will be permanently removed from the map."
+msgstr "Diese Aktion kann nicht rückgängig gemacht werden. Dieser Marker wird dauerhaft von der Karte entfernt."
+
+#: inc/Base/BaseController.php:126
+msgid "Delete this location?"
+msgstr "Diesen Marker löschen?"
+
+#: inc/Base/BaseController.php:134
+msgid "Your changes have been saved and will be visible after we reviewed them."
+msgstr "Deine Änderungen wurden gespeichert und sind nach unserer Prüfung sichtbar."
+
+#: inc/Base/BaseController.php:133
+msgid "Changes saved"
+msgstr "Änderungen gespeichert"
+
+#: inc/Base/BaseController.php:132 templates/page-backend-settings.php:1425
+msgid "Close and refresh map"
+msgstr "Karte schließen und neu laden"
+
+#: inc/Base/BaseController.php:130
+msgid "The location has been successfully removed from the map."
+msgstr "Der Marker wurde erfolgreich von der Karte entfernt."
+
+#: inc/Base/BaseController.php:129
+msgid "Location deleted"
+msgstr "Marker gelöscht"
+
+#: templates/partial-map-add-location.php:341
+msgid "Add up to %d images to create a gallery for this location."
+msgstr "Füge bis zu %d Bilder hinzu, um eine Galerie für diesen Marker zu erstellen."
+
+#: templates/partial-map-add-location.php:325
+msgid "Upload Images"
+msgstr "Bilder hochladen"
+
+#: templates/page-backend-location.php:176
+msgid "Maximum 5 images. Images will be shown in a gallery."
+msgstr "Maximal 5 Bilder. Die Bilder werden in einer Galerie angezeigt."
+
+#: inc/Pages/Settings.php:734
+msgid "Settings Saved"
+msgstr "Einstellungen gespeichert"
+
+#: inc/Base/BaseController.php:594
+msgid "Image \"%s\" is too large. Maximum file size is %d MB."
+msgstr "Bild „%s“ ist zu groß. Die maximale Dateigröße beträgt %d MB."
+
+#: templates/page-backend-settings.php:1769
+msgid "Publishing Date"
+msgstr "Datum der Veröffentlichung"
+
+#: templates/page-backend-settings.php:1768
+msgid "Date of Last Modification"
+msgstr "Datum der letzten Änderung"
+
+#: templates/page-backend-settings.php:2101
+msgid "Webhook URL"
+msgstr "Webhook URL"
+
+#: templates/page-backend-settings.php:2093
+msgid "Upgrade to PRO to trigger external web services (e.g. Zapier) on a new or updated Location."
+msgstr "Upgrade auf PRO, um externe Webdienste (z. B. Zapier) bei einem neuen oder aktualisierten Marker auszulösen."
+
+#: templates/page-backend-settings.php:2087
+msgid "Trigger Webhook on new or updated Locations"
+msgstr "Webhook bei neuen oder aktualisierten Markern auslösen"
+
+#. Description of the plugin
+#: open-user-map.php
+msgid "Engage your visitors with an interactive map – let them add markers instantly or create a custom map showcasing your favorite spots."
+msgstr "Begeistere deine Besucher mit einer interaktiven Karte – lass sie selbst Marker hinzufügen oder erstelle eine individuelle Karte mit deinen eigenen Markern."
+
+#: templates/page-backend-settings.php:1666
+msgid "If enabled the filterbox will take less space and just open on mouseover."
+msgstr "Wenn du diese Option aktivierst, nimmt die Filterbox weniger Platz ein und öffnet sich nur bei Mouseover."
+
+#: templates/page-backend-settings.php:1663
+msgid "Collapsed Filterbox"
+msgstr "Minimierte Filterbox"
+
+#: templates/page-backend-settings.php:1639
+msgid "<strong>Important:</strong> If enabled all locations will fallback to the <a href=\"edit.php?post_type=oum-location&page=open-user-map-settings\">Default Marker Icon</a> instead of a specific category icon."
+msgstr "<strong>Wichtig:</strong> Wenn du diese Option aktivierst, wird für alle Marker das <a href=\"edit.php?post_type=oum-location&page=open-user-map-settings\">Standard-Icon</a> anstelle eines bestimmten Kategorie-Icons verwendet."
+
+#: templates/page-backend-settings.php:1566
+msgid "\"Search for location markers\" Button"
+msgstr "\"Suche nach Markern\" Button"
+
+#: templates/page-backend-settings.php:1540
+msgid "\"Search for Address (Geosearch)\" Button"
+msgstr "\"Nach Adresse suchen (Geosuche)\" Button"
+
+#: templates/page-backend-settings.php:1522
+msgid "Live Filter Markers"
+msgstr "Live Filter für Marker"
+
+#: templates/page-backend-settings.php:1510
+#: templates/page-backend-settings.php:1525
+msgid "Filter markers live as you type to instantly refine the map view."
+msgstr "Filtere Marker live während der Eingabe, um die Kartenansicht sofort zu aktualisieren."
+
+#: templates/page-backend-settings.php:1504
+msgid "Search for specific markers and see suggestions below as you type."
+msgstr "Suche nach bestimmten Markern und sieh dir die Vorschläge unten an, während du tippst."
+
+#: templates/page-backend-settings.php:1498
+msgid "Find a specific address – type to see matching suggestions below and locate them on the map."
+msgstr "Suche eine bestimmte Adresse - tippe sie ein, um passende Vorschläge zu sehen und sie auf der Karte zu finden."
+
+#: templates/page-backend-settings.php:191
+msgid "Filters & Categories"
+msgstr "Filter & Kategorien"
+
+#: templates/partial-map-add-location.php:416
+msgid "Delete this location"
+msgstr "Diesen Marker löschen"
+
+#: templates/page-backend-settings.php:1232
+msgid "Video (YouTube, Vimeo)"
+msgstr "Video (YouTube, Vimeo)"
+
+#: templates/partial-map-render.php:148
+msgid "Edit location"
+msgstr "Marker bearbeiten"
+
+#: templates/page-backend-settings.php:1047
+msgid "use label as text"
+msgstr "Label als Text verwenden"
+
+#: templates/page-backend-settings.php:2792
+msgid "Please have a look at our <a href=\"https://www.open-user-map.com/support/knowledge-base/\" target=\"_blank\">Knowledge Base</a> and the <a href=\"https://wordpress.org/plugins/open-user-map/#faq\" target=\"_blank\">FAQ</a>. We keep it up to date."
+msgstr "Bitte wirf einen Blick auf unsere <a href=\"https://www.open-user-map.com/support/knowledge-base/\" target=\"_blank\">Knowledge Base</a> und die <a href=\"https://wordpress.org/plugins/open-user-map/#faq\" target=\"_blank\">FAQ</a>. Wir halten sie auf dem neuesten Stand."
+
+#: templates/page-backend-settings.php:2787
+msgid "Support"
+msgstr "Hilfe"
+
+#: templates/page-backend-settings.php:1611
+msgid "\"Marker Categories\" field"
+msgstr "Feld „Marker-Kategorien“"
+
+#: templates/page-backend-settings.php:358
+msgid "Default Marker Icon"
+msgstr "Standard Marker Icon"
+
+#: templates/page-backend-settings.php:1636
+msgid "Allow multiple selections"
+msgstr "Mehrfachauswahl zulassen"
+
+#: templates/page-backend-location.php:7
+msgid "Marker"
+msgstr "Marker"
+
+#: inc/Base/LocationController.php:131
+msgid "Open User Map Location Settings"
+msgstr "Open User Map Marker Einstellungen"
+
+#: templates/page-backend-settings.php:2760
+msgid "Customize location list item content:"
+msgstr "Passe den Inhalt der Marker Listen-Einträge an:"
+
+#: templates/page-backend-settings.php:2735
+msgid "Find more info on how to use hooks <a href=\"https://www.open-user-map.com/knowledge-base/change-or-extend-content-of-each-location-bubble/?ref=pluginsettings\">here</a>."
+msgstr "Mehr Informationen über die Verwendung von Hooks findest du <a href=\"https://www.open-user-map.com/knowledge-base/change-or-extend-content-of-each-location-bubble/?ref=pluginsettings\">hier</a>."
+
+#: templates/page-backend-settings.php:2655
+msgid "Get a list view of all the locations. The list view is paginated. This number of items per page can be adjusted under <i>Settings > Reading</i>."
+msgstr "Erhalte eine Listenansicht aller Marker. Die Listenansicht ist paginiert. Die Anzahl der Einträge pro Seite kann unter <i>Einstellungen > Lesen</i> angepasst werden."
+
+#: templates/block-image-gallery.php:68 templates/block-locations-list.php:364
+msgid "Next &raquo;"
+msgstr "Weiter &raquo;"
+
+#: templates/block-image-gallery.php:67 templates/block-locations-list.php:363
+msgid "&laquo; Prev"
+msgstr "&laquo; Zurück"
+
+#: inc/Base/LocationController.php:819
+msgid "Route on Google Maps"
+msgstr "Route auf Google Maps"
+
+#: blocks/build/index.js:1 blocks/src/edit.js:151
+msgid "Manage Locations"
+msgstr "Verwalte Marker"
+
+#: blocks/build/index.js:1 blocks/src/edit.js:144
+msgid "This block will show your location markers on a map in the front end."
+msgstr "Dieser Block zeigt deine Marker auf einer Karte im Frontend an."
+
+#: blocks/block.json
+msgctxt "block description"
+msgid "Insert a custom map featuring your own locations or an interactive map where anyone can add location pins without registering."
+msgstr "Füge eine individuelle Karte mit deinen eigenen Markern oder eine interaktive Karte ein, auf der jeder ohne Registrierung neue Marker hinzufügen kann."
+
+#: blocks/block.json
+msgctxt "block title"
+msgid "Open User Map"
+msgstr "Open User Map"
+
+#: blocks/build/index.js:1 blocks/src/edit.js:115
+msgid "Filter "
+msgstr "Filter "
+
+#: blocks/build/index.js:1 blocks/src/edit.js:32
+msgid "Feel free to customize initial map position (Latitude, Longitude, Zoom OR Region)."
+msgstr "Du kannst die Ausgangsposition der Karte anpassen (Breitengrad, Längengrad, Zoom ODER Region)."
+
+#: templates/page-backend-settings.php:347
+msgid "You can get a MapBox API key <a href=\"%s\">here</a>. It is free to use with up to 200,000 map tile requests per month. Please attribute MapBox service if you use their free plan."
+msgstr "Einen MapBox API-Schlüssel bekommst du <a href=\"%s\">hier</a>. Die Nutzung ist kostenlos und umfasst bis zu 200.000 Anfragen für Kartenkacheln pro Monat. Bitte erwähne den MapBox-Service, wenn du den kostenlosen Plan nutzt."
+
+#: templates/page-backend-settings.php:340
+msgid "MapBox API Key:"
+msgstr "MapBox API-Schlüssel:"
+
+#: templates/page-backend-settings.php:1117
+msgid "Link to Google Maps"
+msgstr "Link zu Google Maps"
+
+#: templates/page-backend-settings.php:1110
+msgid "Don't show inside Location Pop-Up"
+msgstr "Im Marker Pop-up nicht anzeigen"
+
+#: templates/page-backend-settings.php:1096
+msgid "\"Subtitle\" field"
+msgstr "Feld „Untertitel“"
+
+#: templates/page-backend-settings.php:607
+msgid "Use the map to the left to find your area of interest"
+msgstr "Nutze die Karte auf der linken Seite, um die gewünschte Gegend zu finden"
+
+#: templates/page-backend-add-region.php:40
+#: templates/page-backend-edit-region.php:45
+#: templates/page-backend-settings.php:614
+msgid "Hold down the Shift key + mouse to zoom in on an area."
+msgstr "Halte die Umschalttaste + Maus gedrückt, um einen Bereich zu vergrößern."
+
+#: templates/page-backend-add-region.php:40
+#: templates/page-backend-edit-region.php:45
+#: templates/page-backend-settings.php:612
+msgid "Tip:"
+msgstr "Tipp:"
+
+#: templates/page-backend-add-region.php:40
+#: templates/page-backend-edit-region.php:45
+#: templates/page-backend-settings.php:610
+msgid "Zoom and pan the map to set the perfect initial view"
+msgstr "Zoome und bewege die Karte bis du den perfekten Kartenausschnitt eingestellt hast"
+
+#: templates/page-backend-add-region.php:39
+#: templates/page-backend-edit-region.php:44
+msgid "Use the map to find your area of interest"
+msgstr "Nutze die Karte auf der linken Seite, um die gewünschte Gegend zu finden"
+
+#: inc/Base/BaseController.php:152
+msgid "Notify me when it is published"
+msgstr "Benachrichtige mich, wenn es veröffentlicht wird"
+
+#: inc/Base/BaseController.php:150
+msgid "Search for address"
+msgstr "Suche nach Adresse"
+
+#: inc/Base/BaseController.php:148 inc/Base/LocationController.php:484
+#: templates/page-backend-location.php:150
+msgid "Subtitle"
+msgstr "Untertitel"
+
+#: templates/page-backend-settings.php:2293
+msgid "You can use shortcode attributes to override the <a href=\"edit.php?post_type=oum-location&page=open-user-map-settings\">global settings</a>. This allows for custom individual maps."
+msgstr "Du kannst Shortcode-Attribute verwenden, um die <a href=\"edit.php?post_type=oum-location&page=open-user-map-settings\">globalen Einstellungen</a> zu überschreiben. So kannst du individuelle Karten erstellen."
+
+#: templates/page-backend-settings.php:2243
+msgid "<ol><li>Use the WordPress block editor (or Elementor) to insert the <b>Open User Map</b> block onto a page. Alternatively, you can use the shortcode <code>[open-user-map]</code>.</li><li>You can <a href=\"%s\">Manage Markers</a> under <i>Open User Map > All Locations</i></li><li><a href=\"%s\">Customize</a> map styles, enable features, or get help via <i>Open User Map > Settings</i></li></ol>"
+msgstr "<ol><li>Benutze den Seiteneditor oder Elementor, um den <b>Open User Map</b> Block in eine Seite einzufügen. Alternativ kannst du auch den Shortcode <code>[open-user-map]</code> verwenden.</li><li>Die <a href=\"%s\">Marker</a> kannst du unter <i>Open User Map > Alle Marker</i> verwalten.</li><li><a href=\"%s\">Anpassen</a> des Designs und der Funktionen unter <i>Open User Map > Einstellungen</i></li></ol>"
+
+#: templates/page-backend-settings.php:280
+msgid "A customized and clear map showcasing only your own location markers, without the option for other users to add new locations."
+msgstr "Eine maßgeschneiderte und übersichtliche Karte, auf der nur deine Marker angezeigt werden, ohne die Möglichkeit für andere Nutzer, neue Marker hinzuzufügen."
+
+#: templates/page-backend-settings.php:144
+msgid "Add your first Location under <a href=\"%s\">Open User Map > Add Location</a>"
+msgstr "Füge deinen ersten Marker unter <a href=\"%s\">Open User Map > Marker hinzufügen</a> hinzu"
+
+#: templates/page-backend-settings.php:131
+msgid "Your website visitors will see a <div class=\"oum-inline-plus\">+</div> button in the upper right corner of the map, which they can use to propose their own location markers. New location proposals will appear with the status <b>Pending</b> until you review and approve them in the <i>Open User Map > All Locations</i> menu."
+msgstr "Deine Website-Besucher sehen in der oberen rechten Ecke der Karte eine <div class=\"oum-inline-plus\">+</div> Schaltfläche, mit der sie ihre eigenen Marker hinzufügen können. Neue Markervorschläge haben den Status <b>ausstehend</b>, um auf deine Zustimmung im Menü <i>Open User Map > Alle Marker</i> zu warten."
+
+#: templates/page-backend-settings.php:128
+#: templates/page-backend-settings.php:147
+msgid "Use the WordPress block editor (or Elementor) to insert the <b>Open User Map</b> block onto a page.<br>Alternatively, you can use the shortcode <code>[open-user-map]</code>."
+msgstr "Verwende den WordPress Block Editor (oder Elementor), um den <b>\"Open User Map\"</b> Block in eine Seite einzufügen.<br>Alternativ kannst du auch den Shortcode <code>[open-user-map]</code> verwenden."
+
+#: templates/page-backend-settings.php:70
+msgid "A customized and clear map showcasing only your own location markers, without the option for other users to add new locations. Additional features will be deactivated by default."
+msgstr "Eine benutzerdefinierte und übersichtliche Karte, auf der nur deine Marker zu sehen sind, ohne die Möglichkeit für andere Nutzer, neue Marker hinzuzufügen. Zusätzliche Funktionen sind standardmäßig deaktiviert."
+
+#: templates/page-backend-settings.php:56
+#: templates/page-backend-settings.php:254
+msgid "Create a community map! Visitors to your page can add new location markers to the map. You will receive a notification to approve each location before it is published."
+msgstr "Erstelle eine Gemeinschaftskarte! Die Besucher deiner Seite können der Karte neue Marker hinzufügen. Du erhältst eine Benachrichtigung, mit der du jeden Marker vor der Veröffentlichung genehmigst."
+
+#: templates/page-backend-settings.php:43
+msgid "Don't worry, you can adjust this later in the settings."
+msgstr "Keine Sorge, du kannst das später in den Einstellungen anpassen."
+
+#: templates/page-backend-settings.php:40
+msgid "Use Open User Map to create either an interactive map that lets visitors add location markers or a custom map featuring your own locations."
+msgstr "Verwende Open User Map, um entweder eine interaktive Karte zu erstellen, auf der Besucher Marker hinzufügen können, oder eine maßgeschneiderte Karte mit deinen eigenen Markern."
+
+#: inc/Pages/Settings.php:464
+msgid "<h3>🚀 Get started with Open User Map</h3><ol><li>Use the WordPress block editor (or Elementor) to insert the <b>Open User Map</b> block onto a page. Alternatively, you can use the shortcode <code>[open-user-map]</code>.</li><li>You can <a href=\"%s\">Manage Markers</a> under <i>Open User Map > All Locations</i></li><li><a href=\"%s\">Customize</a> map styles, enable features, or get help via <i>Open User Map > Settings</i></li></ol>"
+msgstr "<h3>🚀 Erste Schritte mit Open User Map</h3><ol><li>Benutze den WordPress Block Editor (oder Elementor), um den <b>Open User Map</b> Block in eine Seite einzufügen. Alternativ kannst du auch den Shortcode <code>[open-user-map]</code> verwenden.</li><li>Die <a href=\"%s\">Marker</a> kannst du unter <i>Open User Map > Alle Marker</i> verwalten.</li><li><a href=\"%s\">Design und Funktionen anpassen</a> unter <i>Open User Map > Einstellungen</i></li></ol>"
+
+#: elementor/includes/widgets/open-user-map-widget.php:52
+msgid "Please configure the map styles and features in <a class=\"link-oum-settings\" href=\"edit.php?post_type=oum-location&page=open-user-map-settings\">Open User Map > Settings</a>."
+msgstr "Bitte konfiguriere Design und Funktionen in <a class=\"link-oum-settings\" href=\"edit.php?post_type=oum-location&page=open-user-map-settings\">Open User Map > Einstellungen</a>."
+
+#: templates/page-backend-settings.php:2557
+msgid "Enable or disable the fullscreen button."
+msgstr "Aktiviere oder deaktiviere den Vollbild-Button."
+
+#: templates/page-backend-settings.php:2547
+msgid "Enable or disable the \"Show me where I am\" button."
+msgstr "Aktiviere oder deaktiviere die Schaltfläche \"Zeig mir, wo ich bin\"."
+
+#: templates/page-backend-settings.php:2537
+msgid "Enable or disable the \"Search for Markers\" button."
+msgstr "Aktiviere oder deaktiviere die Schaltfläche \"Nach Marker suchen\"."
+
+#: templates/page-backend-settings.php:2527
+msgid "Enable or disable the \"Search for Address (Geosearch)\" button."
+msgstr "Aktiviere oder deaktiviere die Schaltfläche \"Nach Adresse suchen (Geosuche)\"."
+
+#: templates/page-backend-settings.php:2517
+msgid "Enable or disable the searchbar."
+msgstr "Aktiviere oder deaktiviere die Suchleiste."
+
+#: templates/page-backend-settings.php:2507
+msgid "Enable or disable Marker Clustering."
+msgstr "Aktiviere oder deaktiviere das Marker Clustering."
+
+#: templates/page-backend-settings.php:2497
+msgid "Enable or disable Regions."
+msgstr "Aktiviere oder deaktiviere Regionen."
+
+#: templates/page-backend-settings.php:2458
+msgid "Enable or disable the \"Add location\" button."
+msgstr "Aktiviere oder deaktiviere die Schaltfläche „Neuen Marker hinzufügen\"."
+
+#: templates/page-backend-settings.php:741
+msgid "Upgrade to PRO to use Geoapify or Here Maps as address search provider."
+msgstr "Upgrade auf PRO, um Geoapify oder Here Maps als Adresssuch-Service zu nutzen."
+
+#: templates/page-backend-settings.php:735
+msgid "Geosearch Provider"
+msgstr "Geosearch Service"
+
+#: templates/page-backend-settings.php:2771
+msgid "Customize location bubble image (eg. to add a lightbox):"
+msgstr "Passe das Bild im Marker Pop-Up an (z. B. um Lightbox hinzuzufügen):"
+
+#: templates/page-backend-settings.php:237
+msgid "Tip: Watch <a href=\"https://www.youtube.com/watch?v=7v605z1FT2c\" target=\"_blank\">this video</a> to see a demonstration of the interactive map."
+msgstr "Tipp: Schau dir <a href=\"https://www.youtube.com/watch?v=7v605z1FT2c\" target=\"_blank\">dieses Video</a> an, um eine Demonstration der interaktiven Karte zu sehen."
+
+#: templates/page-backend-settings.php:284
+msgid "<a href=\"edit.php?post_type=oum-location\">Manage all Locations here</a>"
+msgstr "<a href=\"edit.php?post_type=oum-location\">Hier kannst du alle Marker verwalten</a>"
+
+#: templates/page-backend-settings.php:258
+msgid "Custom \"+\" Button Label:"
+msgstr "Individuelle \"+\" Button-Beschriftung:"
+
+#: templates/page-backend-settings.php:233
+msgid "Map Type"
+msgstr "Kartentyp"
+
+#: templates/page-backend-settings.php:119
+msgid "Your next steps:"
+msgstr "Deine nächsten Schritte:"
+
+#: templates/page-backend-settings.php:108
+msgid "Yeah, complete!"
+msgstr "Yeah, fertig!"
+
+#: templates/page-backend-settings.php:105
+msgid "Quick Setup (3/3)"
+msgstr "Quick Setup (3/3)"
+
+#: templates/page-backend-settings.php:81
+msgid "Next"
+msgstr "Weiter"
+
+#: templates/page-backend-settings.php:67
+#: templates/page-backend-settings.php:277
+msgid "Simple Map"
+msgstr "Einfache Karte"
+
+#: templates/page-backend-settings.php:29
+msgid "What type of map do you need?"
+msgstr "Was für eine Art von Karte brauchst du?"
+
+#: templates/page-backend-settings.php:26
+msgid "Quick Setup (2/3)"
+msgstr "Quick Setup (2/3)"
+
+#: open-user-map.php:99
+msgid "Hi! Thanks for using Open User Map"
+msgstr "Hallo! Danke, dass du Open User Map benutzt"
+
+#: open-user-map.php:98
+msgid "Quick Setup (1/3)"
+msgstr "Quick Setup (1/3)"
+
+#: templates/page-backend-settings.php:2125
+msgid "e.g. console.log('The map is ready')"
+msgstr "z.B. console.log('Die Karte ist fertig geladen')"
+
+#: templates/page-backend-settings.php:2122
+msgid "This JS code will be executed after the map has been loaded:"
+msgstr "Dieser JS-Code wird ausgeführt, nachdem die Karte geladen wurde:"
+
+#: templates/page-backend-settings.php:2117
+msgid "Custom JS"
+msgstr "Individuelles JS"
+
+#: blocks/build/index.js:1 blocks/src/edit.js:101 blocks/src/edit.js:111
+msgid "Don't forget to add a unit like px."
+msgstr "Vergiss nicht, eine Einheit wie px hinzuzufügen."
+
+#: blocks/build/index.js:1 blocks/src/edit.js:77
+msgid "Custom Style"
+msgstr "Individueller Stil"
+
+#: blocks/build/index.js:1 blocks/src/edit.js:65
+msgid "OR"
+msgstr "ODER"
+
+#: blocks/build/index.js:1 blocks/src/edit.js:35 blocks/src/edit.js:79
+msgid "This will override the general configuration from the"
+msgstr "Dies überschreibt die globale Konfiguration aus den"
+
+#: templates/page-backend-settings.php:2329
+#: templates/page-backend-settings.php:2690
+msgid "This works only if you enabled the regions feature in the settings."
+msgstr "Dies funktioniert nur, wenn du \"Regionen\" in den Einstellungen aktiviert haben."
+
+#: templates/page-backend-settings.php:2327
+#: templates/page-backend-settings.php:2688
+msgid "Pre-select a region."
+msgstr "Wähle eine Region."
+
+#: templates/page-backend-settings.php:1725
+msgid "Layout"
+msgstr "Layout"
+
+#: templates/page-backend-settings.php:1710
+msgid "You can manage Regions <a href=\"edit-tags.php?taxonomy=oum-region&post_type=oum-location\">here</a>"
+msgstr "Du kannst Regionen <a href=\"edit-tags.php?taxonomy=oum-region&post_type=oum-location\">hier</a> verwalten"
+
+#: templates/page-backend-settings.php:1185
+msgid "\"Media upload\" fields"
+msgstr "Felder „Medien-Upload“"
+
+#: templates/page-backend-settings.php:1588
+msgid "Zoom level:"
+msgstr "Zoom level:"
+
+#: templates/page-backend-settings.php:630
+msgid "This does not work when using Custom Map Positions (e.g. Regions)."
+msgstr "Dies funktioniert nicht bei der Verwendung von individuellen Kartenpositionen (z. B. Regionen)."
+
+#: templates/page-backend-settings.php:550
+msgid "This can be customized in the Block / Shortcode settings."
+msgstr "Dies kann in den Einstellungen des Blocks / Shortcodes angepasst werden."
+
+#: templates/page-backend-settings.php:547
+msgid "Initial map view"
+msgstr "Initiale Kartenansicht"
+
+#: templates/page-backend-settings.php:517
+#: templates/page-backend-settings.php:539
+msgid "Don't forget to add a unit like <b>px</b>."
+msgstr "Vergiss nicht, eine Einheit wie <b>px</b> hinzuzufügen."
+
+#: templates/page-backend-edit-region.php:12
+msgid "Adjust Region view"
+msgstr "Ansicht der Region anpassen"
+
+#: templates/page-backend-add-region.php:37
+#: templates/page-backend-edit-region.php:42
+msgid "How to adjust the Region view:"
+msgstr "So passen Sie die Kartenansicht der Region an:"
+
+#: inc/Base/TaxController.php:152
+msgid "Back to Regions"
+msgstr "Zurück zu den Regionen"
+
+#: inc/Base/TaxController.php:151
+msgid "Separate Regions with commas"
+msgstr "Regionen durch Kommas trennen"
+
+#: inc/Base/TaxController.php:150
+msgid "Add or remove Regions"
+msgstr "Regionen hinzufügen oder entfernen"
+
+#: inc/Base/TaxController.php:149
+msgid "Popular Regions"
+msgstr "Beliebte Regionen"
+
+#: inc/Base/TaxController.php:147
+msgid "Search Regions"
+msgstr "Regionen suchen"
+
+#: inc/Base/TaxController.php:145
+msgid "Add new Region"
+msgstr "Neue Region hinzufügen"
+
+#: inc/Base/TaxController.php:144
+msgid "Update Region"
+msgstr "Region aktualisieren"
+
+#: inc/Base/TaxController.php:143
+msgid "Show Region"
+msgstr "Region anschauen"
+
+#: inc/Base/TaxController.php:142
+msgid "Edit Region"
+msgstr "Region bearbeiten"
+
+#: inc/Base/TaxController.php:141
+msgid "All Regions"
+msgstr "Alle Regionen"
+
+#: inc/Base/TaxController.php:139
+msgid "Region"
+msgstr "Region"
+
+#: inc/Base/TaxController.php:138 inc/Base/TaxController.php:140
+#: templates/page-backend-settings.php:194
+msgid "Regions"
+msgstr "Regionen"
+
+#: inc/Base/BaseController.php:147
+msgid "Upload media"
+msgstr "Medien hochladen"
+
+#: elementor/includes/widgets/open-user-map-widget.php:119
+#: elementor/includes/widgets/open-user-map-widget.php:264
+msgid "Pre-select Region"
+msgstr "Wähle eine Region"
+
+#: elementor/includes/widgets/open-user-map-widget.php:111
+msgid "<b>OR</b>"
+msgstr "<b>ODER</b>"
+
+#: templates/page-backend-settings.php:715
+msgid "Scroll Wheel Zoom"
+msgstr "Mausrad Zoom"
+
+#: templates/page-backend-settings.php:53
+#: templates/page-backend-settings.php:251
+msgid "Interactive Map"
+msgstr "Interaktive Karte"
+
+#: templates/page-backend-settings.php:1462
+msgid "Searchbar"
+msgstr "Suchleiste"
+
+#: inc/Base/BaseController.php:151
+msgid "Find marker"
+msgstr "Marker finden"
+
+#: templates/page-backend-settings.php:2738
+msgid "Customize location bubble content:"
+msgstr "Passe den Inhalt der Marker Bubble an:"
+
+#: templates/page-backend-settings.php:2733
+msgid "Make use of filter hooks to extend the functionality of the Open User Map plugin."
+msgstr "Nutze WordPress Filter Hooks um Funktionalitäten von Open User Map zu erweitern."
+
+#: templates/page-backend-settings.php:2728
+msgid "Hooks"
+msgstr "Hooks"
+
+#: templates/page-backend-settings.php:1938
+msgid "Auto-Publish for registered users"
+msgstr "Auto-Publish für registrierte Benutzer"
+
+#: templates/page-backend-settings.php:2717
+msgid "Example:"
+msgstr "Beispiel:"
+
+#: templates/page-backend-settings.php:2704
+msgid "Use this Javascript function in your template:"
+msgstr "Nutze diese Javascript Funktion in deinem Template:"
+
+#: templates/page-backend-settings.php:2701
+msgid "Show or Hide a Custom Field based on the selected value of a field."
+msgstr "Zeige oder Verberge ein Custom Field basierend auf der Auswahl in einem anderen Feld."
+
+#: templates/page-backend-settings.php:2697
+msgid "Conditional Fields (experimental)"
+msgstr "Conditional Fields (experimental)"
+
+#: templates/page-backend-settings.php:2289
+msgid "Shortcode attributes"
+msgstr "Shortcode-Attribute"
+
+#: templates/page-backend-settings.php:2197
+msgid "Upgrade to PRO to import your locations."
+msgstr "Upgrade auf PRO um Marker zu importieren."
+
+#: templates/page-backend-settings.php:2158
+msgid "Upgrade to PRO to export your locations."
+msgstr "Upgrade auf PRO um Marker zu exportieren."
+
+#: elementor/includes/widgets/open-user-map-widget.php:203
+msgid "Height (Mobile)"
+msgstr "Höhe (Smartphone)"
+
+#: elementor/includes/widgets/open-user-map-widget.php:194
+msgid "Height"
+msgstr "Höhe"
+
+#: elementor/includes/widgets/open-user-map-widget.php:186
+msgid "Full width"
+msgstr "Gesamte Breite"
+
+#: elementor/includes/widgets/open-user-map-widget.php:185
+msgid "Content width"
+msgstr "Breite des Inhalts"
+
+#: elementor/includes/widgets/open-user-map-widget.php:181
+msgid "Map Size"
+msgstr "Größe der Karte"
+
+#: elementor/includes/widgets/open-user-map-widget.php:173
+msgid "Custom Size"
+msgstr "Individuelle Größe"
+
+#: blocks/build/index.js:1 blocks/src/edit.js:35 blocks/src/edit.js:79
+msgid "settings"
+msgstr "Einstellungen"
+
+#: templates/page-backend-settings.php:2269
+msgid "Use the Elementor Widget \"Open User Map\" to integrate the map inside your page. <br>You can set custom map position and filter for categories and locations inside the widget settings."
+msgstr "Verwende das Elementor-Widget „Open User Map“, um die Karte auf deiner Seite zu integrieren. <br>Du kannst darin die Kartenposition sowie Filter für Kategorien und Marker einstellen."
+
+#: templates/page-backend-settings.php:2264
+msgid "Elementor Widget"
+msgstr "Elementor Widget"
+
+#: templates/page-backend-settings.php:2256
+msgid "Use the \"Open User Map\" block to integrate the map inside your page. <br>You can set custom map position and filter for categories and locations inside the block settings."
+msgstr "Verwende den Block „Open User Map“, um die Karte auf deiner Seite zu integrieren. <br>Du kannst darin die Kartenposition sowie Filter für Kategorien und Marker einstellen."
+
+#: templates/page-backend-settings.php:2203
+msgid "Upload CSV & Import"
+msgstr "Upload CSV & Import"
+
+#: templates/page-backend-settings.php:2191
+msgid "Import all Locations"
+msgstr "Alle Marker importieren"
+
+#: templates/page-backend-settings.php:2163
+msgid "Export to CSV"
+msgstr "CSV exportieren"
+
+#: templates/page-backend-settings.php:2152
+msgid "Export all Locations"
+msgstr "Exportiere alle Marker"
+
+#: templates/page-backend-settings.php:200
+msgid "Import & Export"
+msgstr "Import & Export"
+
+#: elementor/includes/widgets/open-user-map-widget.php:284
+msgid "Filter by POST IDs"
+msgstr "Filtern nach POST-IDs"
+
+#: elementor/includes/widgets/open-user-map-widget.php:278
+msgid "Filter by Marker Categories [PRO]"
+msgstr "Filter nach Marker-Kategorien [PRO]"
+
+#: elementor/includes/widgets/open-user-map-widget.php:273
+msgid "Filter Locations (optional):"
+msgstr "Filter Marker (optional):"
+
+#: elementor/includes/widgets/open-user-map-widget.php:234
+msgid "Custom Map Position (optional):"
+msgstr "Benutzerdefinierte Kartenposition (optional):"
+
+#: elementor/includes/widgets/open-user-map-widget.php:228
+msgid "This block will show your Locations on a map in the front end."
+msgstr "Dieser Block zeigt deine Marker auf einer Karte im Frontend an."
+
+#: elementor/includes/widgets/open-user-map-widget.php:159
+msgid "1|2|3"
+msgstr "1|2|3"
+
+#: elementor/includes/widgets/open-user-map-widget.php:157
+msgid "Post IDs"
+msgstr "Post IDs"
+
+#: elementor/includes/widgets/open-user-map-widget.php:150
+msgid "food|drinks"
+msgstr "food|drinks"
+
+#: elementor/includes/widgets/open-user-map-widget.php:148
+msgid "Marker categories [PRO]"
+msgstr "Marker-Kategorien [PRO]"
+
+#: elementor/includes/widgets/open-user-map-widget.php:140
+#: blocks/build/index.js:1 blocks/src/edit.js:117
+msgid "Show only specific markers by filtering for categories or Post IDs. You can separate multiple Categories or IDs with a | symbol."
+msgstr "Zeigen Sie nur bestimmte Markierungen an, indem Sie nach Kategorien oder Post-IDs filtern. Sie können mehrere Kategorien oder IDs mit einem | Symbol trennen."
+
+#: elementor/includes/widgets/open-user-map-widget.php:130
+msgid "Filter Locations"
+msgstr "Marker filtern"
+
+#: elementor/includes/widgets/open-user-map-widget.php:98
+msgid "Zoom (3 - 15)"
+msgstr "Zoom (3 - 15)"
+
+#: elementor/includes/widgets/open-user-map-widget.php:72
+msgid "Feel free to customize initial map position (Latitude, Longitude, Zoom OR Region).<br><br>This will override the general configuration from the <a href=\"edit.php?post_type=oum-location&page=open-user-map-settings\">settings</a>."
+msgstr "Du kannst die anfängliche Position der Karte anpassen (Breitengrad, Längengrad, Zoom ODER Region).<br><br>Dies überschreibt die globale Konfiguration aus den <a href=\"edit.php?post_type=oum-location&page=open-user-map-settings\">Einstellungen</a>."
+
+#: elementor/includes/widgets/open-user-map-widget.php:62
+#: blocks/build/index.js:1 blocks/src/edit.js:30
+msgid "Custom Map Position"
+msgstr "Benutzerdefinierte Kartenposition"
+
+#: elementor/includes/widgets/open-user-map-widget.php:52
+msgid "This block will show all <a href=\"edit.php?post_type=oum-location\">Locations</a> on a map. By default users will be able to propose new locations by clicking a + Button on the map."
+msgstr "Dieser Block zeigt alle <a href=\"edit.php?post_type=oum-location\">Marker</a> auf einer Karte an. Standardmäßig können Benutzer neue Orte vorschlagen, indem sie auf der Karte auf eine + Schaltfläche klicken."
+
+#: elementor/includes/widgets/open-user-map-widget.php:42
+msgid "How to use"
+msgstr "Funktion"
+
+#: elementor/includes/plugin.php:184
+msgid "PHP"
+msgstr "PHP"
+
+#. translators: 1: Plugin name 2: Elementor 3: Required Elementor version
+#. translators: 1: Plugin name 2: PHP 3: Required PHP version
+#: elementor/includes/plugin.php:158 elementor/includes/plugin.php:182
+msgid "\"%1$s\" requires \"%2$s\" version %3$s or greater."
+msgstr "\"%1$s\" erfordert \"%2$s\" Version %3$s oder höher."
+
+#: elementor/includes/plugin.php:137 elementor/includes/plugin.php:160
+msgid "Elementor"
+msgstr "Elementor"
+
+#: elementor/includes/plugin.php:136 elementor/includes/plugin.php:159
+#: elementor/includes/plugin.php:183
+msgid "Elementor OUM Addon"
+msgstr "Elementor OUM Addon"
+
+#. translators: 1: Plugin name 2: Elementor
+#: elementor/includes/plugin.php:135
+msgid "\"%1$s\" requires \"%2$s\" to be installed and activated."
+msgstr "\"%1$s\" erfordert die Installation und Aktivierung von \"%2$s\"."
+
+#: templates/page-backend-settings.php:2033
+msgid "Admin email notification on new location proposals"
+msgstr "Admin-E-Mail-Benachrichtigung über neue Marker-Vorschläge"
+
+#: templates/page-backend-settings.php:1762
+msgid "Displays the date when the location was modified or published inside the location bubble."
+msgstr "Zeigt das Datum an, an dem der Marker geändert oder veröffentlicht wurde."
+
+#: templates/page-backend-settings.php:1753
+msgid "Show location date"
+msgstr "Zeige das Datum"
+
+#: templates/page-backend-settings.php:1646
+msgid "Allow empty selection"
+msgstr "Leere Auswahl zulassen"
+
+#: templates/page-backend-settings.php:2889
+msgid "Filterable Marker Categories"
+msgstr "Filterbare Marker-Kategorien"
+
+#: templates/page-backend-settings.php:789
+msgid "\"Show me where I am\" Button"
+msgstr "\"Zeigen Sie mir, wo ich bin\" Button"
+
+#: templates/page-backend-settings.php:769
+msgid "Full Screen Button"
+msgstr "Vollbild-Button"
+
+#: templates/page-backend-settings.php:700
+msgid "Pins Clustering (group nearby markers)"
+msgstr "Pins Clustering (nahe gelegene Marker gruppieren)"
+
+#: templates/page-backend-settings.php:628
+msgid "If enabled, the visible map will try to stay in the boundaries. (Initial Map View)."
+msgstr "Wenn diese Option aktiviert ist, wird die sichtbare Karte versuchen, innerhalb der Grenzen zu bleiben (Anfängliche Kartenansicht)."
+
+#: templates/page-backend-settings.php:203
+msgid "Help & Getting Started"
+msgstr "Hilfe & Erste Schritte"
+
+#: templates/page-backend-settings.php:197
+msgid "Advanced"
+msgstr "Weitere Funktionen"
+
+#: templates/page-backend-settings.php:185 blocks/build/index.js:1
+#: blocks/src/edit.js:158
+msgid "Map Settings"
+msgstr "Karten Einstellungen"
+
+#: inc/Base/TaxController.php:55
+msgid "Back to Marker Categories"
+msgstr "Zurück zu den Marker-Kategorien"
+
+#: inc/Base/TaxController.php:54
+msgid "Separate Marker Categories with commas"
+msgstr "Marker-Kategorien mit Kommas trennen"
+
+#: inc/Base/TaxController.php:53
+msgid "Add or remove Marker Categories"
+msgstr "Marker-Kategorien hinzufügen oder entfernen"
+
+#: inc/Base/TaxController.php:52
+msgid "Popular Marker Categories"
+msgstr "Beliebte Marker-Kategorien"
+
+#: inc/Base/TaxController.php:51
+msgid "Choose from the most used Marker Categories"
+msgstr "Wählen Sie aus den am häufigsten verwendeten Marker-Kategorien"
+
+#: inc/Base/TaxController.php:50
+msgid "Search Marker Categories"
+msgstr "Marker-Kategorien suchen"
+
+#: inc/Base/TaxController.php:48
+msgid "Add new Marker Category"
+msgstr "Neue Marker-Kategorie hinzufügen"
+
+#: inc/Base/TaxController.php:47
+msgid "Update Marker Category"
+msgstr "Marker-Kategorie aktualisieren"
+
+#: inc/Base/TaxController.php:46
+msgid "Show Marker Category"
+msgstr "Marker-Kategorie anzeigen"
+
+#: inc/Base/TaxController.php:45
+msgid "Edit Marker Category"
+msgstr "Marker-Kategorie bearbeiten"
+
+#: inc/Base/TaxController.php:44
+msgid "All Marker Categories"
+msgstr "Alle Marker-Kategorien"
+
+#: inc/Base/TaxController.php:42
+msgid "Marker Category"
+msgstr "Marker-Kategorie"
+
+#: inc/Base/TaxController.php:41 inc/Base/TaxController.php:43
+msgid "Marker Categories"
+msgstr "Marker-Kategorien"
+
+#: templates/page-backend-settings.php:2607
+msgid "These values are available:"
+msgstr "Diese Werte sind verfügbar:"
+
+#: templates/page-backend-settings.php:2603
+msgid "Display specific values from a location. The POST_ID attribute is optional. Alternatively use the PHP function <code>oum_get_location_value( $value, $post_id )</code> in case you just want to return the value."
+msgstr "Zeigen Sie bestimmte Werte eines Markers an. Das Attribut POST_ID ist optional. Verwenden Sie alternativ die PHP-Funktion <code>oum_get_location_value( $value, $post_id )</code>, falls Sie nur den Wert zurückgeben möchten."
+
+#: templates/page-backend-settings.php:2282
+msgid "Displays the Map with all locations."
+msgstr "Zeigt die Karte mit allen Markern an."
+
+#: templates/page-backend-settings.php:1807
+msgid "In the backend on the \"Edit location\" page an additional content editor will become available. You can use shortcodes to display individual values of a location. <strong>See the Help section for details.</strong>"
+msgstr "Im Backend wird auf der Seite „Marker bearbeiten\" ein zusätzlicher Inhaltseditor verfügbar. Sie können Shortcodes verwenden, um einzelne Werte eines Ortes anzuzeigen. <strong>Lesen Sie den Abschnitt Hilfe für weitere Details.</strong>"
+
+#: templates/page-backend-settings.php:1804
+msgid "This will add a \"Read more\"-Button to the location bubble. It will link to the location's single page."
+msgstr "Dies fügt eine \"Mehr lesen\"-Schaltfläche zum Marker Pop-Up hinzu. Sie verweist auf die Detailseite des Markers."
+
+#: templates/page-backend-settings.php:1791
+msgid "Public pages for locations (Single pages)"
+msgstr "Öffentliche Seiten für Marker (Detailseiten)"
+
+#: templates/page-backend-settings.php:2805
+msgid "You can copy & paste this info and send it as email to our support in case we need to debug something:"
+msgstr "Sie können diese Informationen kopieren und als E-Mail an unseren Support senden, falls wir eine Fehlersuche durchführen müssen:"
+
+#: templates/page-backend-settings.php:2800
+msgid "Debug Info"
+msgstr "Debug Info"
+
+#: templates/page-backend-settings.php:2685
+msgid "123 can be the post_id of any public location. Add the parameter to the URL to auto-open a specific location."
+msgstr "123 kann die post_id eines beliebigen öffentlichen Markers sein. Fügen Sie den Parameter zur URL hinzu, um ein bestimmtes Marker Pop-Up automatisch zu öffnen."
+
+#: templates/page-backend-settings.php:2681
+msgid "URL parameters"
+msgstr "URL-Parameter"
+
+#: templates/page-backend-settings.php:2589
+msgid "Additional Shortcodes"
+msgstr "Weitere Shortcodes"
+
+#: templates/page-backend-settings.php:938
+msgid "Private"
+msgstr "Privat"
+
+#: templates/page-backend-settings.php:1596
+msgid "Set a value between 1 (far away) and 19 (very close)."
+msgstr "Stelle einen Wert zwischen 1 (weit weg) und 19 (sehr nah) ein."
+
+#: templates/page-backend-settings.php:625
+msgid "Keep map focus in fixed position"
+msgstr "Kartenfokus in fester Position halten"
+
+#: templates/page-backend-settings.php:2251
+msgid "Gutenberg Block"
+msgstr "Gutenberg Block"
+
+#: templates/page-backend-settings.php:1139
+msgid "\"Description\" field"
+msgstr "Feld „Beschreibung“"
+
+#: templates/page-backend-settings.php:851
+#: templates/page-backend-settings.php:1103
+#: templates/page-backend-settings.php:1148
+#: templates/page-backend-settings.php:1623
+#: templates/page-backend-settings.php:1697
+msgid "Enable"
+msgstr "Aktivieren"
+
+#: templates/page-backend-settings.php:889
+msgid "\"Map\" field"
+msgstr "Feld „Karte“"
+
+#: templates/page-backend-settings.php:842
+msgid "\"Title\" field"
+msgstr "Feld „Titel“"
+
+#: templates/page-backend-settings.php:1399
+msgid "Redirect"
+msgstr "Weiterleiten"
+
+#: templates/page-backend-settings.php:1398
+msgid "Refresh"
+msgstr "Seite neu laden"
+
+#: templates/page-backend-settings.php:1397
+msgid "Display message"
+msgstr "Mitteilung anzeigen"
+
+#: templates/page-backend-settings.php:1390
+msgid "Action after submit"
+msgstr "Aktion nach dem Senden"
+
+#: templates/page-backend-settings.php:1040
+msgid "add empty option"
+msgstr "leere Option hinzufügen"
+
+#: templates/page-backend-settings.php:867
+#: templates/page-backend-settings.php:941
+msgid "Max. length"
+msgstr "Max. Länge"
+
+#: templates/page-backend-settings.php:2064
+msgid "A new location with the title \"%title%\" on %website_url% has been added! Please verify and publish or use the \"auto-publish\" feature. \\n\\n %edit_location_url%"
+msgstr "Eine neuer Marker mit dem Titel \"%title%\" auf %website_url% wurde hinzugefügt! Bitte überprüfe und veröffentliche den Eintrag oder verwende die Funktion \"Automatische Veröffentlichung\". \\n\\n %edit_location_url%"
+
+#: templates/page-backend-settings.php:2057
+msgid "New Open User Map location"
+msgstr "Neuer Open User Map Marker"
+
+#: templates/page-backend-settings.php:2050
+msgid "john@doe.com"
+msgstr "john@doe.com"
+
+#: templates/page-backend-settings.php:2047
+msgid "Email address"
+msgstr "E-Mail-Adresse"
+
+#: templates/page-backend-settings.php:2039
+msgid "Upgrade to PRO to get notified instantly when a new location proposal has been added!"
+msgstr "Aktualisieren Sie auf PRO, um sofort benachrichtigt zu werden, wenn ein neuer Marker-Vorschlag hinzugefügt wurde!"
+
+#: templates/page-backend-settings.php:1985
+msgid "Every location proposal will be published directly without your verification. No user registration is necessary."
+msgstr "Jeder neue Marker-Vorschlag wird direkt und ohne Ihre Überprüfung veröffentlicht. Es ist keine Benutzerregistrierung erforderlich."
+
+#: templates/page-backend-settings.php:1983
+msgid "USE WITH CAUTION!"
+msgstr "MIT VORSICHT VERWENDEN!"
+
+#: templates/page-backend-settings.php:1976
+msgid "Upgrade to PRO to auto-publish location proposals from unregistered users without your approval!"
+msgstr "Upgraden Sie auf PRO, um neue Marker-Vorschläge von nicht registrierten Benutzern ohne Ihre Zustimmung automatisch zu veröffentlichen!"
+
+#: templates/page-backend-settings.php:1919
+msgid "Redirect \"Add location\"-Button to registration page"
+msgstr "Leite den „Neuen Marker hinzufügen“-Button zur Registrierungsseite weiter"
+
+#: templates/page-backend-settings.php:1377
+msgid "\"Submit\" Button text"
+msgstr "Beschriftung des „Absenden“-Buttons"
+
+#: templates/page-backend-settings.php:823
+msgid "Headline"
+msgstr "Überschrift"
+
+#: templates/page-backend-settings.php:511
+#: templates/page-backend-settings.php:533
+msgid "Custom Height:"
+msgstr "Benutzerdefinierte Höhe:"
+
+#: templates/page-backend-settings.php:873
+#: templates/page-backend-settings.php:893
+#: templates/page-backend-settings.php:1121
+#: templates/page-backend-settings.php:1162
+#: templates/page-backend-settings.php:1272
+#: templates/page-backend-settings.php:1553
+#: templates/page-backend-settings.php:1580
+#: templates/page-backend-settings.php:1628
+msgid "Custom Label:"
+msgstr "Benutzerdefiniertes Label:"
+
+#: inc/Base/LocationController.php:198 templates/partial-map-init.php:26
+msgid "Your email"
+msgstr "Deine E-Mail-Adresse"
+
+#: inc/Base/LocationController.php:197 templates/partial-map-init.php:25
+msgid "Your name"
+msgstr "Dein Name"
+
+#: templates/block-locations-list.php:296 templates/partial-map-render.php:137
+msgid "Read more"
+msgstr "Weiterlesen"
+
+#: templates/page-backend-settings.php:1797
+msgid "Upgrade to PRO to enable single pages."
+msgstr "Aktualisieren Sie auf PRO, um Einzelseiten zu aktivieren."
+
+#: templates/page-backend-settings.php:1951
+msgid "This works only for users with \"edit posts\" capabilities."
+msgstr "Dies funktioniert nur für Benutzer mit der \"edit posts\" Berechtigung."
+
+#: templates/page-backend-settings.php:525
+msgid "Map size (mobile)"
+msgstr "Größe der Karte (mobil)"
+
+#: templates/page-backend-settings.php:494
+msgid "Map size"
+msgstr "Größe der Karte"
+
+#: templates/page-backend-settings.php:1059
+msgid "Enter description (optional)"
+msgstr "Beschreibung eingeben (optional)"
+
+#: templates/page-backend-settings.php:947
+msgid "Options"
+msgstr "Optionen"
+
+#: templates/page-backend-settings.php:944
+msgid "Field type"
+msgstr "Feldtyp"
+
+#: templates/page-backend-settings.php:916
+msgid "Upgrade to PRO to use various field types like links, checkboxes, radio buttons and dropdowns"
+msgstr "Installiere die PRO version um verschiedene Feldtypen wir Links, Checkboxen, Radio Buttons und Dropdowns nutzen zu können"
+
+#: templates/page-backend-settings.php:2004
+msgid "Extend WordPress user registration form with \"Add location\" map"
+msgstr "Registrierungsformular um „Marker hinzufügen“-Karte erweitern"
+
+#: templates/page-backend-settings.php:448
+msgid "UI Elements color"
+msgstr "Farbe für UI Elemente"
+
+#: templates/page-backend-settings.php:188
+msgid "Form Settings"
+msgstr "Formular Einstellungen"
+
+#: templates/page-backend-settings.php:968
+msgid "Enter label"
+msgstr "Label eingeben"
+
+#: templates/page-backend-settings.php:859
+#: templates/page-backend-settings.php:935
+#: templates/page-backend-settings.php:1156
+#: templates/page-backend-settings.php:1203
+#: templates/page-backend-settings.php:1238
+#: templates/page-backend-settings.php:1265
+msgid "Required"
+msgstr "Erforderlich"
+
+#: templates/page-backend-settings.php:932
+msgid "Label"
+msgstr "Beschriftung"
+
+#: templates/page-backend-settings.php:906
+msgid "Custom fields"
+msgstr "Individuelle Felder"
+
+#: templates/page-backend-settings.php:1617
+msgid "Upgrade to PRO and use marker categories. Each category can have a custom marker icon."
+msgstr "Installiere die PRO version um Markerkategorien zu aktivieren. Jede Kategorie kann individuelle Icons nutzen."
+
+#: templates/page-backend-edit-type.php:4
+msgid "Select marker icon"
+msgstr "Wähle ein Icon"
+
+#: inc/Base/TaxController.php:148
+msgid "Choose from the most used Regions"
+msgstr "Aus den meist verwendeten Regionen auswählen"
+
+#: inc/Base/TaxController.php:49 inc/Base/TaxController.php:146
+msgid "New Type name"
+msgstr "Name des neuen Typs"
+
+#: inc/Base/BaseController.php:149
+msgid "Type"
+msgstr "Typ"
+
+#: templates/page-backend-settings.php:795
+msgid "Upgrade to PRO and display a button to get the users current location."
+msgstr "Installiere die PRO Version und integriere einen Button zur Bestimmung der aktuellen Position."
+
+#: templates/page-backend-add-type.php:24
+#: templates/page-backend-edit-type.php:32
+#: templates/page-backend-settings.php:385
+msgid "Upgrade to PRO to use custom icons."
+msgstr "Installiere die PRO version um individuelle Icons zu nutzen."
+
+#: templates/page-backend-add-type.php:23
+#: templates/page-backend-edit-type.php:31
+#: templates/page-backend-settings.php:384
+#: templates/page-backend-settings.php:427
+msgid "Upload Icon"
+msgstr "Icon hochladen"
+
+#: templates/page-backend-settings.php:2010
+msgid "Upgrade to PRO to allow users to add their location within registration. Create a map of your registered users!"
+msgstr "Installiere die PRO Version damit Nutzer ihre Marker bei der Registrierung ergänzen können. Erstelle eine Karte mit allen registrierten Nutzern!"
+
+#: templates/page-backend-settings.php:1944
+msgid "Upgrade to PRO to auto-publish location proposals from registered users without your approval!"
+msgstr "Installiere die PRO Version damit Marker von bereits registrierten Nutzern automatisch veröffentlicht werden können!"
+
+#: templates/page-backend-settings.php:1970
+msgid "Auto-Publish for unregistered users"
+msgstr "\"Auto-publish\" für nicht-registrierte Nutzer"
+
+#: templates/page-backend-settings.php:1911
+msgid "Upgrade to PRO to enable the \"Add location\" feature only to logged in users!"
+msgstr "Upgrade auf PRO, um die „Neuen Marker hinzufügen“-Funktion nur für eingeloggte Nutzer zu aktivieren!"
+
+#: templates/page-backend-settings.php:1905
+msgid "Restrict \"Add location\" to logged in users only"
+msgstr "„Neuen Marker hinzufügen“ nur für eingeloggte Nutzer erlauben"
+
+#: templates/page-backend-settings.php:1362
+#: templates/page-backend-settings.php:2067
+msgid "Available tags"
+msgstr "Verfügbare Schlagwörter"
+
+#: templates/page-backend-settings.php:1359
+msgid "Hey %name%! Your location proposal on %website_url% has been published!"
+msgstr "Hey %name%! Dein Vorschlag eines neuen Markers auf %website_url% wurde eben veröffentlicht!"
+
+#: templates/page-backend-settings.php:1356
+#: templates/page-backend-settings.php:2061
+msgid "Message"
+msgstr "Nachricht"
+
+#: templates/page-backend-settings.php:1352
+msgid "Your location has been approved"
+msgstr "Dein Marker wurde freigeschalten"
+
+#: templates/page-backend-settings.php:1349
+#: templates/page-backend-settings.php:2054
+msgid "Subject"
+msgstr "Betreff"
+
+#: templates/page-backend-settings.php:1341
+msgid "Upgrade to PRO to notify your users after their location proposal has been approved!"
+msgstr "Installiere die PRO Version um deine Nutzer zu benachrichtigen sobald deren Marker-Vorschlag freigeschalten wurde!"
+
+#: templates/page-backend-settings.php:1335
+msgid "User email notification"
+msgstr "E-Mail Benachrichtigung für Nutzer"
+
+#: templates/page-backend-settings.php:1299
+msgid "Upgrade to PRO to set the maximum file size for image and audio uploads."
+msgstr "Installiere die PRO version um maximale Dateigrößen für Audio und Bild Uploads festzulegen."
+
+#: templates/page-backend-settings.php:1293
+msgid "Max upload size"
+msgstr "Maximale Dateigröße"
+
+#: templates/page-backend-location.php:192
+#: templates/partial-map-add-location.php:377
+msgid "Upload Audio"
+msgstr "Upload Audio"
+
+#: templates/page-backend-location.php:187
+#: templates/page-backend-settings.php:1257
+#: templates/page-backend-settings.php:1312
+msgid "Audio"
+msgstr "Audio"
+
+#: inc/Base/BaseController.php:145
+msgid "Click on the map to set a marker"
+msgstr "Setze einen Marker auf der Karte"
+
+#: templates/page-backend-settings.php:827
+#: templates/partial-map-add-location.php:7
+msgid "Add a new location"
+msgstr "Einen neuen Marker hinzufügen"
+
+#: templates/page-backend-settings.php:2276
+msgid "Place the shortcode anywhere in your content or integrate it within your theme template with PHP"
+msgstr "Platziere den Shortcode an beliebiger Stelle im Inhalt oder integrieren ihn mit PHP in deine Theme-Template"
+
+#: templates/page-backend-settings.php:603
+msgid "How to adjust the initial view:"
+msgstr "So stellst du die Anfangsansicht ein:"
+
+#: elementor/includes/widgets/open-user-map-widget.php:253
+#: inc/Base/TaxController.php:233 templates/page-backend-add-region.php:30
+#: templates/page-backend-edit-region.php:35
+#: templates/page-backend-settings.php:592
+msgid "Zoom"
+msgstr "Zoomen"
+
+#: templates/page-backend-settings.php:301
+msgid "Map Style"
+msgstr "Kartenstil"
+
+#: inc/Base/LocationController.php:820 templates/block-locations-list.php:233
+#: templates/partial-map-render.php:63
+msgid "go to Google Maps"
+msgstr "zu Google Maps gehen"
+
+#: inc/Base/BaseController.php:136 templates/page-backend-settings.php:1420
+#: templates/partial-map-add-location.php:431
+msgid "We will check your location suggestion and release it as soon as possible."
+msgstr "Wir werden deinen Marker-Vorschlag prüfen und ihn so schnell wie möglich freigeben."
+
+#: inc/Base/BaseController.php:135 templates/page-backend-settings.php:1415
+#: templates/partial-map-add-location.php:428
+msgid "Thank you!"
+msgstr "Vielen Dank!"
+
+#: templates/page-backend-settings.php:1381
+#: templates/partial-map-add-location.php:407
+msgid "Submit location for review"
+msgstr "Marker zur Überprüfung einreichen"
+
+#: inc/Base/BaseController.php:146 templates/page-backend-location.php:212
+#: templates/page-backend-settings.php:950
+#: templates/page-backend-settings.php:2311
+#: templates/page-backend-settings.php:2349
+#: templates/page-backend-settings.php:2411
+#: templates/page-backend-settings.php:2485
+msgid "Description"
+msgstr "Beschreibung"
+
+#: elementor/includes/widgets/open-user-map-widget.php:89
+#: elementor/includes/widgets/open-user-map-widget.php:247
+#: templates/block-add-user-location.php:10
+#: templates/partial-map-add-location.php:50
+msgid "Longitude"
+msgstr "Längengrad"
+
+#: elementor/includes/widgets/open-user-map-widget.php:80
+#: elementor/includes/widgets/open-user-map-widget.php:241
+#: templates/block-add-user-location.php:9
+#: templates/partial-map-add-location.php:47
+msgid "Latitude"
+msgstr "Breitengrad"
+
+#: inc/Base/BaseController.php:144
+msgid "Title"
+msgstr "Titel"
+
+#: inc/Base/LocationController.php:489 inc/Base/TaxController.php:232
+msgid "Coordinates"
+msgstr "Koordinaten"
+
+#: inc/Base/LocationController.php:488
+msgid "Text"
+msgstr "Text"
+
+#: templates/page-backend-location.php:168
+msgid "Upload Image"
+msgstr "Bild hochladen"
+
+#: templates/page-backend-location.php:163
+#: templates/page-backend-settings.php:1195
+#: templates/page-backend-settings.php:1306
+msgid "Image"
+msgstr "Bild"
+
+#: templates/page-backend-add-region.php:24
+#: templates/page-backend-edit-region.php:29
+#: templates/page-backend-location.php:41
+#: templates/page-backend-settings.php:582
+msgid "Lng"
+msgstr "Lng"
+
+#: templates/page-backend-add-region.php:18
+#: templates/page-backend-edit-region.php:23
+#: templates/page-backend-location.php:31
+#: templates/page-backend-settings.php:572
+msgid "Lat"
+msgstr "Lat"
+
+#: templates/page-backend-location.php:25
+msgid "Edit GPS coordinates manually:"
+msgstr "GPS Koordinaten manuell einstellen:"
+
+#: templates/page-backend-location.php:20
+msgid "Click on the map to set a location marker or <a href=\"#\" id=\"showLatLngInputs\">edit GPS coordinates manually</a>."
+msgstr "Klicke auf die Karte um einen Marker zu setzen oder <a href=\"#\" id=\"showLatLngInputs\">stelle die GPS Koordinaten manuell ein</a>."
+
+#. Plugin Name of the plugin
+#: open-user-map.php elementor/includes/widgets/open-user-map-widget.php:10
+#: elementor/includes/widgets/open-user-map-widget.php:226
+#: inc/Base/LocationController.php:55 blocks/build/index.js:1
+#: blocks/src/edit.js:142
+msgid "Open User Map"
+msgstr "Open User Map"
+
+#: inc/Base/LocationController.php:53
+msgid "No Location in trash"
+msgstr "Keine Marker im Papierkorb"
+
+#: inc/Base/LocationController.php:52
+msgid "No Locations found"
+msgstr "Keine Marker gefunden"
+
+#: inc/Base/LocationController.php:51
+msgid "Search Locations"
+msgstr "Nach Markern suchen"
+
+#: inc/Base/LocationController.php:50
+msgid "View Location"
+msgstr "Marker anzeigen"
+
+#: inc/Base/LocationController.php:49
+msgid "All Locations"
+msgstr "Alle Marker"
+
+#: inc/Base/LocationController.php:48
+msgid "New Location"
+msgstr "Neuer Marker"
+
+#: inc/Base/LocationController.php:47 templates/partial-map-add-location.php:10
+msgid "Edit Location"
+msgstr "Marker bearbeiten"
+
+#: inc/Base/LocationController.php:45 inc/Base/LocationController.php:46
+msgid "Add new Location"
+msgstr "Neuen Marker hinzufügen"
+
+#: templates/page-backend-settings.php:261 templates/partial-map-init.php:32
+msgid "Add location"
+msgstr "Marker hinzufügen"
+
+#: inc/Base/LocationController.php:44 inc/Base/LocationController.php:61
+msgid "Location"
+msgstr "Marker"
+
+#: inc/Base/LocationController.php:43
+msgid "Locations"
+msgstr "Marker"
+
+#. Author URI of the plugin
+#: open-user-map.php
+msgid "https://www.open-user-map.com/"
+msgstr "https://www.open-user-map.com/"
+
+#. Author of the plugin
+#: open-user-map.php
+msgid "100plugins"
+msgstr "100plugins"
+
+#. Plugin URI of the plugin
+#: open-user-map.php
+msgid "https://wordpress.org/plugins/open-user-map/"
+msgstr "https://de.wordpress.org/plugins/open-user-map/"

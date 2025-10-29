@@ -76,7 +76,7 @@ if ( ! class_exists( 'Charitable_Field_Info_Bar' ) ) :
 		 */
 		public function field_preview( $field_data = false, $campaign_data = false, $field_id = false, $theme = '' ) {
 
-			echo '<h4>' . $this->name . '</h4>';
+			echo '<h4>' . esc_html( $this->name ) . '</h4>';
 
 			echo '<div class="charitable-field-preview-info-bar"><div class="row">
             <div class="column">
@@ -114,12 +114,12 @@ if ( ! class_exists( 'Charitable_Field_Info_Bar' ) ) :
 			?>
 
 		<div class="charitable-campaign-info-bar">
-			<div <?php echo $css_class; ?>>
+				<div <?php echo esc_attr( $css_class ); ?>>
 				<div class="charitable-campaign-info-bar-row">
 
 					<?php if ( $show_donation_total ) : ?>
 					<div class="charitable-campaign-info-column">
-						<?php echo $campaign->get_donation_summary(); ?>
+						<?php echo wp_kses_post( $campaign->get_donation_summary() ); ?>
 					</div>
 					<?php endif; ?>
 
@@ -128,8 +128,8 @@ if ( ! class_exists( 'Charitable_Field_Info_Bar' ) ) :
 						<?php
 						printf(
 							/* translators: %s: number of donors */
-							_x( '%s Donors', 'number of donors', 'charitable' ),
-							'<span class="donors-count">' . $campaign->get_donor_count() . '</span>'
+							esc_html_x( '%s Donors', 'number of donors', 'charitable' ),
+							'<span class="donors-count">' . esc_html( $campaign->get_donor_count() ) . '</span>'
 						);
 						?>
 					</div>
@@ -143,7 +143,7 @@ if ( ! class_exists( 'Charitable_Field_Info_Bar' ) ) :
 
 			$html = ob_get_clean();
 
-			echo apply_filters( 'charitable_campaign_builder_' . $this->type . '_field_display', $html, $campaign_data );
+			echo wp_kses_post( apply_filters( 'charitable_campaign_builder_' . $this->type . '_field_display', $html, $campaign_data ) );
 		}
 
 		/**
@@ -172,13 +172,13 @@ if ( ! class_exists( 'Charitable_Field_Info_Bar' ) ) :
 
 			<div class="charitable-panel-field charitable-panel-field-section" data-field-id="<?php echo intval( $field_id ); ?>">
 
-				<?php echo do_action( 'charitable_builder_' . $this->type . '_settings_display_start', $field_id, $campaign_data ); ?>
+				<?php do_action( 'charitable_builder_' . $this->type . '_settings_display_start', $field_id, $campaign_data ); ?>
 
 			</div>
 
 			<?php
 
-			echo $charitable_builder_form_fields->generate_checkbox(
+			echo $charitable_builder_form_fields->generate_checkbox( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				isset( $settings['show_donors'] ) ? $settings['show_donors'] : false,
 				esc_html__( 'Show Donors', 'charitable' ),
 				array(
@@ -190,7 +190,7 @@ if ( ! class_exists( 'Charitable_Field_Info_Bar' ) ) :
 				)
 			);
 
-			echo $charitable_builder_form_fields->generate_checkbox(
+			echo $charitable_builder_form_fields->generate_checkbox( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				isset( $settings['show_donation_total'] ) ? $settings['show_donation_total'] : false,
 				esc_html__( 'Show Donation Total', 'charitable' ),
 				array(
@@ -205,7 +205,7 @@ if ( ! class_exists( 'Charitable_Field_Info_Bar' ) ) :
 
 			/* CSS CLASS */
 
-			echo $charitable_builder_form_fields->generate_text(
+			echo $charitable_builder_form_fields->generate_text( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				isset( $settings['css_class'] ) ? $settings['css_class'] : false,
 				esc_html__( 'CSS Class', 'charitable' ),
 				array(

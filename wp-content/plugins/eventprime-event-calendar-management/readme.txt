@@ -5,7 +5,7 @@ Tags: event calendar, organizer , event manager, tickets, event booking, event b
 Requires at least: 4.8
 Tested up to: 6.8
 Requires PHP: 7.2
-Stable tag: 4.1.6.0
+Stable tag: 4.2.0.0
 License: GPLv2 or later
 
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -666,6 +666,22 @@ We are always happy to hear your particular needs and requirements. Similar to r
 
 
 == Changelog ==
+
+= 4.2.0.0 – October 29, 2025 =
+* Multiple bug fixes.
+* UI improvements.
+* Fixed: License workflow.
+
+= 4.1.9.0 - October 13, 2025 =
+* Fixed: Week start day now respects WordPress Start of week setting.
+* Fixed: Calendar day and month names now follow site language settings.
+
+= 4.1.8.0 - October 10, 2025 =
+* Fixed: Event time display issues in calendar and agenda views.
+
+= 4.1.7.0 – October 07, 2025 =
+* Multiple bug fixes.
+* UI improvements.
 
 = 4.1.6.0 – September 25, 2025 =
 * Fixed: Compatibility with Avada theme.
@@ -2215,6 +2231,22 @@ We are always happy to hear your particular needs and requirements. Similar to r
 * Initial Release
 
 == Upgrade Notice ==
+
+= 4.2.0.0 – October 29, 2025 =
+* Multiple bug fixes.
+* UI improvements.
+* Fixed: License workflow.
+
+= 4.1.9.0 - October 13, 2025 =
+* Fixed: Week start day now respects WordPress Start of week setting.
+* Fixed: Calendar day and month names now follow site language settings.
+
+= 4.1.8.0 - October 10, 2025 =
+* Fixed: Event time display issues in calendar and agenda views.
+
+= 4.1.7.0 – October 07, 2025 =
+* Multiple bug fixes.
+* UI improvements.
 
 = 4.1.6.0 – September 25, 2025 =
 * Fixed: Compatibility with Avada theme.

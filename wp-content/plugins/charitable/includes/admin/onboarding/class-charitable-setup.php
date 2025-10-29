@@ -1531,8 +1531,8 @@ if ( ! class_exists( 'Charitable_Setup' ) ) :
 			if ( $should_activate_pro ) {
 				update_option( 'charitable_activate_pro', true );
 			} else {
-				// Log this for debugging
-				error_log( 'Charitable: Pro plugin not found during setup completion - skipping Pro activation' );
+			// Log this for debugging
+			error_log( 'Charitable: Pro plugin not found during setup completion - skipping Pro activation' ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
 			}
 
 			wp_send_json_success(

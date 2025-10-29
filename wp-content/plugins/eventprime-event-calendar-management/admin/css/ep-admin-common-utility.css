@@ -1046,6 +1046,8 @@ label.ep-form-check-label {
         flex: 0 0 100%;
         max-width: 100%;
     }
+    
+}
 
     .emagic * {
         box-sizing: border-box;
@@ -2063,7 +2065,7 @@ label.ep-form-check-label {
 
     }
 
-    @media (min-width: 992px){
+@media (min-width: 992px){
 
         .ep-box-col-md-4 {
             -ms-flex: 0 0 33.33333%;
@@ -2150,6 +2152,12 @@ label.ep-form-check-label {
         .ep-box-col-12 {
             -ms-flex: 0 0 100%;
             flex: 0 0 100%;
+            max-width: 100%;
+        }
+        
+        .ep-box-col {
+            -ms-flex: 1 0 0;
+            flex: 1 0 0;
             max-width: 100%;
         }
 
@@ -2266,6 +2274,13 @@ label.ep-form-check-label {
     }
     .ep-g-3, .ep-gx-3 {
         --ep-gutter-x: 1rem;
+    }
+    
+     .ep-g-2, .ep-gy-2 {
+        --ep-gutter-y: 0.5rem;
+    }
+    .ep-g-2, .ep-gx-2 {
+        --ep-gutter-x: 0.5rem;
     }
 
     /*--Gutter Spacing--*/
@@ -2486,6 +2501,7 @@ label.ep-form-check-label {
         cursor: pointer;
         text-decoration: none;
         color: #8b8b8b;
+        box-shadow: none !important;
 
     }
 

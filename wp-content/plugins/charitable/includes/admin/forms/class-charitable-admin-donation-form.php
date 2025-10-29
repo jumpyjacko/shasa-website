@@ -619,7 +619,8 @@ if ( ! class_exists( 'Charitable_Admin_Donation_Form' ) ) :
 		/**
 		 * Sanitize the date.
 		 *
-		 * @since  1.5.0
+		 * @since   1.5.0
+		 * @version 1.8.8.5
 		 *
 		 * @param  array $values The submitted values.
 		 * @return array
@@ -638,9 +639,22 @@ if ( ! class_exists( 'Charitable_Admin_Donation_Form' ) ) :
 				$values['date_gmt'] = date( 'Y-m-d H:i:s' );
 			}
 
-			/* If the donation date has been changed, the time is always set to 00:00:00 */
+			/* If the donation date has been changed, preserve the original time from the donation log */
 			if ( $values['date_gmt'] !== $donation->post_date_gmt && ! $is_new ) {
-				$values['date_gmt'] = $date . ' 00:00:00';
+				// Get the original donation time from the donation log
+				$donation_log = get_post_meta( $donation->ID, '_donation_log', true );
+				$original_time = '00:00:00'; // Default fallback
+
+				if ( is_array( $donation_log ) && ! empty( $donation_log ) ) {
+					// Get the first log entry which contains the original creation time
+					$first_log_entry = $donation_log[0];
+					if ( isset( $first_log_entry['time'] ) ) {
+						// Convert the original timestamp to GMT time format
+						$original_time = gmdate( 'H:i:s', $first_log_entry['time'] );
+					}
+				}
+
+				$values['date_gmt'] = $date . ' ' . $original_time;
 			}
 
 			return $values;

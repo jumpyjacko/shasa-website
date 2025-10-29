@@ -148,6 +148,12 @@
 #ep-search-filters .ep-input-group #filter-date-to{
     margin-bottom: 0px;
     width: 1%;
+    background-image: none;
+}
+
+.wp-theme-hestia #ep_event_calendar .fc-header-toolbar .fc-toolbar-chunk{
+    display: flex;
+    margin-right: 8px;
 }
 
 .ep-box-search-form-wrap .ep-btn-group button span {

@@ -152,6 +152,7 @@ class Eventprime_Event_Calendar_Management {
                 require_once plugin_dir_path( dirname( __FILE__)) . 'includes/class-ep-admin-notices.php';
                 
                 require_once plugin_dir_path( dirname( __FILE__)) . 'includes/class-eventprime-license.php';
+                require_once plugin_dir_path( dirname( __FILE__)) . 'includes/class-metagauss-license-migrator.php';
                 
                 require_once plugin_dir_path( dirname( __FILE__)) . 'includes/class-ep-bookings.php';
                 
@@ -190,6 +191,7 @@ class Eventprime_Event_Calendar_Management {
         private function define_global_hooks() {
                     $global_settings = new Eventprime_Global_Settings;
 		  $this->loader->add_filter( 'plugins_loaded', $this, 'ep_on_plugins_loaded' );
+                  $this->loader->add_action( 'plugins_loaded', 'Metagauss_License_Migrator', 'maybe_run', 20 );
                   $this->loader->add_filter( 'ep_payments_gateways_list', $global_settings, 'ep_payments_gateways_list');
                   $this->loader->add_filter('em_cpt_event',$global_settings, 'filer_eventmanager_post');
 	}
@@ -576,6 +578,15 @@ class Eventprime_Event_Calendar_Management {
                 'delete_user_bookings_data'         => false,
                 'delete_guest_booking_data'         => true,
                 
+                'save_license_settings'             => false,
+                'install_remote_plugin'             => false,
+                'activate_plugin'             => false,
+                'deactivate_plugin'             => false,
+                'deactivate_bundle_license' =>false,
+                'upload_license_file' =>false,
+                'check_license_status' => false,
+                
+
             );
 
             foreach ( $ajax_requests as $action => $nopriv ) {

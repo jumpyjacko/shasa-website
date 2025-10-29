@@ -1,7 +1,7 @@
 ===  Filter & Grids ===
 Plugin Name: Filter & Grids
 Contributors: YMC, Roman
-Version: 3.1.1
+Version: 3.2.2
 Donate link: https://github.com/YMC-22/Filter-Grids
 Tags: filter, grid, ajax, search, sort, masonry, wordpress
 Requires at least: 5.5
@@ -75,9 +75,26 @@ If you prefer using the old version of Filter & Grids, you can enable **Legacy M
 3. Click **Save settings**.
 
 == Changelog ==
-
+= 3.2.2 =
+Guaranteed initialization with retries, MutationObserver support, WeakSet deduplication, and cache handling.
+= 3.2.1 =
+Fixed Security.
+= 3.2.0 =
+Improved Dropdown filter:
+- Added search field with live term lookup.
+- Implemented lazy loading for large term lists.
+= 3.1.6 =
+Fixed translations of components for WPML.
+= 3.1.5 =
+Fixed a bug updated terms.
+= 3.1.4 =
+Added post view counter feature.
+= 3.1.3 =
+Added Category element to post card.
+= 3.1.2 =
+Fixed a bug with the Truncate Post Excerpt.
 = 3.1.1 =
-* Fixed a bug JS popup.
+Fixed a bug JS popup.
 = 3.1.0 =
 * Added new **Dependent Filter** (linked dropdowns) with support for:
   - Configurable taxonomy sequence
@@ -96,4 +113,7 @@ Added new features, updated grid layouts, and enhanced page builder integration.
 
 == Video ==
 https://www.youtube.com/watch?v=nzyeC6jeMHo&ab_channel=YMC
+
+
+
 

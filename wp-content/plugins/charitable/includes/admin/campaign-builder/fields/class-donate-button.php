@@ -162,10 +162,10 @@ if ( ! class_exists( 'Charitable_Field_Donate_Button' ) ) :
 						data-campaign-id="<?php echo intval( $campaign->ID ); ?>"
 						class="<?php echo esc_attr( charitable_get_button_class( 'donate' ) ); ?>"
 						href="<?php echo esc_url( charitable_get_permalink( 'campaign_donation_page', array( 'campaign_id' => $campaign->ID ) ) ); ?>"
-						<?php // translators: %s is the campaign title. ?>
-						aria-label="<?php echo esc_attr( sprintf( _x( 'Make a donation to %s', 'make a donation to campaign', 'charitable' ), get_the_title( $campaign->ID ) ) ); ?>">
-						<?php echo wp_strip_all_tags( $button_label ); ?>
-					</a>
+					<?php // translators: %s is the campaign title. ?>
+					aria-label="<?php echo esc_attr( sprintf( _x( 'Make a donation to %s', 'make a donation to campaign', 'charitable' ), get_the_title( $campaign->ID ) ) ); ?>">
+					<?php echo esc_html( wp_strip_all_tags( $button_label ) ); ?>
+				</a>
 				</div>
 
 

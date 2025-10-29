@@ -5,7 +5,7 @@ defined( 'ABSPATH' ) || exit();
 /**
  *
  * @since   3.0.0
- * @package Stripe/Gateways
+ * @package PaymentPlugins\Gateways
  * @author  User
  *
  */
@@ -104,7 +104,7 @@ class WC_Payment_Gateway_Stripe_CC extends WC_Payment_Gateway_Stripe {
 	public function get_card_form_options() {
 		$options = array(
 			'style'       => $this->get_form_style(),
-			'disableLink' => ! \PaymentPlugins\Stripe\Link\LinkIntegration::instance()->is_active()
+			'disableLink' => ! \wc_string_to_bool( $this->get_option( 'link_enabled', 'yes' ) )
 		);
 
 		return apply_filters( 'wc_stripe_cc_form_options', $options, $this );

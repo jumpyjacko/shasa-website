@@ -110,14 +110,16 @@ ob_start();
 						</li>
 						<li><span class="dashicons dashicons-yes"></span>
 						<?php
-						printf(
-							// translators: Suggestion on completion of checklist on checklist page.
+						$allowed_links = array( 'a' => array( 'href' => array(), 'target' => array() ) );
+						$checklist_msg = sprintf(
+							/* translators: Suggestion on completion of checklist on checklist page. */
 							__( '%1$s <a href="https://www.wpcharitable.com/documentation/" target="_blank">%2$s</a> %3$s <a href="https://www.wpcharitable.com/support/" target="_blank">%4$s</a>.', 'charitable' ),
 							esc_html__( 'Need help? Visit our', 'charitable' ),
 							esc_html__( 'documentation', 'charitable' ),
 							esc_html__( 'or', 'charitable' ),
 							esc_html__( 'contact support', 'charitable' )
 						);
+						echo wp_kses( $checklist_msg, $allowed_links );
 						?>
 							</li>
 						<li><span class="dashicons dashicons-yes"></span>

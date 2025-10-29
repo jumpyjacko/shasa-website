@@ -1,3 +1,14 @@
+# 1.8.8.5
+* FIX: Resolved bug regarding manual donation edit and time resetting to midnight.
+* FIX: Insured proper sanitization of user input in database queries in some scenarios.
+* FIX: Updated code related to translations and PHP standards.
+
+# 1.8.8.4
+* FIX: Fixed compatibility issue in admin action processing that could cause errors when managing recurring donations.
+* FIX: Improved caching of dashboard blog posts.
+* FIX: Updated code related to translations and PHP standards.
+* UPDATE: Updated text on dashboard widgets.
+
 # 1.8.8.3
 * FIX: Resolved application fee calculation issue for zero-decimal currencies in Stripe payments in certain scenarios.
 * FIX: Updated code related to improve security and PHP standards compliance.

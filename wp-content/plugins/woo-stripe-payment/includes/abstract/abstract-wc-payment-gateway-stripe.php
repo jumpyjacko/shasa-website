@@ -16,7 +16,7 @@ require_once( WC_STRIPE_PLUGIN_FILE_PATH . 'includes/traits/wc-stripe-payment-tr
  *
  * @since   3.0.0
  * @author  PaymentPlugins
- * @package Stripe/Abstract
+ * @package PaymentPlugins\Abstract
  *
  */
 abstract class WC_Payment_Gateway_Stripe extends WC_Payment_Gateway {
@@ -1144,7 +1144,7 @@ abstract class WC_Payment_Gateway_Stripe extends WC_Payment_Gateway {
 			}
 		}
 		$token->set_user_id( $user_id );
-		if ( $user_id && strtolower( $token->get_brand() ) !== 'link' ) {
+		if ( $user_id && ! in_array( strtolower( $token->get_brand() ), array( 'link', 'klarna' ) ) ) {
 			$token->save();
 		}
 

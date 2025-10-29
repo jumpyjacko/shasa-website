@@ -19,7 +19,7 @@ $message = isset( $view_args['logged_in_message'] )
 	? $view_args['logged_in_message']
 	: __( 'You are already logged in!', 'charitable' );
 
-echo wpautop( $message );
+echo wp_kses_post( wpautop( $message ) );
 
 ?>
-<a href="<?php echo wp_logout_url( charitable_get_current_url() ) ?>"><?php _e( 'Logout.', 'charitable' ) ?></a>
+<a href="<?php echo esc_url( wp_logout_url( charitable_get_current_url() ) ) ?>"><?php esc_html_e( 'Logout.', 'charitable' ) ?></a>

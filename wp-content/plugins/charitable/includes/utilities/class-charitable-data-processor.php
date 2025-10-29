@@ -447,7 +447,7 @@ if ( ! class_exists( 'Charitable_Data_Processor' ) ) :
 		 * @return boolean
 		 */
 		protected function picture_file_exists( $key ) {
-			return isset( $_FILES ) && isset( $_FILES[ $key ] );
+			return isset( $_FILES ) && isset( $_FILES[ $key ] ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		}
 
 		/**

@@ -406,7 +406,13 @@ class FG_Save_Meta_Boxes {
 			? ymc_sanitize_array_recursive(wp_unslash($_POST['ymc_fg_filter_dependent_settings'])) : [];
 		update_post_meta($post_id, 'ymc_fg_filter_dependent_settings', $filter_dependency_settings);
 
-
+		// Performance & Behavior Settings
+		$filter_dropdown_setting = isset($_POST['ymc_fg_filter_dropdown_setting'])
+			? ymc_sanitize_array_recursive(wp_unslash($_POST['ymc_fg_filter_dropdown_setting'])) : [];
+		if (empty($filter_dropdown_setting['threshold'])) {
+			$filter_dropdown_setting['threshold'] = 40;
+		}
+		update_post_meta($post_id, 'ymc_fg_filter_dropdown_setting', $filter_dropdown_setting);
 
 	}
 

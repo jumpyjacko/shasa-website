@@ -1305,6 +1305,14 @@ body .emagic h6 {
 
 /*-- List group End--*/
 
+/*--- If dark Mode---*/
+
+.ep-dark-mode-enabled .ep-list-group.ep-myaccount-tabs .ep-list-group-item .ep-tab-link{
+    --ep-bg-opacity: 0.2;
+}
+
+/*--- dark Mode End---*/
+
 /*---Alignments---*/
 
 .ep-items-center {
@@ -1669,8 +1677,13 @@ body .emagic h6 {
     .ep-sm-text-center {
         text-align: center!important;
     }
-
+    
 }
+    
+    .ep-event-organizers-colored_grid-container .ep-organizer-colored_grid-wrap{
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
 
 @media (min-width: 992px){
 
@@ -1678,6 +1691,12 @@ body .emagic h6 {
         -ms-flex: 0 0 33.33333%;
         flex: 0 0 33.33333%;
         max-width: 33.33333%;
+    }
+    
+    .ep-box-col-md-4 {
+        -ms-flex: 0 0 25%;
+        flex: 0 0 25%;
+        max-width: 25%;
     }
 
 }
@@ -1966,7 +1985,7 @@ body .emagic h6 {
     border-bottom: 1px solid var(--ep-border-color);
 }
 
-/*Global Tabs Ends--*/
+/*---Global Tabs Ends--*/
 
 /*---Radio Button Group---*/
 

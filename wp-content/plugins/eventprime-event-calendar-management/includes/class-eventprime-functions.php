@@ -1838,7 +1838,71 @@ public function ep_get_event_date_time_diff( $event ) {
         }
     }
     
-    public function ep_convert_event_date_time_from_timezone($event, $format = '', $end = 0, $strict = 0) {
+    public function ep_convert_event_date_time_from_timezone( $event, $format = '', $end = 0, $strict = 0 ) {
+        if ( empty( $event ) ) {
+            return '';
+        }
+
+        // 1) Pick a base date + time string
+        $dp_format  = $this->ep_get_datepicker_format();
+        if ( ! empty( $strict ) && ! empty( $format ) ) {
+            $dp_format = $format; // only used when we must display exactly $format
+        }
+
+        $time_format_setting = $this->ep_get_global_settings( 'time_format' ); // 'HH:mm' or 12h
+        $site_timezone       = $this->ep_get_site_timezone();
+
+        // Determine date (string) from stored timestamp
+        if ( ! empty( $end ) ) {
+            $date_str  = $this->ep_timestamp_to_date( $event->em_end_date, $dp_format );
+            $time_str  = ! empty( $event->em_end_time ) ? $event->em_end_time : '11:59 pm';
+        } else {
+            $date_str  = $this->ep_timestamp_to_date( $event->em_start_date, $dp_format );
+            if ( ! empty( $event->em_start_time ) ) {
+                $time_str = $event->em_start_time;
+            } else {
+                // Pick a sane default based on 24h/12h preference
+                $time_str = ( $time_format_setting === 'HH:mm' ) ? '00:00' : '12:00 am';
+            }
+        }
+
+        // 2) Build a DateTime in site timezone from date + time
+        // NOTE: ep_datetime_to_timestamp returns DateTime (per your check below)
+        // The parse format must match what ep_timestamp_to_date() emitted. If your datepicker format differs,
+        // you likely normalize inside ep_datetime_to_timestamp already. Keep that as-is.
+        $dt = $this->ep_datetime_to_timestamp( $date_str . ' ' . $time_str, 'Y-m-d h:i a', $site_timezone, 1 );
+
+        if ( $dt && $dt instanceof DateTime ) {
+            $dt->setTimeZone( new DateTimeZone( $site_timezone ) );
+            $unix = $dt->getTimestamp();
+
+            // 3) Decide the output format (use WP tokens so wp_date() can translate)
+            if ( ! empty( $strict ) && is_string( $format ) && $format !== '' ) {
+                // Caller provided exact format; print it localized
+                return wp_date( $format, $unix );
+            }
+
+            // Default: "D, d M h:i A" (12h) or "D, d M H:i" (24h), with localized month/day names
+            $out_fmt = ( $time_format_setting === 'HH:mm' )
+                ? 'D, d M H:i'
+                : 'D, d M h:i A';
+
+            return wp_date( $out_fmt, $unix );
+        }
+
+        // 4) Fallback (parsing failed). Still try to localize date part if we have a raw timestamp.
+        // If you can access raw timestamps directly, prefer returning wp_date() on those:
+        if ( empty( $end ) && ! empty( $event->em_start_date ) ) {
+            return wp_date( ( $time_format_setting === 'HH:mm' ? 'D, d M H:i' : 'D, d M h:i A' ), (int) $event->em_start_date );
+        } elseif ( ! empty( $event->em_end_date ) ) {
+            return wp_date( ( $time_format_setting === 'HH:mm' ? 'D, d M H:i' : 'D, d M h:i A' ), (int) $event->em_end_date );
+        }
+
+        // Last resort: return the concatenated strings (non-translated).
+        return trim( $date_str . ' ' . $time_str );
+    }
+
+    public function ep_convert_event_date_time_from_timezone_old2($event, $format = '', $end = 0, $strict = 0) {
     if ($event) {
         $dp_format = $this->ep_get_datepicker_format();
         if (!empty($strict) && !empty($format)) {
@@ -3629,6 +3693,13 @@ public function ep_get_event_date_time_diff( $event ) {
                 $event->fstart_date = $this->ep_convert_event_date_time_from_timezone($event, 'd M', 0, 1);
                 $event->fend_date = $this->ep_convert_event_date_time_from_timezone($event, 'd M', 1, 1);
             }
+            
+            $event->em_start_date_formated = (!empty($event->em_start_date) ) ? $this->ep_timestamp_to_date( $event->em_start_date, $this->ep_get_datepicker_format(), 1 ) : '';
+            $event->em_end_date_formated = (!empty($event->em_end_date) ) ? $this->ep_timestamp_to_date( $event->em_end_date, $this->ep_get_datepicker_format(), 1 ) : '';
+            $event->em_start_time_formated = (!empty($event->em_start_time) ) ? $this->ep_convert_time_with_format( $event->em_start_time ) : '';
+            $event->em_end_time_formated = (!empty($event->em_end_time) ) ? $this->ep_convert_time_with_format( $event->em_end_time ) : '';
+                    
+                    
             $event->start_end_diff = $this->ep_get_event_date_time_diff($event);
             $event->event_url = $this->ep_get_custom_page_url('events_page', $event->id, 'event');
             $event->ticket_categories = $this->get_event_ticket_category($event->id);
@@ -4710,10 +4781,28 @@ public function ep_get_event_date_time_diff( $event ) {
     }
 
     // check if site url is valid
-    public function is_valid_site_url( $website ) {
+    public function is_valid_site_url_old( $website ) {
         $url_pattern = '^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)^';
         return preg_match( $url_pattern, $website );
     }
+    
+    public function is_valid_site_url( $website ) {
+        $website = trim( (string) $website );
+        if ( $website === '' ) {
+            return false;
+        }
+
+        // Try as-is
+        $ok = wp_http_validate_url( $website );
+
+        // Also allow inputs without a scheme (e.g., "example.com")
+        if ( ! $ok && strpos( $website, '://' ) === false ) {
+            $ok = wp_http_validate_url( 'http://' . $website );
+        }
+
+        return (bool) $ok;
+    }
+
     
     public function ep_sanitize_phone_number( $phone ) {
 	return preg_replace( '/[^\d+]/', '', $phone );
@@ -5724,6 +5813,7 @@ public function ep_get_event_date_time_diff( $event ) {
             }
             $event->id                 = $post->ID;
             $event->name               = $post->post_title;
+            $event->em_name            = $post->post_title;
             $event->slug               = $post->post_name;
             $event->description        = wp_kses_post( $post->post_content );
             $event->post_status        = $post->post_status;
@@ -6046,17 +6136,154 @@ public function ep_get_event_date_time_diff( $event ) {
         }
     }
     
-     public function get_front_calendar_view_event( $events, $is_admin=false ) {
+    public function get_front_calendar_view_event( $events, $is_admin = false ) {
+        $cal_events = array();
+
+        if ( empty( $events ) ) {
+            return $cal_events;
+        }
+
+        $new_window = ( ! empty( $this->ep_get_global_settings( 'open_detail_page_in_new_tab' ) ) ? 'target="_blank"' : '' );
+        $event_listings_date_format = ! empty( $this->ep_get_global_settings( 'event_listings_date_format_val' ) )
+            ? $this->ep_get_global_settings( 'event_listings_date_format_val' )
+            : 'Y-m-d';
+
+        foreach ( $events as $event ) {
+            if ( empty( $event ) || empty( $event->id ) ) {
+                continue;
+            }
+
+            // Base event data
+            $ev = $this->get_event_data_to_views( $event );
+
+            // Handle hide-time global and per-event settings
+            $hide_time = $this->ep_get_global_settings( 'hide_time_on_front_calendar' );
+            if ( isset( $event->em_hide_event_end_time ) && $event->em_hide_event_end_time == 1 ) {
+                $ev['end_time'] = $ev['display_end_time'] = '';
+            }
+            if ( isset( $event->em_hide_event_start_time ) && $event->em_hide_event_start_time == 1 ) {
+                $ev['start_time'] = $ev['display_start_time'] = '';
+            }
+            if ( $hide_time ) {
+                $ev['start_time'] = $ev['end_time'] = '';
+                $ev['display_start_time'] = $ev['display_end_time'] = '';
+            }
+
+            // Prepare start date for popup (already shifted)
+            $start_date_time = $ev['display_start_date'];
+
+            // For admin popup, add edit links
+            if ( $is_admin ) {
+                $ev['edit_url'] = esc_url( 'post.php?post=' . $ev['id'] . '&action=edit' );
+                if ( isset( $ev['url'] ) ) {
+                    unset( $ev['url'] );
+                }
+            }
+
+            // ───────────────────────────────────────────────
+            // Popup HTML
+            // ───────────────────────────────────────────────
+            $popup_html  = '<div class="ep_event_detail_popup" id="ep_calendar_popup_' . esc_attr( $ev['id'] ) . '" style="display:none">';
+            $popup_html .= '<a href="' . esc_url( $ev['event_url'] ) . '" class="ep_event_popup_head" ' . esc_attr( $new_window ) . '>';
+            $popup_html .= '<div class="ep_event_popup_image"><img src="' . esc_url( $ev['image'] ) . '"></div>';
+            $popup_html .= '</a>';
+
+            $popup_html .= '<div class="ep_event_popup_date_time_wrap ep-d-flex">';
+
+            // Dates
+            $popup_html .= '<div class="ep_event_popup_date ep-d-flex ep-box-direction">';
+            if ( $this->ep_show_event_date_time( 'em_start_date', $event ) ) {
+                $popup_html .= '<span class="ep_event_popup_start_date">' . esc_html( $start_date_time ) . '</span>';
+            } else {
+                if ( ! empty( $ev['date_custom_note'] ) ) {
+                    if ( $ev['date_custom_note'] === 'tbd' ) {
+                        $tbd_icon_file = plugin_dir_path( EP_PLUGIN_FILE ) . 'public/partials/images/tbd-icon.png';
+                        $popup_html .= '<span class="ep_event_popup_start_date"><img src="' . esc_url( $tbd_icon_file ) . '" width="35" /></span>';
+                    } else {
+                        $popup_html .= '<span class="ep_event_popup_start_date">' . esc_html( $ev['date_custom_note'] ) . '</span>';
+                    }
+                }
+            }
+
+            if ( $this->ep_show_event_date_time( 'em_end_date', $event ) ) {
+                $popup_html .= '<span class="ep_event_popup_end_date">' . esc_html( $ev['display_end_date'] ) . '</span>';
+            }
+            $popup_html .= '</div>';
+
+            // Times
+            $popup_html .= '<div class="ep_event_popup_time ep-d-flex ep-box-direction">';
+            if ( $this->ep_show_event_date_time( 'em_start_time', $event ) && ! empty( $ev['display_start_time'] ) ) {
+                $popup_html .= '<span class="ep_event_popup_start_time">' . esc_html( $ev['display_start_time'] ) . '</span>';
+            }
+            if ( $this->ep_show_event_date_time( 'em_end_time', $event ) && ! empty( $ev['display_end_time'] ) ) {
+                $popup_html .= '<span class="ep_event_popup_end_time">' . esc_html( $ev['display_end_time'] ) . '</span>';
+            }
+            $popup_html .= '</div>'; // .ep_event_popup_time
+
+            $popup_html .= '</div>'; // .ep_event_popup_date_time_wrap
+
+            // Title
+            $popup_html .= '<a href="' . esc_url( $ev['event_url'] ) . '" class="ep-event-modal-head" ' . esc_attr( $new_window ) . '>';
+            $popup_html .= '<div class="ep_event_popup_title ep-text-break">' . esc_html( $ev['title'] ) . '</div>';
+            $popup_html .= '</a>';
+
+            // Venue and address
+            if ( ! empty( $ev['venue_name'] ) ) {
+                $popup_html .= '<div class="ep_event_popup_address">' . esc_html( $ev['venue_name'] ) . '</div>';
+            }
+            if ( ! empty( $ev['address'] ) ) {
+                $popup_html .= '<div class="ep_event_popup_address">' . esc_html( $ev['address'] ) . '</div>';
+            }
+
+            // Allow filters
+            $popup_html = apply_filters( 'ep_event_calendar_event_popup_html', $popup_html, $ev, $event );
+
+            // Admin action buttons
+            if ( $is_admin ) {
+                $popup_html .= '<div class="ep_event_popup_action_btn ep-d-flex ep-justify-content-between ep-border-top ep-py-2 ep-px-4 ep-text-center">';
+                $popup_html .= '<a href="' . esc_url( $ev['event_url'] ) . '" class="ep_event_popup_btn ep-text-decoration-none ep-box-w-100" target="__blank">';
+                $popup_html .= '<div class="ep-event-action-btn ep-py-2">View Event</div>';
+                $popup_html .= '</a>';
+                if ( current_user_can( 'edit_em_events' ) ) {
+                    $popup_html .= '<a href="' . esc_url( $ev['edit_url'] ) . '" class="ep_event_popup_btn ep-border-left ep-text-decoration-none ep-box-w-100" target="__blank">';
+                    $popup_html .= '<div class="ep-event-action-btn ep-py-2">Edit Event</div>';
+                    $popup_html .= '</a>';
+                }
+                $popup_html .= '</div>';
+            }
+
+            $popup_html .= '</div>'; // .ep_event_detail_popup
+
+            $ev['popup_html'] = $popup_html;
+            $cal_events[]     = $ev;
+        }
+
+        return $cal_events;
+    }
+
+    
+     public function get_front_calendar_view_event_old( $events, $is_admin=false ) {
         $cal_events = array();
         if( ! empty( $events ) && ! empty( $events ) ) {
             $new_window = ( ! empty( $this->ep_get_global_settings( 'open_detail_page_in_new_tab' ) ) ? 'target="_blank"' : '' );
             $event_listings_date_format = !empty($this->ep_get_global_settings('event_listings_date_format_val')) ? $this->ep_get_global_settings('event_listings_date_format_val') : 'Y-m-d';
             
             foreach( $events as $event ) {
+                //print_r($event);die;
                 if( ! empty( $event ) && ! empty( $event->id ) ) 
                 {
                 $ev = $this->get_event_data_to_views( $event );
                 $hide_time = $this->ep_get_global_settings( 'hide_time_on_front_calendar' );
+                if(isset($event->em_hide_event_end_time) && $event->em_hide_event_end_time==1)
+                {
+                    $ev['end_time'] = '';
+                }
+                
+                if(isset($event->em_hide_event_start_time) && $event->em_hide_event_start_time==1)
+                {
+                    $ev['start_time'] = '';
+                }
+                
                 if($hide_time)
                 {
                     $ev['start_time'] = '';
@@ -6134,6 +6361,9 @@ public function ep_get_event_date_time_diff( $event ) {
                             $popup_html .= esc_html( $ev['address'] );
                         $popup_html .= '</div>';
                     }
+
+                    $popup_html = apply_filters( 'ep_event_calendar_event_popup_html', $popup_html, $ev, $event );
+
                     // booking button
                     /* ob_start();
                         do_action( 'ep_event_view_event_booking_button', $event );
@@ -6272,8 +6502,165 @@ public function ep_get_event_date_time_diff( $event ) {
     }
     
     
-     public function get_event_data_to_views( $event ) {
+   
+   // Keep time static, shift *date* to target timezone; return naive local "YYYY-MM-DDTHH:MM:SS"
+    private function fc_datetime_date_shift_only( int $date_ts, string $time_str, DateTimeZone $target_tz ): string {
+        $date_local = wp_date('Y-m-d', $date_ts, $target_tz);
+
+        $time_str = trim((string)$time_str);
+        if ($time_str === '') { $time_str = '00:00:00'; }
+
+        $dt = DateTime::createFromFormat('g:i A', strtoupper($time_str))
+           ?: DateTime::createFromFormat('g:i:s A', strtoupper($time_str))
+           ?: DateTime::createFromFormat('H:i', $time_str)
+           ?: DateTime::createFromFormat('H:i:s', $time_str);
+
+        $norm = $dt ? $dt->format('H:i:s') : '00:00:00';
+        return $date_local . 'T' . $norm;
+    }
+
+    // Display time helper (always 12h "g:i A")
+    private function ep_time_display_12h( string $time_str ): string {
+        $s = trim((string)$time_str);
+        if ($s === '') return '';
+        $dt = DateTime::createFromFormat('g:i A', strtoupper($s))
+           ?: DateTime::createFromFormat('g:i:s A', strtoupper($s))
+           ?: DateTime::createFromFormat('H:i', $s)
+           ?: DateTime::createFromFormat('H:i:s', $s);
+        return $dt ? $dt->format('g:i A') : $s;
+    }
+
+
+    public function get_event_data_to_views( $event ) {
         $ev = array();
+        $target_tz = wp_timezone();
+
+        if ( empty($event) || empty($event->id) ) return $ev;
+
+        $ev['title'] = ( ! empty($event->em_name) ? $event->em_name : $event->name );
+        $ev['id']    = $event->id;
+
+        // init
+        $ev['start'] = $ev['end'] = '';
+        $ev['start_time'] = $ev['end_time'] = '';
+        $ev['bg_color'] = 'rgb( 34,113,177 )';
+        $ev['type_text_color'] = '#000000';
+        $ev['address'] = $ev['image'] = $ev['date_custom_note'] = $ev['event_day'] = '';
+
+        // >>>> NEW: display-only fields for popup
+        $ev['display_start_date'] = $ev['display_end_date'] = '';
+        $ev['display_start_time'] = $ev['display_end_time'] = '';
+
+        // START
+        if ( ! empty( $event->em_start_date ) ) {
+            // FullCalendar machine value
+            if ( ! empty($event->em_start_time) && $this->ep_show_event_date_time('em_start_time', $event) ) {
+                $ev['start'] = $this->fc_datetime_date_shift_only( (int)$event->em_start_date, (string)$event->em_start_time, $target_tz );
+            } else {
+                // all-day start of day
+                $ev['start'] = wp_date('Y-m-d', (int)$event->em_start_date, $target_tz) . 'T00:00:00';
+            }
+
+            // Visible strings
+            $ev['display_start_date'] = wp_date('F j, Y', (int)$event->em_start_date, $target_tz);
+            $ev['start_time']         = ( ! empty($event->em_start_time) ? (string)$event->em_start_time : '' );
+            $ev['display_start_time'] = $this->ep_convert_time_with_format( $ev['start_time'] );
+        }
+
+        // END
+        if ( ! empty( $event->em_end_date ) ) {
+            $is_multiday = ! empty($event->em_start_date) && ((int)$event->em_start_date !== (int)$event->em_end_date);
+
+            // FullCalendar machine value
+            if ( $this->ep_show_event_date_time('em_end_time', $event) && !empty($event->em_end_time) ) {
+                $ev['end'] = $this->fc_datetime_date_shift_only( (int)$event->em_end_date, (string)$event->em_end_time, $target_tz );
+            } else {
+                // >>>> when times are hidden, end at 23:59:59 of the (shifted) end date so the chip spans the full last day
+                $end_date_local = wp_date('Y-m-d', (int)$event->em_end_date, $target_tz);
+                $ev['end']      = $end_date_local . 'T23:59:59';
+            }
+
+            // Visible strings
+            $ev['display_end_date'] = wp_date('F j, Y', (int)$event->em_end_date, $target_tz);
+            $ev['end_time']         = ( ! empty($event->em_end_time) ? (string)$event->em_end_time : '' );
+            $ev['display_end_time'] = $this->ep_convert_time_with_format( $ev['end_time'] );
+
+            // Weekday label for single-day only
+            if ( ! empty($event->em_start_date) && (int)$event->em_start_date === (int)$event->em_end_date ) {
+                $ev['event_day'] = wp_date('l', (int)$event->em_start_date, $target_tz);
+            }
+        }
+
+        // Event type colors
+        if ( ! empty( $event->em_event_type ) ) {
+            $single_et = $this->get_single_event_type( $event->em_event_type );
+            $ev['bg_color']        = ( ! empty($single_et->em_color) ) ? $this->ep_hex2rgba( $single_et->em_color ) : $ev['bg_color'];
+            $ev['type_text_color'] = ( ! empty($single_et->em_type_text_color) ) ? $single_et->em_type_text_color : $ev['type_text_color'];
+        }
+
+        // Venue
+        if ( ! empty( $event->em_venue ) ) {
+            $single_venue  = $this->get_single_venue( $event->em_venue );
+            $ev['venue_name'] = ( ! empty( $single_venue->name ) ) ? $single_venue->name : '';
+            $ev['address']    = ( ! empty( $single_venue->em_address ) && ! empty( $single_venue->em_display_address_on_frontend ) ) ? $single_venue->em_address : '';
+        }
+
+        // Image
+        $featured_img_url = get_the_post_thumbnail_url( $event->id );
+        if ( is_admin() && defined('ELEMENTOR_VERSION') ) {
+            $featured_img_url = $this->get_event_image_url($event->id);
+        } else {
+            $thumb_id = get_post_thumbnail_id( $event->id );
+            if ( ! empty($thumb_id) ) {
+                $arr = wp_get_attachment_image_src( $thumb_id, 'full', false );
+                if ( ! empty($arr) ) $featured_img_url = $arr[0];
+            }
+        }
+        if ( ! empty($featured_img_url) ) {
+            $ev['image'] = $featured_img_url;
+        }
+
+        // URLs
+        $ev['event_url'] = $this->ep_get_custom_page_url('events_page', $event->id, 'event');
+        $ev['url']       = $ev['event_url'];
+
+        $settings          = new Eventprime_Global_Settings;
+        $global_options    = $settings->ep_get_settings();
+        if ( !empty($global_options->redirect_third_party) && $global_options->redirect_third_party == 1 && $event->em_enable_booking == 'external_bookings' ) {
+            $em_custom_link = get_post_meta( $event->id, 'em_custom_link', true );
+            if ( ! empty($em_custom_link) ) {
+                $ev['event_url'] = $ev['url'] = $em_custom_link;
+            }
+        }
+
+        // Date placeholder logic (unchanged)
+        if ( ! $this->ep_show_event_date_time('em_start_date', $event) ) {
+            if ( isset($event->em_event_date_placeholder) && $event->em_event_date_placeholder != 'custom_note' ) {
+                $ev['date_custom_note'] = $event->em_event_date_placeholder;
+            } else {
+                $ev['date_custom_note'] = ( ! empty($event->em_event_date_placeholder_custom_note) ? $event->em_event_date_placeholder_custom_note : '' );
+            }
+        }
+
+        // Misc
+        $ev['event_type']      = ( ! empty($event->em_event_type) ? $event->em_event_type : '' );
+        $ev['venue']           = ( ! empty($event->em_venue) ? $event->em_venue : '' );
+        $ev['performer']       = ( ! empty($event->em_performer) ? $event->em_performer : array() );
+        $ev['organizer']       = ( ! empty($event->em_organizer) ? $event->em_organizer : array() );
+        $ev['booking_enable']  = $event->em_enable_booking;
+        $ev['all_day']         = ( ! empty($event->em_all_day) ? (int)$event->em_all_day : 0 );
+        $ev['event_end_date']  = $this->ep_timestamp_to_date( $event->em_end_date );
+        $ev['event_start_date']= $this->ep_timestamp_to_date( $event->em_start_date );
+        $ev['event_id']        = $event->id;
+        $ev['event_title']     = $ev['title'];
+        $ev['open_event_in_new_tab'] = absint( $this->ep_get_global_settings('open_detail_page_in_new_tab') );
+
+        return $ev;
+    }
+
+     public function get_event_data_to_views_old( $event ) {
+        $ev = array();
+        $target_tz = wp_timezone();
         if( ! empty( $event ) && ! empty( $event->id ) ) {
             $ev['title'] = ( ! empty( $event->em_name ) ? $event->em_name : $event->name );
             $ev['id']    = $event->id;
@@ -6283,7 +6670,8 @@ public function ep_get_event_date_time_diff( $event ) {
                 $start_date       = $this->ep_timestamp_to_date( $event->em_start_date, 'Y-m-d', 1 );
                 $ev['start']      = $start_date;
                if( ! empty( $event->em_start_time ) && $this->ep_show_event_date_time( 'em_start_time', $event ) ) {
-                 $ev['start'] = $this->ep_timestamp_to_datetime($event->em_start_date_time,'Y-m-d H:i', 1 );
+                 $ev['start'] = $this->fc_datetime_date_shift_only($event->em_start_date, $event->em_start_time,$target_tz);
+                 //$ev['start'] = $this->ep_timestamp_to_datetime($event->em_start_date_time,'Y-m-d H:i', 1 );
                }
                 
                 $ev['start_time'] = ( ! empty( $event->em_start_time ) ? $event->em_start_time : '' );
@@ -6296,7 +6684,8 @@ public function ep_get_event_date_time_diff( $event ) {
                     $ev['event_day']  = wp_date( 'l', $event->em_start_date );
                 }
                 if( $this->ep_show_event_date_time( 'em_end_time', $event ) ) {
-                    $ev['end'] = $this->ep_timestamp_to_datetime($event->em_end_date_time,'Y-m-d H:i', 1 );
+                    //$ev['end'] = $this->ep_timestamp_to_datetime($event->em_end_date_time,'Y-m-d H:i', 1 );
+                    $ev['end'] = $this->fc_datetime_date_shift_only($event->em_end_date, $event->em_end_time,$target_tz);
                 } else{
                     if( empty( $event->em_hide_event_start_time ) ) {
                         if( $this->ep_is_multidate_event( $event ) ) {
@@ -6571,6 +6960,9 @@ public function eventprime_check_remaining_tickets_in_event($event,$ticket_id,$q
                         // ticket booked capacity
                         $total_bookings += ( ! empty( $booked_tickets_data[$ticket->id] ) ? $booked_tickets_data[$ticket->id] : 0 );
                     }
+
+                    $total_caps = apply_filters('ep_event_verify_total_capacity',$total_caps,$event, $ticket);
+                    $total_bookings = apply_filters('ep_event_verify_total_bookings',$total_bookings,$event, $ticket);
                 }
                 
                 if( $total_caps > $total_bookings ) {

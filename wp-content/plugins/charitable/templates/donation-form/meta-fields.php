@@ -28,7 +28,7 @@ if ( empty( $fields ) ) {
 ?>
 <div id="charitable-meta-fields">
 	<?php if ( isset( $field['legend'] ) ) : ?>
-		<div class="charitable-form-header"><?php echo $field['legend']; ?></div>
+		<div class="charitable-form-header"><?php echo esc_html( $field['legend'] ); ?></div>
 	<?php endif; ?>
 	<?php $form->view()->render_fields( $fields ); ?>
 </div><!-- #charitable-meta-fields -->

@@ -32,7 +32,7 @@ function charitable_legacy_campaign_save( $post ) {
 		return;
 	}
 
-	if ( defined( 'CHARITABLE_DISABLE_LEGACY_SYNC_TO_BUILDER' ) && CHARITABLE_DISABLE_LEGACY_SYNC_TO_BUILDER ) {
+	if ( defined( 'CHARITABLE_DISABLE_LEGACY_SYNC_TO_BUILDER' ) && CHARITABLE_DISABLE_LEGACY_SYNC_TO_BUILDER ) { // phpcs:ignore
 		return;
 	}
 
@@ -69,7 +69,7 @@ function charitable_legacy_campaign_save( $post ) {
 	}
 
 	// --- End Date.
-	$_end_date = ! empty( $_POST['_campaign_end_date'] ) ? esc_html( $_POST['_campaign_end_date'] ) . ' ' . esc_html( $_POST['_campaign_end_time'] ) : '';
+	$_end_date = ! empty( $_POST['_campaign_end_date'] ) ? esc_html( $_POST['_campaign_end_date'] ) . ' ' . ( isset( $_POST['_campaign_end_time'] ) ? esc_html( $_POST['_campaign_end_time'] ) : '' ) : '';
 
 		$campaign_settings_v2['settings']['general']['end_date'] = Charitable_Campaign::sanitize_campaign_end_date( $_end_date );
 

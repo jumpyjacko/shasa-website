@@ -2,9 +2,9 @@
 Contributors: WPCharitable, griffinjt, smub, dimensionmedia
 Tags: donation, donate, fundraising, crowdfunding, recurring donations
 Requires at least: 5.0
-Tested up to: 6.8.2
+Tested up to: 6.8.3
 Requires PHP: 7.2
-Stable tag: 1.8.8.3
+Stable tag: 1.8.8.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -260,6 +260,17 @@ You can post in the [support forum](https://wordpress.org/support/plugin/charita
 
 == Changelog ==
 
+= Donation Form & Fundraising Campaigns v1.8.8.5 =
+* FIX: Resolved bug regarding manual donation edit and time resetting to midnight.
+* FIX: Insured proper sanitization of user input in database queries in some scenarios.
+* FIX: Updated code related to translations and PHP standards.
+
+= Donation Form & Fundraising Campaigns v1.8.8.4 =
+* FIX: Fixed compatibility issue in admin action processing that could cause errors when managing recurring donations.
+* FIX: Improved caching of dashboard blog posts.
+* FIX: Updated code related to translations and PHP standards.
+* UPDATE: Updated text on dashboard widgets.
+
 = Donation Form & Fundraising Campaigns v1.8.8.3 =
 * FIX: Resolved application fee calculation issue for zero-decimal currencies in Stripe payments in certain scenarios.
 * FIX: Updated code related to improve security and PHP standards compliance.
@@ -494,18 +505,5 @@ You can post in the [support forum](https://wordpress.org/support/plugin/charita
 * FIX: Minified starting screen CSS.
 * FIX: Resolved typos and PHP notices.
 * FIX: Updated additional text in admin UI to allow for translations.
-
-= Donation Form & Fundraising Campaigns v1.8.1.12 =
-* NEW: Getting Started Screen for new users upon install and activation.
-* NEW: Tour guide of visual builder for new users.
-* NEW: Expiring license and expired license noticiations in WordPress admin Charitable screens.
-* NEW: Progress bar in visual builder campaigns show currency in frontend. Filter added for further customization.
-* NEW: Show currency symbol in visual builder settings under "Goal".
-* NEW: Added filters for showing content before and after donor lists and donor wall using shortcodes.
-* UPDATE: UI updates and tweaks related to visual builder and admin screens.
-* UPDATE: UI updates to items in marketing and payment tabs in visual builder.
-* FIX: Better sync for legacy and visual campaigns in certain scenarios.
-* FIX: Issue with Easy Digital Downloads addon card in addons screen resolved.
-* FIX: Resolved typos and PHP warnings and notices.
 
 **[View entire donation form and fundraising platform changelog](https://plugins.svn.wordpress.org/charitable/trunk/CHANGELOG.md)**

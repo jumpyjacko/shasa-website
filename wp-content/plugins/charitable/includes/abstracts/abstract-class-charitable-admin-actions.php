@@ -255,7 +255,8 @@ if ( ! class_exists( 'Charitable_Admin_Actions' ) ) :
 		/**
 		 * Do a particular action.
 		 *
-		 * @since  1.5.0
+		 * @since   1.5.0
+		 * @version 1.8.8.4
 		 *
 		 * @param  string $action    The action to do.
 		 * @param  int    $object_id The object ID. This could be the ID of the donation, campaign, donor, etc.
@@ -270,11 +271,33 @@ if ( ! class_exists( 'Charitable_Admin_Actions' ) ) :
 
 			$action_args = $this->actions[ $action ];
 
+			// Validate action args structure
+			if ( ! is_array( $action_args ) || ! isset( $action_args['callback'] ) ) {
+				if ( function_exists( 'charitable_is_debug' ) ? charitable_is_debug() : ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ) {
+					error_log( sprintf(
+						'Charitable: Invalid action args for action "%s". Missing required callback.',
+						$action
+					) );
+				}
+				return false;
+			}
+
 			if ( ! $this->is_action_available( $action_args, $object_id, $args ) ) {
 				return false;
 			}
 
 			$action_hook = sprintf( 'charitable_%s_admin_action_%s', $this->get_type(), $action );
+
+			// Validate callback before registering
+			if ( ! is_callable( $action_args['callback'] ) ) {
+				if ( function_exists( 'charitable_is_debug' ) ? charitable_is_debug() : ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ) {
+					error_log( sprintf(
+						'Charitable: Invalid callback for action "%s". Callback is not callable.',
+						$action
+					) );
+				}
+				return false;
+			}
 
 			/**
 			 * Register the action's callback for the hook.
@@ -296,14 +319,36 @@ if ( ! class_exists( 'Charitable_Admin_Actions' ) ) :
 			 * @param array   $args      Optional. Mixed set of arguments.
 			 * @param string  $action    The action we are executing.
 			 */
-			$success = apply_filters( $action_hook, false, $object_id, $args, $action );
+			try {
+				$success = apply_filters( $action_hook, false, $object_id, $args, $action );
+			} catch ( Exception $e ) {
+				// Log the error for debugging
+				if ( function_exists( 'charitable_is_debug' ) ? charitable_is_debug() : ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ) {
+					error_log( sprintf(
+						'Charitable: Error executing action "%s" for object ID %d: %s',
+						$action,
+						$object_id,
+						$e->getMessage()
+					) );
+				}
+				$success = false;
+			}
 
 			if ( $success && array_key_exists( 'success_message', $action_args ) ) {
 				$this->result_message = $action_args['success_message'];
 			}
 
-			if ( ! $success && array_key_exists( 'failure_message', $action_args ) ) {
-				$this->result_message = $action_args['failure_message'];
+			if ( ! $success ) {
+				// Handle both 'failed_message' and 'failure_message' keys for backward compatibility
+				if ( array_key_exists( 'failed_message', $action_args ) ) {
+					$this->result_message = $action_args['failed_message'];
+				} elseif ( array_key_exists( 'failure_message', $action_args ) ) {
+					$this->result_message = $action_args['failure_message'];
+					// Log the deprecated key usage for debugging
+					if ( function_exists( 'charitable_is_debug' ) ? charitable_is_debug() : ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ) {
+						error_log( 'Charitable: Deprecated "failure_message" key used in action args. Please use "failed_message" instead.' );
+					}
+				}
 			}
 
 			if ( isset( $this->result_message ) ) {

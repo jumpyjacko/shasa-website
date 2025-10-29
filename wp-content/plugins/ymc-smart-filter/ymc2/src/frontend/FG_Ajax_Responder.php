@@ -28,6 +28,11 @@ class FG_Ajax_Responder {
 		add_action('wp_ajax_load_dependent_terms',  array( __CLASS__, 'load_dependent_terms'));
 		add_action('wp_ajax_nopriv_load_dependent_terms', array( __CLASS__, 'load_dependent_terms'));
 
+		add_action('wp_ajax_update_track_view',  array( __CLASS__, 'update_track_view'));
+		add_action('wp_ajax_nopriv_update_track_view', array( __CLASS__, 'update_track_view'));
+
+		add_action('wp_ajax_get_filter_search_terms',  array( __CLASS__, 'get_filter_search_terms'));
+		add_action('wp_ajax_nopriv_get_filter_search_terms', array( __CLASS__, 'get_filter_search_terms'));
 	}
 
 	/**
@@ -39,7 +44,18 @@ class FG_Ajax_Responder {
 	public static function get_filtered_posts() : void {
 		check_ajax_referer('get_filtered_posts-ajax-nonce', 'nonce_code');
 
-		$params = isset($_POST['params']) ? json_decode(stripslashes($_POST['params']), true) : [];
+		//$params = isset($_POST['params']) ? json_decode(stripslashes($_POST['params']), true) : [];
+
+		$params = [];
+		if (isset($_POST['params'])) {
+			$raw_params = wp_unslash($_POST['params']);
+			$params = json_decode($raw_params, true);
+			if (json_last_error() !== JSON_ERROR_NONE) {
+				wp_send_json_error([
+					'message' => __('Invalid JSON format in request.', 'ymc-smart-filter')
+				], 400);
+			}
+		}
 
 		if (empty($params) || !is_array($params) || empty($params['filter_id'])) {
 			wp_send_json_error([
@@ -265,9 +281,12 @@ class FG_Ajax_Responder {
 		}
 
 		// Search query
+		$search_filters_enabled = false;
+
 		if (!empty($keyword_search)) {
 			if($search_meta_fields === 'yes') {
 				self::add_search_filters();
+				$search_filters_enabled = true;
 			}
 
 			if($search_mode === 'global') {
@@ -339,6 +358,10 @@ class FG_Ajax_Responder {
 
 		$query = new \WP_Query($args);
 
+		if ($search_filters_enabled) {
+			self::remove_search_filters();
+		}
+
 		ob_start();
 
 		if ($query->have_posts()) {
@@ -398,7 +421,7 @@ class FG_Ajax_Responder {
 		$data_response['filtered_posts_label'] = $filtered_posts_label;
 
 		// Debug Mode
-		if($debug_mode === 'yes') {
+		if($debug_mode === 'yes' && current_user_can('manage_options')) {
 			$data_response['debug_mode'] = [
 				'args' => $args,
 				'found_posts'       => $query->found_posts,
@@ -489,9 +512,11 @@ class FG_Ajax_Responder {
 		$exact_phrase = Data_Store::get_meta_value($grid_id, 'ymc_fg_exact_phrase');
 		$search_meta_fields = Data_Store::get_meta_value($grid_id, 'ymc_fg_search_meta_fields');
 		$max_autocomplete_suggestions = Data_Store::get_meta_value($grid_id, 'ymc_fg_max_autocomplete_suggestions');
+		$search_filters_enabled = false;
 
 		if($search_meta_fields === 'yes') {
 			self::add_search_filters();
+			$search_filters_enabled = true;
 		}
 
 		$args = [
@@ -511,6 +536,10 @@ class FG_Ajax_Responder {
 		}
 
 		$query = new \WP_Query($args);
+
+		if ($search_filters_enabled) {
+			self::remove_search_filters();
+		}
 
 		if ($query->have_posts()) {
 			while ($query->have_posts()) {
@@ -710,9 +739,20 @@ class FG_Ajax_Responder {
 	 */
 	public static function search_where( string $where ) : string {
 		global $wpdb;
-		$where = preg_replace(
-			"/\(\s*$wpdb->posts.post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
-			"($wpdb->posts.post_title LIKE $1) OR (pm.meta_value LIKE $1)", $where );
+
+		$pattern = "/\(\s*{$wpdb->posts}.post_title\s+LIKE\s*'([^']*)'\s*\)/";
+
+		$where = preg_replace_callback( $pattern, function( $matches ) use ( $wpdb ) {
+			$raw = $matches[1];
+
+			$raw = wp_unslash( $raw );
+			$like = $wpdb->esc_like( $raw );
+
+			$quoted_like = $wpdb->prepare( "'%s'", '%' . $like . '%' );
+
+			return "({$wpdb->posts}.post_title LIKE {$quoted_like}) OR (pm.meta_value LIKE {$quoted_like})";
+		}, $where );
+
 		return $where;
 	}
 
@@ -736,6 +776,17 @@ class FG_Ajax_Responder {
 		add_filter('posts_join', [__CLASS__, 'search_join']);
 		add_filter('posts_where', [__CLASS__, 'search_where']);
 		add_filter('posts_distinct', [__CLASS__, 'search_distinct']);
+	}
+
+
+	/**
+	 * Remove search filters
+	 * @return void
+	 */
+	public static function remove_search_filters() : void {
+		remove_filter('posts_join', [__CLASS__, 'search_join']);
+		remove_filter('posts_where', [__CLASS__, 'search_where']);
+		remove_filter('posts_distinct', [__CLASS__, 'search_distinct']);
 	}
 
 
@@ -831,6 +882,95 @@ class FG_Ajax_Responder {
 			'taxonomy' => $next_taxonomy,
 			'html'     => $html
 		]);
+	}
+
+
+	/**
+	 * Update post views
+	 *
+	 * @return void
+	 */
+	public static function update_track_view() : void {
+		if ( empty($_POST['post_id']) ) {
+			wp_send_json_error(['message' => 'No post_id']);
+		}
+
+		$post_id = (int) $_POST['post_id'];
+
+		if ( ! $post_id || get_post_status($post_id) === false ) {
+			wp_send_json_error(['message' => 'Invalid post']);
+		}
+
+		$views = (int) get_post_meta($post_id, 'ymc_fg_post_views_count', true);
+		$views++;
+		update_post_meta($post_id, 'ymc_fg_post_views_count', $views);
+
+		wp_send_json_success(['views' => $views]);
+		exit;
+	}
+
+
+	/**
+	 * Get filter search terms
+	 *
+	 * @return void
+	 */
+	public static function get_filter_search_terms() : void {
+		check_ajax_referer('get_filter_search_terms-ajax-nonce', 'nonce_code');
+
+		$query     = sanitize_text_field( $_POST['query'] ?? '' );
+		$taxonomy  = sanitize_key( $_POST['taxonomy'] ?? '' );
+		$filter_id = intval( $_POST['filter_id'] ?? 0 );
+
+		if ( empty( $taxonomy ) ) {
+			wp_send_json_error( [ 'message' => __('Missing taxonomy', 'ymc-smart-filter') ] );
+		}
+
+		$paged = intval( $_POST['paged'] ?? 1 );
+		$per_page = intval( $_POST['per_page'] ?? 20 );
+
+		$args = [
+			'taxonomy'   => $taxonomy,
+			'hide_empty' => false,
+			'number'     => $per_page,
+			'offset'     => ($paged - 1) * $per_page,
+			'search'     => $query
+		];
+
+		$terms = get_terms( $args );
+
+		if ( is_wp_error( $terms ) ) {
+			wp_send_json_error( [ 'message' => $terms->get_error_message() ] );
+		}
+
+		$filter = new FG_Filter_Dropdown();
+
+		$close_button = '<li class="ymc-dropdown__close"><button type="button" class="dropdown-close-btn" aria-label="Close dropdown">×</button></li>';
+
+		ob_start();
+
+		if ( ! empty( $terms ) ) {
+			foreach ( $terms as $term ) {
+				// phpcs:ignore WordPress
+				echo $filter->render_term_button( $term->term_id, $term->name, [ $taxonomy ], $filter_id );
+			}
+		}
+		if( empty($terms) && !empty($query) ) {
+			echo '<li class="ymc-dropdown__empty js-dropdown-empty">'
+			     . esc_html__( 'No terms found', 'ymc-smart-filter' ) . '</li>';
+		}
+
+
+		$terms_html = ob_get_clean();
+		$terms_html = preg_replace( '/\s+/', ' ', $terms_html );
+		$terms_html = preg_replace( '/>\s+</', '><', $terms_html );
+		$terms_html = trim( $terms_html );
+
+		wp_send_json_success( [
+			'terms'     => $terms_html,
+			'terms_count' => count($terms),
+			'close_btn' => $close_button
+		] );
 	}
 
 }

@@ -1756,7 +1756,7 @@ function charitable_render_global_upgrade_cta( $css_class = '', $echo = true ) {
 	$output .= '</section>';
 
 	if ( $echo ) {
-		echo $output;
+		echo $output; // phpcs:ignore
 	} else {
 		return $output;
 	}

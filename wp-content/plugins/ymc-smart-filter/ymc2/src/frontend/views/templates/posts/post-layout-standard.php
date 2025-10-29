@@ -35,7 +35,16 @@ while ($query->have_posts()) : $query->the_post();
     $post_excerpt          = get_the_excerpt($post_id);
 	$all_terms             = ymc_get_all_post_terms($post_id);
 	$tag_list              = '';
+    $cat_list              = '';
 	$post_image            = ymc_post_image_size($post_id, $post_image_size);
+	$taxonomies            = ymc_get_attached_post_taxonomies($post_id);
+	$views                 =  Data_Store::get_meta_value($post_id, 'ymc_fg_post_views_count');
+
+	if ( ! empty( $taxonomies ) ) {
+		foreach ($taxonomies as $slug => $label) {
+			$cat_list .= '<span class="post-taxonomy">' . esc_html( $label ) . '</span>';
+		}
+	}
 
 	foreach ($all_terms as $term) {
 		$tag_list .= '<a class="tag tag-' . esc_attr($term['slug']) . '" href="'. esc_url($term['link']) .'" 
@@ -59,7 +68,7 @@ while ($query->have_posts()) : $query->the_post();
 	        <?php if( $post_display_settings['image'] === 'show') : ?>
                 <div class="post-card__image">
 			        <?php echo ( $is_image_clickable === 'yes' )
-				        ? '<a class="post-card__title-link'. esc_attr($popup_class_trigger) .'" 
+				        ? '<a class="post-card__title-link js-post-link'. esc_attr($popup_class_trigger) .'" 
                         href="'. esc_url($post_link) .'" 
                         target="'. esc_attr($target_option) .'"
                         data-grid-id="'. esc_attr($filter_id).'"
@@ -75,15 +84,15 @@ while ($query->have_posts()) : $query->the_post();
                 </div>
 	        <?php endif; ?>
 
-	        <?php if( $post_display_settings['tags'] === 'show') : ?>
-                <div class="post-card__tags">
-			        <?php echo wp_kses_post($tag_list); ?>
+            <?php if( $post_display_settings['category'] === 'show') : ?>
+                <div class="post-card__categories">
+		            <?php echo wp_kses_post($cat_list); ?>
                 </div>
-	        <?php endif; ?>
+            <?php endif; ?>
 
 	        <?php if( $post_display_settings['title'] === 'show') : ?>
                 <h2 class="post-card__title">
-                    <a class="post-card__title-link<?php echo esc_attr($popup_class_trigger); ?>"
+                    <a class="post-card__title-link js-post-link<?php echo esc_attr($popup_class_trigger); ?>"
                        href="<?php echo esc_url($post_link); ?>"
                        target="<?php echo esc_attr($target_option); ?>"
                        data-grid-id="<?php echo esc_attr($filter_id); ?>"
@@ -92,6 +101,12 @@ while ($query->have_posts()) : $query->the_post();
 				        <?php echo esc_html($post_title); ?>
                     </a>
                 </h2>
+	        <?php endif; ?>
+
+	        <?php if( $post_display_settings['tags'] === 'show') : ?>
+                <div class="post-card__tags">
+			        <?php echo wp_kses_post($tag_list); ?>
+                </div>
 	        <?php endif; ?>
 
             <div class="post-card__meta">
@@ -124,8 +139,13 @@ while ($query->have_posts()) : $query->the_post();
                 </div>
 	        <?php endif; ?>
 
-	        <?php if( $post_display_settings['button'] === 'show') : ?>
-                <a class="post-card__read-more<?php echo esc_attr($popup_class_trigger); ?>"
+	        <?php if( $post_display_settings['button'] === 'show') :
+		        if ( ! empty( $button_text ) ) {
+			        do_action( 'wpml_register_single_string', 'ymc-smart-filter', 'Post Button Text', $button_text );
+			        $button_text = apply_filters( 'wpml_translate_single_string', $button_text, 'ymc-smart-filter', 'Post Button Text' );
+		        }
+                ?>
+                <a class="post-card__read-more js-post-link<?php echo esc_attr($popup_class_trigger); ?>"
                    href="<?php echo esc_url($post_link); ?>"
                    target="<?php echo esc_attr($target_option); ?>"
                    data-grid-id="<?php echo esc_attr($filter_id); ?>"
@@ -133,6 +153,10 @@ while ($query->have_posts()) : $query->the_post();
                    data-counter="<?php echo esc_attr($counter); ?>">
 			        <?php echo esc_html( $button_text); ?></a>
 	        <?php endif; ?>
+
+            <?php if( $post_display_settings['views'] === 'show') : ?>
+                <span class="post-card__views"><?php echo esc_html($views); ?></span>
+            <?php endif; ?>
 
         </div>
     </article>

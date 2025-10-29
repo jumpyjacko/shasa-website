@@ -33,23 +33,26 @@ if( $ep_functions->ep_get_global_settings('checkout_reg_google_recaptcha') == 1 
                 </div>
                 <div class="ep-box-col-8 small text-danger">
                     <div id="ep_checkout_timer_section">
-                        <span class="ep-text-dark">
-                            <?php esc_html_e( 'You have', 'eventprime-event-calendar-management' );?> 
-                        </span>
-                        <?php $checkout_timer_sec = 260;
+                        <?php
+                        $checkout_timer_sec = 260;
                         $checkout_timer_min = $ep_functions->ep_get_global_settings( 'checkout_page_timer' );
-                        if( $checkout_timer_min > 0 ) {
+                        if ( $checkout_timer_min > 0 ) {
                             $checkout_timer_sec = $checkout_timer_min * 60;
-                        }?>
-                        <span class="ep-checkout-time ep-fw-bold"><?php echo absint( $checkout_timer_sec );?></span> <?php esc_html_e( 'seconds', 'eventprime-event-calendar-management' );?>
-                        <span class="ep-text-dark">
-                            <?php echo esc_html__( 'left to', 'eventprime-event-calendar-management' ).' '.esc_html( $checkout_text );?>
-                        </span>
+                        }
+
+                        printf(
+                            /* translators: 1: seconds remaining, 2: checkout action */
+                            esc_html__( 'You have %1$s seconds left to %2$s', 'eventprime-event-calendar-management' ),
+                            '<span class="ep-checkout-time ep-fw-bold">' . absint( $checkout_timer_sec ) . '</span>',
+                            esc_html( $checkout_text )
+                        );
+                        ?>
                     </div>
                     <div class="ep-progress ep-bg-success ep-bg-opacity-10" style="height: 3px;">
                         <div class="ep-progress-bar ep-bg-danger" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
+
                 
                 <div class="ep-box-col-2 ep-checkout-cart-section">
                     <div class="ep-flex-column">
@@ -57,13 +60,20 @@ if( $ep_functions->ep_get_global_settings('checkout_reg_google_recaptcha') == 1 
                             <span class="material-icons-round ep-bg-light ep-rounded-circle ep-p-2" id="ep_booking_step2">shopping_cart</span>
                         </div>
                         <div class="ep-fw-bold ep-text-muted">
-                            <?php esc_html_e( 'Step 2', 'eventprime-event-calendar-management' );?>
+                            <?php esc_html_e( 'Step 2', 'eventprime-event-calendar-management' ); ?>
                         </div>
                         <div class="ep-text-small ep-text-muted">
-                            <?php echo esc_html( $checkout_text ). ' '. esc_html__( '& Payment', 'eventprime-event-calendar-management' );?>
+                            <?php
+                            printf(
+                                /* translators: %s: checkout step text (e.g., "Checkout") */
+                                esc_html__( '%s & Payment', 'eventprime-event-calendar-management' ),
+                                esc_html( $checkout_text )
+                            );
+                            ?>
                         </div>
                     </div>
                 </div>
+
             </div>
         
             <div class="ep-box-row ep-mt-5 ep-mb-3"><?php

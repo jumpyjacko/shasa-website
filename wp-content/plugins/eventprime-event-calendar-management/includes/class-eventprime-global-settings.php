@@ -509,6 +509,8 @@ class Eventprime_Global_Settings{
             'ep_metabundle_license_item_name' => 'EventPrime for MetaBundle',
             'ep_metabundle_plus_license_item_id'   => 21790,
             'ep_metabundle_plus_license_item_name' => 'EventPrime for MetaBundle+',
+            'ep_license_email' => '',
+            'ep_license_key' => ''
         );
         
         $this->setting_options = array_merge( $this->setting_options, $license_options );
@@ -1092,10 +1094,10 @@ class Eventprime_Global_Settings{
          echo '<optgroup label="' . esc_attr__( 'Event Fields', 'eventprime-event-calendar-management' ) . '" >';
         echo '<option value="{{name}}">' . esc_html__( 'Name', 'eventprime-event-calendar-management' ) . '</option>';
         echo '<option value="{{event_url}}">' . esc_html__( 'URL', 'eventprime-event-calendar-management' ) . '</option>';
-        echo '<option value="{{fstart_date}}">' . esc_html__( 'Event Start Date', 'eventprime-event-calendar-management' ) . '</option>';
-        echo '<option value="{{fend_date}}">' . esc_html__( 'Event End Date', 'eventprime-event-calendar-management' ) . '</option>';
-        echo '<option value="{{em_start_time}}">' . esc_html__( 'Event Start Time', 'eventprime-event-calendar-management' ) . '</option>';
-        echo '<option value="{{em_end_time}}">' . esc_html__( 'Event End Time', 'eventprime-event-calendar-management' ) . '</option>';
+        echo '<option value="{{em_start_date_formated}}">' . esc_html__( 'Event Start Date', 'eventprime-event-calendar-management' ) . '</option>';
+        echo '<option value="{{em_end_date_formated}}">' . esc_html__( 'Event End Date', 'eventprime-event-calendar-management' ) . '</option>';
+        echo '<option value="{{em_start_time_formated}}">' . esc_html__( 'Event Start Time', 'eventprime-event-calendar-management' ) . '</option>';
+        echo '<option value="{{em_end_time_formated}}">' . esc_html__( 'Event End Time', 'eventprime-event-calendar-management' ) . '</option>';
         
         echo '</optgroup>';
         

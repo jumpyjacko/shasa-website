@@ -54,7 +54,7 @@ do_action( 'charitable_user_profile_before', $view_args );
 
 	?>
 	<div class="charitable-form-field charitable-submit-field">
-		<button class="<?php echo esc_attr( charitable_get_button_class( 'profile' ) ); ?>" type="submit" name="update-profile"><?php echo apply_filters( 'charitable_profile_form_submit_button_name', __( 'Update', 'charitable' ) ); ?></button>
+		<button class="<?php echo esc_attr( charitable_get_button_class( 'profile' ) ); ?>" type="submit" name="update-profile"><?php echo esc_html( apply_filters( 'charitable_profile_form_submit_button_name', __( 'Update', 'charitable' ) ) ); ?></button>
 	</div>
 </form><!-- #charitable-profile-form -->
 <?php

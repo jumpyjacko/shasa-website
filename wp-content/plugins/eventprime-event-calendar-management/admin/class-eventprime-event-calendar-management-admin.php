@@ -247,6 +247,15 @@ class Eventprime_Event_Calendar_Management_Admin {
             wp_enqueue_style( 'ep-toast-css' );
             wp_enqueue_script( 'ep-toast-js' );
             wp_enqueue_script( 'ep-toast-message-js' );
+            wp_localize_script(
+                'ep-toast-message-js', 
+                'eventprime_toast', 
+                array(
+                   'error'=> esc_html__( 'Error', 'eventprime-event-calendar-management' ),
+                   'success'=> esc_html__( 'Success', 'eventprime-event-calendar-management' ),
+                   'warning'=> esc_html__( 'Warning', 'eventprime-event-calendar-management' ),
+                )
+            );
             wp_enqueue_script( 'ep-event-taxonomy', plugin_dir_url( __FILE__ ) . 'js/ep-event-taxonomy.js', array( 'jquery' ), $this->version );
         }
 
@@ -280,6 +289,15 @@ class Eventprime_Event_Calendar_Management_Admin {
             wp_enqueue_style( 'ep-toast-css' );
             wp_enqueue_script( 'ep-toast-js' );
             wp_enqueue_script( 'ep-toast-message-js' );
+            wp_localize_script(
+                'ep-toast-message-js', 
+                'eventprime_toast', 
+                array(
+                   'error'=> esc_html__( 'Error', 'eventprime-event-calendar-management' ),
+                   'success'=> esc_html__( 'Success', 'eventprime-event-calendar-management' ),
+                   'warning'=> esc_html__( 'Warning', 'eventprime-event-calendar-management' ),
+                )
+            );
             // localized global settings
             $global_settings = $ep_functions->ep_get_global_settings();
             $currency_symbol = $ep_functions->ep_currency_symbol();
@@ -448,6 +466,15 @@ class Eventprime_Event_Calendar_Management_Admin {
             wp_enqueue_style( 'ep-toast-css' );
             wp_enqueue_script( 'ep-toast-js' );
             wp_enqueue_script( 'ep-toast-message-js' );
+            wp_localize_script(
+            'ep-toast-message-js', 
+            'eventprime_toast', 
+            array(
+               'error'=> esc_html__( 'Error', 'eventprime-event-calendar-management' ),
+               'success'=> esc_html__( 'Success', 'eventprime-event-calendar-management' ),
+               'warning'=> esc_html__( 'Warning', 'eventprime-event-calendar-management' ),
+            )
+        );
         }
 
         if ( $current_page == 'performer_edit' ) {
@@ -501,6 +528,15 @@ class Eventprime_Event_Calendar_Management_Admin {
             wp_enqueue_style( 'ep-toast-css' );
             wp_enqueue_script( 'ep-toast-js' );
             wp_enqueue_script( 'ep-toast-message-js' );
+            wp_localize_script(
+                'ep-toast-message-js', 
+                'eventprime_toast', 
+                array(
+                   'error'=> esc_html__( 'Error', 'eventprime-event-calendar-management' ),
+                   'success'=> esc_html__( 'Success', 'eventprime-event-calendar-management' ),
+                   'warning'=> esc_html__( 'Warning', 'eventprime-event-calendar-management' ),
+                )
+            );
         }
 
         if ( $current_page == 'bookings' || $current_page == 'booking_edit' ) {

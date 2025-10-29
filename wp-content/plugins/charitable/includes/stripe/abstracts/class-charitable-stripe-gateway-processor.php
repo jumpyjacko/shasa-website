@@ -1121,7 +1121,7 @@ if ( ! class_exists( 'Charitable_Stripe_Gateway_Processor' ) ) :
 
 			/* We cannot support multiple campaign donations in a single donation with Stripe Connect. */
 			if ( 1 < count( $campaign_donations ) ) {
-				wp_die( __( 'Error: Unable to process multiple campaign donations in a single donation with Stripe Connect.', 'charitable' ) );
+				wp_die( esc_html( __( 'Error: Unable to process multiple campaign donations in a single donation with Stripe Connect.', 'charitable' ) ) );
 			}
 
 			$connected_account = charitable_stripe_get_connected_account_for_campaign( current( $campaign_donations )->campaign_id );

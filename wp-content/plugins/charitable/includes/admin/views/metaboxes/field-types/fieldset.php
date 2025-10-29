@@ -24,4 +24,4 @@ if ( ! array_key_exists( 'form_view', $view_args ) || ! $view_args['form_view']-
 	<?php
 	$view_args['form_view']->render_fields( $view_args['fields'] );
 	?>
-</fieldset><!-- #<?php echo $view_args['wrapper_id']; ?> -->
+</fieldset><!-- #<?php echo esc_attr( $view_args['wrapper_id'] ); ?> -->

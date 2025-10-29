@@ -113,7 +113,7 @@ if ( ! class_exists( 'Charitable_Dashboard' ) ) :
 							<?php $this->render_stats_section(); ?>
 							<?php $this->render_tabs_section(); ?>
 							<?php $this->render_upgrade_section(); ?>
-							<?php 
+							<?php
 							// Show Quick Access in left column for Pro users (when upgrade section is hidden)
 							if ( charitable_is_pro() ) {
 								$this->render_quick_access_section();
@@ -125,7 +125,7 @@ if ( ! class_exists( 'Charitable_Dashboard' ) ) :
 						<div class="charitable-dashboard-v2-right-column">
 							<?php $this->render_enhance_campaign_section(); ?>
 							<?php $this->render_latest_updates_section(); ?>
-							<?php 
+							<?php
 							// Show Quick Access in right column for non-Pro users
 							if ( ! charitable_is_pro() ) {
 								$this->render_quick_access_section();
@@ -735,7 +735,8 @@ if ( ! class_exists( 'Charitable_Dashboard' ) ) :
 	/**
 	 * Clear dashboard stats cache.
 	 *
-	 * @since 1.8.8
+	 * @since   1.8.8
+	 * @version 1.8.8.4 - added blog posts cache clearing
 	 */
 	public function clear_dashboard_stats_cache() {
 		// Delete all dashboard stats cache transients
@@ -755,148 +756,151 @@ if ( ! class_exists( 'Charitable_Dashboard' ) ) :
 				$wpdb->esc_like( '_transient_timeout_charitable_dashboard_stats_changes_' ) . '%'
 			)
 		);
+
+		// Clear blog posts cache
+		delete_transient( 'charitable_blog_posts_cache' );
 	}
 
-		/**
-		 * Get the default tab from URL parameter.
-		 *
-		 * @since 1.8.8
-		 * @return string
-		 */
-		private function get_default_tab() {
-			$valid_tabs = array( 'top-campaigns', 'latest-donations', 'top-donors', 'comments' );
-			$default_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'top-campaigns';
+	/**
+	 * Get the default tab from URL parameter.
+	 *
+	 * @since 1.8.8
+	 * @return string
+	 */
+	private function get_default_tab() {
+		$valid_tabs = array( 'top-campaigns', 'latest-donations', 'top-donors', 'comments' );
+		$default_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'top-campaigns';
 
-			// Validate the tab parameter
-			if ( ! in_array( $default_tab, $valid_tabs, true ) ) {
-				$default_tab = 'top-campaigns';
-			}
-
-			return $default_tab;
+		// Validate the tab parameter
+		if ( ! in_array( $default_tab, $valid_tabs, true ) ) {
+			$default_tab = 'top-campaigns';
 		}
 
-		/**
-		 * Check if a tab should be active.
-		 *
-		 * @since 1.8.8
-		 * @param string $tab_name The tab name to check.
-		 * @return bool
-		 */
-		private function is_tab_active( $tab_name ) {
-			return $this->get_default_tab() === $tab_name;
-		}
+		return $default_tab;
+	}
 
-		/**
-		 * Render the tabs section with campaigns, donations, donors, and comments.
-		 *
-		 * @since 1.8.8
-		 */
-		public function render_tabs_section() {
-			?>
-			<section class="charitable-dashboard-v2-section charitable-dashboard-top-campaigns">
-				<header class="charitable-dashboard-v2-section-header">
-					<nav class="charitable-dashboard-v2-tab-nav">
-						<a href="#" class="charitable-dashboard-v2-tab-nav-item<?php echo $this->is_tab_active( 'top-campaigns' ) ? ' charitable-dashboard-v2-tab-nav-active' : ''; ?>" data-tab="top-campaigns">
-							Top Campaigns
-						</a>
-						<a href="#" class="charitable-dashboard-v2-tab-nav-item<?php echo $this->is_tab_active( 'latest-donations' ) ? ' charitable-dashboard-v2-tab-nav-active' : ''; ?>" data-tab="latest-donations">
-							Latest Donations
-						</a>
-						<a href="#" class="charitable-dashboard-v2-tab-nav-item<?php echo $this->is_tab_active( 'top-donors' ) ? ' charitable-dashboard-v2-tab-nav-active' : ''; ?>" data-tab="top-donors">
-							Top Donors
-						</a>
-						<a href="#" class="charitable-dashboard-v2-tab-nav-item<?php echo $this->is_tab_active( 'comments' ) ? ' charitable-dashboard-v2-tab-nav-active' : ''; ?>" data-tab="comments">
-							Comments
-						</a>
-					</nav>
-				</header>
-				<div class="charitable-dashboard-v2-section-content">
-					<?php $this->render_top_campaigns_tab(); ?>
-					<?php $this->render_latest_donations_tab(); ?>
-					<?php $this->render_top_donors_tab(); ?>
-					<?php $this->render_comments_tab(); ?>
-				</div>
-			</section>
-			<?php
-		}
+	/**
+	 * Check if a tab should be active.
+	 *
+	 * @since 1.8.8
+	 * @param string $tab_name The tab name to check.
+	 * @return bool
+	 */
+	private function is_tab_active( $tab_name ) {
+		return $this->get_default_tab() === $tab_name;
+	}
 
-		/**
-		 * Render the top campaigns tab content.
-		 *
-		 * @since 1.8.8
-		 */
-		private function render_top_campaigns_tab() {
-			$campaigns = $this->get_top_campaigns();
-			?>
-			<div class="charitable-dashboard-v2-tab-content<?php echo $this->is_tab_active( 'top-campaigns' ) ? ' charitable-dashboard-v2-tab-content-active' : ''; ?>" data-tab="top-campaigns">
-				<?php if ( ! empty( $campaigns ) ) : ?>
-					<div class="charitable-dashboard-v2-campaigns-table">
-						<table class="charitable-dashboard-v2-table">
-							<thead>
-								<tr>
-									<th>Campaign Title</th>
-									<th>Goal</th>
-									<th>Raised</th>
-									<th>Status</th>
-									<th>Progress</th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php foreach ( $campaigns as $campaign ) : ?>
-									<tr>
-										<td class="campaign-title">
-											<a href="<?php echo esc_url( $campaign['url'] ); ?>">
-												<?php echo esc_html( $campaign['title'] ); ?>
-												<svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-													<path d="M1.09091 11.0001C0.790908 11.0001 0.53409 10.8932 0.320454 10.6796C0.106818 10.466 0 10.2091 0 9.90915V2.27279C0 1.97279 0.106818 1.71598 0.320454 1.50234C0.53409 1.2887 0.790908 1.18188 1.09091 1.18188H4.36363V2.27279H1.09091V9.90915H8.72726V6.63642H9.81817V9.90915C9.81817 10.2091 9.71135 10.466 9.49772 10.6796C9.28408 10.8932 9.02726 11.0001 8.72726 11.0001H1.09091Z" fill="#191D2D" fill-opacity="0.6"/>
-													<path d="M4 6.16363L4.76364 6.92726L9.83636 1.85454V3.81818H10.9273V0H7.10909V1.09091H9.07272L4 6.16363Z" fill="#191D2D" fill-opacity="0.6"/>
-												</svg>
-											</a>
-										</td>
-										<td><?php echo esc_html( $campaign['goal'] ); ?></td>
-										<td><?php echo esc_html( $campaign['reach'] ); ?></td>
-										<td><span class="status-badge status-<?php echo esc_attr( $campaign['status'] ); ?>"><?php echo esc_html( $campaign['status_label'] ); ?></span></td>
-										<td>
-											<div class="progress-circle" data-progress="<?php echo esc_attr( $campaign['progress'] ); ?>">
-												<svg width="40" height="40" viewBox="0 0 40 40">
-													<circle cx="20" cy="20" r="18" fill="none" stroke="rgba(222, 234, 255, 1)" stroke-width="3"/>
-													<circle cx="20" cy="20" r="18" fill="none" stroke="rgba(76, 123, 207, 1)" stroke-width="3"/>
-												</svg>
-												<span class="progress-text"><?php echo esc_html( $campaign['progress'] ); ?>%</span>
-											</div>
-										</td>
-									</tr>
-								<?php endforeach; ?>
-							</tbody>
-						</table>
-					</div>
-				<?php else : ?>
-					<div class="charitable-dashboard-v2-empty-state">
-						<div class="charitable-dashboard-v2-empty-state-content">
-							<h3><?php esc_html_e( 'No Campaigns Yet!', 'charitable' ); ?></h3>
-							<p><?php esc_html_e( 'Create your first campaign to start receiving donations.', 'charitable' ); ?></p>
-							<?php if ( charitable_disable_legacy_campaigns() ) : ?>
-								<a href="<?php echo esc_url( admin_url( 'admin.php?page=charitable-campaign-builder&view=template' ) ); ?>" class="charitable-dashboard-v2-button charitable-dashboard-v2-button-primary">
-									<?php esc_html_e( 'Create Campaign', 'charitable' ); ?>
-								</a>
-							<?php else : ?>
-								<a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=campaign' ) ); ?>" class="charitable-dashboard-v2-button charitable-dashboard-v2-button-primary">
-									<?php esc_html_e( 'Create Campaign', 'charitable' ); ?>
-								</a>
-							<?php endif; ?>
-						</div>
-					</div>
-				<?php endif; ?>
+	/**
+	 * Render the tabs section with campaigns, donations, donors, and comments.
+	 *
+	 * @since 1.8.8
+	 */
+	public function render_tabs_section() {
+		?>
+		<section class="charitable-dashboard-v2-section charitable-dashboard-top-campaigns">
+			<header class="charitable-dashboard-v2-section-header">
+				<nav class="charitable-dashboard-v2-tab-nav">
+					<a href="#" class="charitable-dashboard-v2-tab-nav-item<?php echo $this->is_tab_active( 'top-campaigns' ) ? ' charitable-dashboard-v2-tab-nav-active' : ''; ?>" data-tab="top-campaigns">
+						Top Campaigns
+					</a>
+					<a href="#" class="charitable-dashboard-v2-tab-nav-item<?php echo $this->is_tab_active( 'latest-donations' ) ? ' charitable-dashboard-v2-tab-nav-active' : ''; ?>" data-tab="latest-donations">
+						Latest Donations
+					</a>
+					<a href="#" class="charitable-dashboard-v2-tab-nav-item<?php echo $this->is_tab_active( 'top-donors' ) ? ' charitable-dashboard-v2-tab-nav-active' : ''; ?>" data-tab="top-donors">
+						Top Donors
+					</a>
+					<a href="#" class="charitable-dashboard-v2-tab-nav-item<?php echo $this->is_tab_active( 'comments' ) ? ' charitable-dashboard-v2-tab-nav-active' : ''; ?>" data-tab="comments">
+						Comments
+					</a>
+				</nav>
+			</header>
+			<div class="charitable-dashboard-v2-section-content">
+				<?php $this->render_top_campaigns_tab(); ?>
+				<?php $this->render_latest_donations_tab(); ?>
+				<?php $this->render_top_donors_tab(); ?>
+				<?php $this->render_comments_tab(); ?>
 			</div>
-			<?php
-		}
+		</section>
+		<?php
+	}
 
-		/**
-		 * Get top campaigns data.
-		 *
-		 * @since 1.8.8
-		 * @return array
-		 */
+	/**
+	 * Render the top campaigns tab content.
+	 *
+	 * @since 1.8.8
+	 */
+	private function render_top_campaigns_tab() {
+		$campaigns = $this->get_top_campaigns();
+		?>
+		<div class="charitable-dashboard-v2-tab-content<?php echo $this->is_tab_active( 'top-campaigns' ) ? ' charitable-dashboard-v2-tab-content-active' : ''; ?>" data-tab="top-campaigns">
+			<?php if ( ! empty( $campaigns ) ) : ?>
+				<div class="charitable-dashboard-v2-campaigns-table">
+					<table class="charitable-dashboard-v2-table">
+						<thead>
+							<tr>
+								<th>Campaign Title</th>
+								<th>Goal</th>
+								<th>Raised</th>
+								<th>Status</th>
+								<th>Progress</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php foreach ( $campaigns as $campaign ) : ?>
+								<tr>
+									<td class="campaign-title">
+										<a href="<?php echo esc_url( $campaign['url'] ); ?>">
+											<?php echo esc_html( $campaign['title'] ); ?>
+											<svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M1.09091 11.0001C0.790908 11.0001 0.53409 10.8932 0.320454 10.6796C0.106818 10.466 0 10.2091 0 9.90915V2.27279C0 1.97279 0.106818 1.71598 0.320454 1.50234C0.53409 1.2887 0.790908 1.18188 1.09091 1.18188H4.36363V2.27279H1.09091V9.90915H8.72726V6.63642H9.81817V9.90915C9.81817 10.2091 9.71135 10.466 9.49772 10.6796C9.28408 10.8932 9.02726 11.0001 8.72726 11.0001H1.09091Z" fill="#191D2D" fill-opacity="0.6"/>
+												<path d="M4 6.16363L4.76364 6.92726L9.83636 1.85454V3.81818H10.9273V0H7.10909V1.09091H9.07272L4 6.16363Z" fill="#191D2D" fill-opacity="0.6"/>
+											</svg>
+										</a>
+									</td>
+									<td><?php echo esc_html( $campaign['goal'] ); ?></td>
+									<td><?php echo esc_html( $campaign['reach'] ); ?></td>
+									<td><span class="status-badge status-<?php echo esc_attr( $campaign['status'] ); ?>"><?php echo esc_html( $campaign['status_label'] ); ?></span></td>
+									<td>
+										<div class="progress-circle" data-progress="<?php echo esc_attr( $campaign['progress'] ); ?>">
+											<svg width="40" height="40" viewBox="0 0 40 40">
+												<circle cx="20" cy="20" r="18" fill="none" stroke="rgba(222, 234, 255, 1)" stroke-width="3"/>
+												<circle cx="20" cy="20" r="18" fill="none" stroke="rgba(76, 123, 207, 1)" stroke-width="3"/>
+											</svg>
+											<span class="progress-text"><?php echo esc_html( $campaign['progress'] ); ?>%</span>
+										</div>
+									</td>
+								</tr>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
+				</div>
+			<?php else : ?>
+				<div class="charitable-dashboard-v2-empty-state">
+					<div class="charitable-dashboard-v2-empty-state-content">
+						<h3><?php esc_html_e( 'No Campaigns Yet!', 'charitable' ); ?></h3>
+						<p><?php esc_html_e( 'Create your first campaign to start receiving donations.', 'charitable' ); ?></p>
+						<?php if ( charitable_disable_legacy_campaigns() ) : ?>
+							<a href="<?php echo esc_url( admin_url( 'admin.php?page=charitable-campaign-builder&view=template' ) ); ?>" class="charitable-dashboard-v2-button charitable-dashboard-v2-button-primary">
+								<?php esc_html_e( 'Create Campaign', 'charitable' ); ?>
+							</a>
+						<?php else : ?>
+							<a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=campaign' ) ); ?>" class="charitable-dashboard-v2-button charitable-dashboard-v2-button-primary">
+								<?php esc_html_e( 'Create Campaign', 'charitable' ); ?>
+							</a>
+						<?php endif; ?>
+					</div>
+				</div>
+			<?php endif; ?>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Get top campaigns data.
+	 *
+	 * @since 1.8.8
+	 * @return array
+	 */
 	private function get_top_campaigns() {
 		// TEMPORARY TESTING: Return empty campaigns if testing mode is enabled
 		if ( self::SHOW_EMPTY_DASHBOARD ) {
@@ -2273,7 +2277,9 @@ if ( ! class_exists( 'Charitable_Dashboard' ) ) :
 				'action' => $is_active ? 'deactivate' : 'activate',
 				'path' => $plugin_file,
 				'plugin_allow' => true,
-				'upgrade_url' => ''
+				'upgrade_url' => '',
+				// Installed plugin may not have directory metadata; default license to empty
+				'license' => array(),
 			);
 		}
 
@@ -2291,7 +2297,7 @@ if ( ! class_exists( 'Charitable_Dashboard' ) ) :
 
 		$final_data = array(
 			'title' => $title,
-			'description' => __( 'Manage all your WordPress privacy compliance needs', 'charitable' ),
+			'description' => $this->get_charitable_addon_description( $slug ),
 			'icon' => $icon,
 			'installed' => $addon['status'] === 'installed' || $addon['status'] === 'active',
 			'active' => $addon['status'] === 'active',
@@ -2302,10 +2308,46 @@ if ( ! class_exists( 'Charitable_Dashboard' ) ) :
 			'status' => $addon['status'],
 			'action' => $addon['action'],
 			'plugin_allow' => $addon['plugin_allow'],
-			'upgrade_url' => $addon['upgrade_url'] ?? ''
+			'upgrade_url' => $addon['upgrade_url'] ?? '',
+			'license' => isset( $addon['license'] ) ? (array) $addon['license'] : array(),
 		);
 
 		return $final_data;
+	}
+
+	/**
+	 * Get Charitable addon description.
+	 *
+	 * @since 1.8.8.4
+	 * @param string $slug Addon slug.
+	 * @return string Description.
+	 */
+	public function get_charitable_addon_description( $slug ) {
+
+		$descriptions = array(
+			// Charitable official addons
+			'charitable-recurring' => __( 'Let donors give automatically on a daily, weekly, monthly, or yearly schedule.', 'charitable' ),
+			'charitable-donortrust' => __( 'Build Trust and Boost Donations with Real-Time Social Proof.', 'charitable' ),
+			'charitable-gift-aid' => __( 'Allow UK donors to add Gift Aid and boost eligible donations by 25%.', 'charitable' ),
+			'charitable-anonymous-donations' => __( 'Give supporters the option to hide their name from public donations.', 'charitable' ),
+			'charitable-fee-relief' => __( 'Let donors optionally cover processing fees.', 'charitable' ),
+
+			// Add more addon descriptions here as they are surfaced in the dashboard
+			'google-analytics-for-wordpress' => __( 'Get detailed insights into your donation traffic and campaign performance.', 'charitable' ),
+			'wpforms-lite' => __( 'Create custom donation forms and surveys to engage with supporters.', 'charitable' ),
+			'all-in-one-seo-pack' => __( 'Optimize your campaigns for search engines to reach more potential donors.', 'charitable' ),
+			'duplicator' => __( 'Safely backup and migrate your donation data and campaign content.', 'charitable' ),
+			'pushengage' => __( 'Send targeted push notifications to re-engage donors and drive contributions.', 'charitable' ),
+			'uncanny-automator' => __( 'Automate your donation workflows and connect with other fundraising tools.', 'charitable' ),
+			'envira-gallery' => __( 'Create beautiful photo galleries to showcase your charitable impact.', 'charitable' ),
+		);
+
+		if ( isset( $descriptions[ $slug ] ) ) {
+			return $descriptions[ $slug ];
+		}
+
+		// Sensible default if an addon is missing a curated description
+		return __( 'Enhance your campaign with powerful fundraising features.', 'charitable' );
 	}
 
 	/**
@@ -2377,7 +2419,7 @@ if ( ! class_exists( 'Charitable_Dashboard' ) ) :
 
 		$item = array(
 			'title' => $plugin_data['title'],
-			'description' => __( 'Manage all your WordPress privacy compliance needs', 'charitable' ),
+			'description' => $this->get_charitable_addon_description( $plugin_data['slug'] ),
 			'button_text' => $button_state['text'],
 			'button_class' => $button_state['class'],
 			'button_action' => $button_state['action'],
@@ -2407,7 +2449,7 @@ if ( ! class_exists( 'Charitable_Dashboard' ) ) :
 
 		$item = array(
 			'title' => $addon_data['title'],
-			'description' => __( 'Manage all your WordPress privacy compliance needs', 'charitable' ),
+			'description' => isset( $addon_data['description'] ) ? $addon_data['description'] : $this->get_charitable_addon_description( $addon_data['slug'] ),
 			'button_text' => $button_state['text'],
 			'button_class' => $button_state['class'],
 			'button_action' => $button_state['action'],
@@ -2498,6 +2540,8 @@ if ( ! class_exists( 'Charitable_Dashboard' ) ) :
 	 * Process raw addon data to add status, action, and plugin_allow fields.
 	 * This mimics what get_addon() does but for raw data from get_addons().
 	 *
+	 * @version 1.8.8.4
+	 *
 	 * @param array  $raw_addon The raw addon data from get_addons().
 	 * @param string $slug      The addon slug.
 	 * @return array The processed addon data.
@@ -2507,8 +2551,12 @@ if ( ! class_exists( 'Charitable_Dashboard' ) ) :
 		$plugin_file = $slug . '/' . $slug . '.php';
 		$is_installed = file_exists( WP_PLUGIN_DIR . '/' . $plugin_file );
 		$is_active = $is_installed ? is_plugin_active( $plugin_file ) : false;
+		$is_pro = charitable_is_pro();
+		$current_plan = Charitable_Addons_Directory::get_current_plan_slug();
+		$required_plans = isset( $raw_addon['license'] ) ? (array) $raw_addon['license'] : array();
+		$plan_allows = empty( $required_plans ) ? false : in_array( $current_plan, $required_plans, true );
 
-		// Determine status and action based on installation state
+		// Determine status and action based on installation state and license
 		if ( $is_active ) {
 			$status = 'active';
 			$action = 'deactivate';
@@ -2519,8 +2567,19 @@ if ( ! class_exists( 'Charitable_Dashboard' ) ) :
 			$plugin_allow = true;
 		} else {
 			$status = 'uninstalled';
-			$action = 'install';
-			$plugin_allow = true; // User has license, so they can install
+			// Check if user has a valid license and required plan before allowing install
+			if ( $is_pro && $plan_allows ) {
+				$action = 'install';
+				$plugin_allow = true;
+			} else {
+				$action = 'upgrade';
+				$plugin_allow = false;
+				// Provide upgrade URL so the button can link to pricing
+				$addons_directory = Charitable_Addons_Directory::get_instance();
+				if ( method_exists( $addons_directory, 'charitable_get_upgrade_link' ) ) {
+					$raw_addon['upgrade_url'] = $addons_directory->charitable_get_upgrade_link();
+				}
+			}
 		}
 
 		// Add the processed fields to the raw addon data
@@ -2965,6 +3024,60 @@ if ( ! class_exists( 'Charitable_Dashboard' ) ) :
 		}
 
 		/**
+		 * Calculate relative time from a date string.
+		 *
+		 * @since 1.8.8.4
+		 *
+		 * @param string $date_string Date string in format 'Y-m-d H:i:s'.
+		 *
+		 * @return string Relative time string (e.g., '2 days ago', '1 week ago').
+		 */
+		private function calculate_relative_time( $date_string ) {
+			if ( empty( $date_string ) ) {
+				return '';
+			}
+
+			$post_date = strtotime( $date_string );
+			$current_time = current_time( 'timestamp' );
+			$time_diff = $current_time - $post_date;
+
+			// If the date is in the future, return empty string
+			if ( $time_diff < 0 ) {
+				return '';
+			}
+
+			// Calculate relative time
+			$minutes = floor( $time_diff / 60 );
+			$hours = floor( $time_diff / 3600 );
+			$days = floor( $time_diff / 86400 );
+			$weeks = floor( $time_diff / 604800 );
+			$months = floor( $time_diff / 2592000 );
+			$years = floor( $time_diff / 31536000 );
+
+			if ( $years > 0 ) {
+				/* translators: %s: number of years */
+				return $years === 1 ? _x( '1 year ago', 'relative time', 'charitable' ) : sprintf( _nx( '%s year ago', '%s years ago', $years, 'relative time', 'charitable' ), number_format_i18n( $years ) );
+			} elseif ( $months > 0 ) {
+				/* translators: %s: number of months */
+				return $months === 1 ? _x( '1 month ago', 'relative time', 'charitable' ) : sprintf( _nx( '%s month ago', '%s months ago', $months, 'relative time', 'charitable' ), number_format_i18n( $months ) );
+			} elseif ( $weeks > 0 ) {
+				/* translators: %s: number of weeks */
+				return $weeks === 1 ? _x( '1 week ago', 'relative time', 'charitable' ) : sprintf( _nx( '%s week ago', '%s weeks ago', $weeks, 'relative time', 'charitable' ), number_format_i18n( $weeks ) );
+			} elseif ( $days > 0 ) {
+				/* translators: %s: number of days */
+				return $days === 1 ? _x( '1 day ago', 'relative time', 'charitable' ) : sprintf( _nx( '%s day ago', '%s days ago', $days, 'relative time', 'charitable' ), number_format_i18n( $days ) );
+			} elseif ( $hours > 0 ) {
+				/* translators: %s: number of hours */
+				return $hours === 1 ? _x( '1 hour ago', 'relative time', 'charitable' ) : sprintf( _nx( '%s hour ago', '%s hours ago', $hours, 'relative time', 'charitable' ), number_format_i18n( $hours ) );
+			} elseif ( $minutes > 0 ) {
+				/* translators: %s: number of minutes */
+				return $minutes === 1 ? _x( '1 minute ago', 'relative time', 'charitable' ) : sprintf( _nx( '%s minute ago', '%s minutes ago', $minutes, 'relative time', 'charitable' ), number_format_i18n( $minutes ) );
+			} else {
+				return _x( 'Just now', 'relative time', 'charitable' );
+			}
+		}
+
+		/**
 		 * Verify blog posts data before it is saved.
 		 *
 		 * @since 1.8.8
@@ -3025,10 +3138,18 @@ if ( ! class_exists( 'Charitable_Dashboard' ) ) :
 					}
 				}
 
+				// Calculate timestamp from date field if available, otherwise use provided timestamp
+				$calculated_timestamp = '';
+				if ( ! empty( $post['date'] ) ) {
+					$calculated_timestamp = $this->calculate_relative_time( $post['date'] );
+				} elseif ( ! empty( $post['timestamp'] ) ) {
+					$calculated_timestamp = sanitize_text_field( $post['timestamp'] );
+				}
+
 				$data[] = array(
 					'title'     => sanitize_text_field( $post['title'] ),
 					'url'       => esc_url_raw( $post['url'] ),
-					'timestamp' => ! empty( $post['timestamp'] ) ? sanitize_text_field( $post['timestamp'] ) : '',
+					'timestamp' => $calculated_timestamp,
 					'featured'  => ! empty( $post['featured'] ) ? (bool) $post['featured'] : false,
 					'image'     => $image_data,
 				);
@@ -3047,7 +3168,7 @@ if ( ! class_exists( 'Charitable_Dashboard' ) ) :
 		 */
 		private function get_blog_posts_from_cache() {
 
-			$cached_data = false; // get_transient( 'charitable_blog_posts_cache' );
+			$cached_data = get_transient( 'charitable_blog_posts_cache' );
 
 			if ( false === $cached_data ) {
 				return [];

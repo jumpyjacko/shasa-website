@@ -83,6 +83,10 @@
     border: 0px !important;
 }
 
+#ep_event_booking_cancellation_action .ep-loader#ep_event_booking_cancellation_loader{
+    left: calc(50% - 26px);
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     .ep-paypal-container {

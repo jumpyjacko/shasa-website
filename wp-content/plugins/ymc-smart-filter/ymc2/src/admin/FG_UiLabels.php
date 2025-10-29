@@ -126,11 +126,13 @@ class FG_UiLabels {
 			'author'  => ['label' => 'Author', 'value' => 'show', 'tooltip' => 'Show or hide the post author'],
 			'date'    => ['label' => 'Date',   'value' => 'show', 'tooltip' => 'Show or hide the post date'],
 			'read_time'  => ['label' => 'Read time', 'value' => 'show', 'tooltip' => 'Show or hide the post read time'],
+			'category' => ['label' => 'Categories', 'value' => 'show', 'tooltip' => 'Show or hide the categories post'],
 			'tags'    => ['label' => 'Tags',   'value' => 'show', 'tooltip' => 'Show or hide the post tags'],
 			'title'   => ['label' => 'Title',  'value' => 'show', 'tooltip' => 'Show or hide the post title'],
 			'image'   => ['label' => 'Image',  'value' => 'show', 'tooltip' => 'Show or hide the post image'],
 			'excerpt' => ['label' => 'Excerpt','value' => 'show', 'tooltip' => 'Show or hide the post excerpt'],
-			'button'  => ['label' => 'Button', 'value' => 'show', 'tooltip' => 'Show or hide the post button']
+			'button'  => ['label' => 'Button', 'value' => 'show', 'tooltip' => 'Show or hide the post button'],
+			'views'   => ['label' => 'Views', 'value' => 'show', 'tooltip' => 'Show or hide the post views']
 		],
 		'post_columns_layout' => [
 			'xl'  => '≥ 1200px',

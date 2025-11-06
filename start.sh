@@ -6,10 +6,14 @@ PROJECT_DIR="$(cd "$(dirname "$0")" && pwd)"
 SECONDS=0
 
 echo -e "\033[32m --== Starting Wordpress website ==-- \033[0m"
-echo "Pulling latest from git..."
-echo -e "\033[90m"
-git pull
-echo -e "\033[0m"
+
+(
+    set +e
+    echo "Pulling latest from git..."
+    echo -e "\033[90m"
+    git pull
+    echo -e "\033[0m"
+)
 
 if ! docker compose ps >/dev/null 2>&1; then
     echo "First run, building containers..."

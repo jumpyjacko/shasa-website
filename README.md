@@ -18,16 +18,22 @@ Install `git` and `docker`
 
 Open a terminal in this directory. (Use Git Bash terminal on Windows)
 
-### First time build
+### Automatic Startup (Recommended)
+Run `./start.sh` in the terminal.
+
+### Manual Startup
+Use if running into issues with the automatic startup script.
+
+#### First time build
 Run `docker compose up --build`.
 
 After it finishes building, press `<Ctrl+C>` to stop the website.
 
-### Running the website
+#### Running the website
 Run `docker compose up -d`.
 Run `./import-db.sh`.
 
 Go to `http://localhost:8080`. (Ensure you are using `http` not `https`).
 
-### Admin Panel
+#### Admin Panel
 Go to `http://localhost:8080/wp-admin`. The username is `user` and password is `pass`.
